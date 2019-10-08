@@ -12,6 +12,10 @@ Consume this library by running:
 ```
 npm install --save github:alastria/alastria-identity-lib.git#develop
 ```
-Now, you can use it from any JavaScript file in your workiing directory. You can copy an example from `test/file.js`.
+Now, you can use it from any JavaScript file in your working directory.
 
-Now, you can execute node file.js and see the results of this file.
+Now, you can execute 
+```
+node exampleCreateAlastriaID.js 
+```
+You can execute the difference JavaScript files
