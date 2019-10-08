@@ -1,5 +1,4 @@
-let any = require('jsontokens')
-const {transactionFactory, UserIdentity, tokensFactory} = require('alastria-identity-lib')
+= require('alastria-identity-lib')
 
 // Data
 const rawPublicKey = '03fdd57adec3d438ea237fe46b33ee1e016eda6b585c3e27ea66686c2ea5358479'
@@ -11,7 +10,7 @@ const tokenPayload = {
 }
 // End data
 
-console.log("---- signedJWT ----")
+console.log("---- signJWT ----")
 
 console.log("\tFunction arguments: Token payload, Raw Public Key")
 console.log("\t\tToken payload:\n", tokenPayload)
@@ -116,8 +115,8 @@ let myBlockchainServiceIp = 'http://63.33.206.111/rpc'
 //let myBlockchainServiceIp = 'http://127.0.0.1:8545' //Ganache
 
 const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
-// End data
 
+// End data
 console.log("\tFunction arguments: web3. signedJWT, Issuer DID")
 console.log("\t\tWeb3")
 console.log("\t\tSigned JWT:", signedJWT)
