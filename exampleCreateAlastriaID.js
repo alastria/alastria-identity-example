@@ -1,9 +1,3 @@
-/*
- * This file is a tutorial of using the alastria-identity-lib
- * Create an empty directory to test it following the instructions of
- * https://github.com/alastria/alastria-identity-lib README.md
-*/
-
 let any = require('jsontokens')
 const {transactionFactory, UserIdentity, tokensFactory} = require('alastria-identity-lib')
 let Web3 = require('web3')
