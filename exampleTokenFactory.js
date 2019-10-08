@@ -106,3 +106,24 @@ console.log("\t\tjti:", jti)
 
 const credential1 = tokensFactory.tokens.createCredential(kidCredential, didIsssuer, subjectAlastriaID, context, credentialSubject, tokenExpTime, tokenActivationDate, jti)
 console.log('\nThe credential1 is: ', credential1)
+
+console.log("\n---- PSMHash ----")
+
+// Data
+let Web3 = require('web3')
+// Init your blockchain provider
+let myBlockchainServiceIp = 'http://63.33.206.111/rpc'
+//let myBlockchainServiceIp = 'http://127.0.0.1:8545' //Ganache
+
+const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
+// End data
+
+console.log("\tFunction arguments: web3. signedJWT, Issuer DID")
+console.log("\t\tWeb3")
+console.log("\t\tSigned JWT:", signedJWT)
+console.log("\t\tIssuer DID:", didIsssuer)
+
+let psmHash = tokensFactory.tokens.PSMHash(web3, signedJWT, didIsssuer);
+console.log("\tThe PSMHash is:", psmHash);
+
+// TODO: CreatePresentationRequest and CreatePresentation
