@@ -1,21 +1,25 @@
 # Example of how to use the Alastria Identity Library
 ## What it does
-This example of library use interacts with the Alastria Identity smart contracts which are in the alastria-identity repository 
-(https://github.com/alastria/alastria-identity).
+This is an example of how to interact with the libraries from [alastria-identity-lib](https://github.com/alastria/alastria-identity-lib). The library alastria-identity-lib re-covers the Smart Contracts from [alastria-identity](https://github.com/alastria/alastria-identity).
 
+### Files of example 
+|**File**|**What it does**|
+|:--:|:--|
+|exampleTokensFactory.js| Contains examples of how to interact with [tokenFactory.ts](https://github.com/alastria/alastria-identity-lib/blob/develop/src/tokenFactory/tokensFactory.ts) functions|
+|exampleCreateAlastriaID.js| Contains a example of how to create an Alastria ID |
 ## How to use it
-In your working directory init npm with
-```
+First of all, in your working directory init npm with
+```sh
 npm init -y
 ```
-Consume this library by running:
-```
+Then you can consume this library by running:
+```sh
 npm install --save github:alastria/alastria-identity-lib.git#develop
 ```
 Now, you can use it from any JavaScript file in your working directory.
 
-Now, you can execute 
+You can execute some of our examples by running:
+```sh
+node file_name.js 
 ```
-node exampleCreateAlastriaID.js 
-```
-You can execute the difference JavaScript files
+
