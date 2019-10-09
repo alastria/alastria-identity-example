@@ -110,8 +110,6 @@ console.log('\nThe credential1 is: ', credential1)
 
 console.log("\n---- PSMHash ----")
 
-// Data
-let Web3 = require('web3')
 // Init your blockchain provider
 let myBlockchainServiceIp = config.nodeUrl
 
@@ -129,7 +127,7 @@ console.log("\tThe PSMHash is:", psmHash);
 
 //create AIC
 
-let txCreateAlastriaID = await transactionFactory.identityManager.createAlastriaIdentity(web3, rawPublicKey)
+let txCreateAlastriaID = transactionFactory.identityManager.createAlastriaIdentity(web3, rawPublicKey)
 
 let aic = tokensFactory.tokens.createAIC(txCreateAlastriaID,alastriaToken,userPublicKey);
 console.log("\t\tAIC:", aic);
