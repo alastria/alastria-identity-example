@@ -1,0 +1,23 @@
+{
+  "name": "alastria-identity-example",
+  "version": "1.0.0",
+  "description": "This is an example of how to interact with the libraries from [alastria-identity-lib](https://github.com/alastria/alastria-identity-lib). The library alastria-identity-lib re-covers the Smart Contracts from [alastria-identity](https://github.com/alastria/alastria-identity).",
+  "main": "exampleCreateAlastriaID.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alastria/alastria-identity-example.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alastria/alastria-identity-example/issues"
+  },
+  "homepage": "https://github.com/alastria/alastria-identity-example#readme",
+  "dependencies": {
+    "alastria-identity-lib": "github:alastria/alastria-identity-lib#feature/addSubjectCredential"
+  }
+}
