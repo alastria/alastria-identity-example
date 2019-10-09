@@ -1,8 +1,10 @@
-const {tokensFactory} = require('alastria-identity-lib')
+const {transactionFactory, UserIdentity, tokensFactory} = require('alastria-identity-lib')
+const Web3 = require('web3')
 const fs = require('fs')
 
 let rawdata = fs.readFileSync('./configuration.json')
 let config = JSON.parse(rawdata)
+console.log(config)
 
 // Data
 const rawPublicKey = config.rawPublicKey
@@ -127,13 +129,9 @@ console.log("\tThe PSMHash is:", psmHash);
 
 //create AIC
 
-let createAlastriaIDTX = { to: '0x70e7e63928b8f274f018160207d4275fd8ea5bbe',
-  data: '0x6d69d99a000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000a450382c1a0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000004230336664643537616465633364343338656132333766653436623333656531653031366564613662353835633365323765613636363836633265613533353834373900000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
-  gasLimit: 600000,
-  gasPrice: 0,
-  nonce: '0x0' }
+let txCreateAlastriaID = await transactionFactory.identityManager.createAlastriaIdentity(web3, rawPublicKey)
 
-let aic = tokensFactory.tokens.createAIC(createAlastriaIDTX,alastriaToken,userPublicKey);
+let aic = tokensFactory.tokens.createAIC(txCreateAlastriaID,alastriaToken,userPublicKey);
 console.log("\t\tAIC:", aic);
 
 //End create AIC
