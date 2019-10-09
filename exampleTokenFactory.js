@@ -125,12 +125,13 @@ let psmHash = tokensFactory.tokens.PSMHash(web3, signedJWT, didIsssuer);
 console.log("\tThe PSMHash is:", psmHash);
 
 
+console.log("\n---- Create AIC ----")
 //create AIC
 
 let txCreateAlastriaID = transactionFactory.identityManager.createAlastriaIdentity(web3, rawPublicKey)
 
 let aic = tokensFactory.tokens.createAIC(txCreateAlastriaID,alastriaToken,userPublicKey);
-console.log("\t\tAIC:", aic);
+console.log("\tAIC:", aic);
 
 //End create AIC
 
