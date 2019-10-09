@@ -3,7 +3,6 @@ const fs = require('fs')
 
 let rawdata = fs.readFileSync('./configuration.json')
 let config = JSON.parse(rawdata)
-console.log(config)
 
 // Data
 const rawPublicKey = config.rawPublicKey
