@@ -1,4 +1,5 @@
-const {tokensFactory} = require('alastria-identity-lib')
+const {transactionFactory, UserIdentity, tokensFactory} = require('alastria-identity-lib')
+const Web3 = require('web3')
 const fs = require('fs')
 
 let rawdata = fs.readFileSync('./configuration.json')
@@ -109,8 +110,6 @@ console.log('\nThe credential1 is: ', credential1)
 
 console.log("\n---- PSMHash ----")
 
-// Data
-let Web3 = require('web3')
 // Init your blockchain provider
 let myBlockchainServiceIp = config.nodeUrl
 
@@ -124,5 +123,15 @@ const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 
 let psmHash = tokensFactory.tokens.PSMHash(web3, signedJWT, didIsssuer);
 console.log("\tThe PSMHash is:", psmHash);
+
+
+//create AIC
+
+let txCreateAlastriaID = transactionFactory.identityManager.createAlastriaIdentity(web3, rawPublicKey)
+
+let aic = tokensFactory.tokens.createAIC(txCreateAlastriaID,alastriaToken,userPublicKey);
+console.log("\t\tAIC:", aic);
+
+//End create AIC
 
 // TODO: CreatePresentationRequest and CreatePresentation
