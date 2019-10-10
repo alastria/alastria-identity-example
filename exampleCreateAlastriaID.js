@@ -37,13 +37,11 @@ try{
 let subjectIdentity = new UserIdentity(web3, `0x${identityKeystore.address}`, subjectPrivateKey)
 // End data
 
-console.log('\n ------ Step one---> prepareAlastriaID inside a Promise ------ \n')
 let p1 = new Promise (async(resolve, reject) => {
 	let preparedId = await transactionFactory.identityManager.prepareAlastriaID(web3, identityKeystore.address)
 	resolve(preparedId)
 })
 
-console.log('\n ------ Step two---> createAlsatriaID inside a second Promise ------ \n')
 let p2 = new Promise(async(resolve, reject) => {
 	let txCreateAlastriaID = await transactionFactory.identityManager.createAlastriaIdentity(web3, rawPublicKey)
 	resolve(txCreateAlastriaID)
@@ -71,7 +69,7 @@ Promise.all([p1, p2])
 					data: web3.eth.abi.encodeFunctionCall(config.contractsAbi['AlastriaIdentityManager']['identityKeys'], [identityKeystore.address])
 				})
 				.then (AlastriaIdentity => {
-					console.log(`AlastriaIdentity: 0x${AlastriaIdentity.slice(26)}`)
+					console.log(`alastriaProxyAddress: 0x${AlastriaIdentity.slice(26)}`)
 					let alastriaDID = tokensFactory.tokens.createDID('quor', AlastriaIdentity.slice(26));
 					console.log('the alastria DID is:', alastriaDID)
 				})

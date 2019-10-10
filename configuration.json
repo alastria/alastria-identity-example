@@ -19,5 +19,6 @@
   "kidCredential": "did:ala:quor:redt:QmeeasCZ9jLbXueBJ7d7csxhb#keys-1",
   "subjectAlastriaID": "did:alastria:quorum:redt:QmeeasCZ9jLbXueBJ7d7csxhb",
   "credentialKey": "StudentID",
-  "credentialValue":"11235813"
+  "credentialValue":"11235813",
+  "uri":"www.google.com"
 }
