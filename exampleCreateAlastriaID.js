@@ -1,4 +1,4 @@
-const {transactionFactory, UserIdentity, config} = require('alastria-identity-lib')
+const {transactionFactory, UserIdentity, config, tokensFactory} = require('alastria-identity-lib')
 const fs = require('fs')
 const Web3 = require('web3')
 const keythereum = require('keythereum')
@@ -72,6 +72,8 @@ Promise.all([p1, p2])
 				})
 				.then (AlastriaIdentity => {
 					console.log(`AlastriaIdentity: 0x${AlastriaIdentity.slice(26)}`)
+					let alastriaDID = tokensFactory.tokens.createDID('quor', AlastriaIdentity.slice(26));
+					console.log('the alastria DID is:', alastriaDID)
 				})
 		})
 		.on('error', console.error); // If a out of gas error, the second parameter is the receipt.
