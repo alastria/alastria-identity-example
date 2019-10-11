@@ -82,26 +82,41 @@ console.log("The PSMHash is:", credentialHash);
 		console.log('(addSubjectCredential)The transaction is: ', subjectCredential)
 		resolve(subjectCredential)
 	})
+	let hash1
+
+	function sendSigned(subjectCredentialSigned) {
+		return new Promise((resolve, reject) => {
+			web3.eth.sendSignedTransaction(subjectCredentialSigned)
+			.on('transactionHash', function (hash) {
+				console.log("HASH: ", hash)
+				hash1 = hash
+			})
+			.on('receipt', receipt => {
+				resolve(receipt)
+			})
+			.on('error', console.error); 
+
+		})
+	}
 	
 		
 	Promise.all([p1])
 	.then(async values => {
 	let subjectCredentialSigned = await issuerIdentity.getKnownTransaction(values[0])
-			console.log('(addSubjectCredential)The transaction bytes data is: ', subjectCredentialSigned)
-			web3.eth.sendSignedTransaction(subjectCredentialSigned)
-			.on('transactionHash', function (hash) {
-				console.log("HASH: ", hash)
-				 let subjectCredentialTransaction = transactionFactory.credentialRegistry.getSubjectCredentialStatus(web3, "0xae117aa7bf21361ee71066c51a7a530f2370d9c8", hash)
-				 web3.eth.call(subjectCredentialTransaction)
-				 .then(SubjectCredentialStatus => {
-					let result = web3.eth.abi.decodeParameters(["bool","uint8"],SubjectCredentialStatus)
-					let credentialStatus = { 
-						"exists": result[0],
-						"status":result[1]
-					}
-				 	console.log("(SubjectCredentialStatus) -----> ", credentialStatus);
-				})
+		console.log('(addSubjectCredential)The transaction bytes data is: ', subjectCredentialSigned)
+		sendSigned(subjectCredentialSigned)
+		.then(receipt => {
+			console.log('RECEIPT:', receipt)
+			let subjectCredentialTransaction = transactionFactory.credentialRegistry.getSubjectCredentialStatus(web3, "0xae117aa7bf21361ee71066c51a7a530f2370d9c8", hash1)
+				web3.eth.call(subjectCredentialTransaction)
+				.then(SubjectCredentialStatus => {
+				let result = web3.eth.abi.decodeParameters(["bool","uint8"],SubjectCredentialStatus)
+				let credentialStatus = { 
+					"exists": result[0],
+					"status":result[1]
+				}
+				console.log("(SubjectCredentialStatus) -----> ", credentialStatus);
 			})
-			.on('error', console.error); 
+		})
 	})	
 
