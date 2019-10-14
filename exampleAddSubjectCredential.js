@@ -105,11 +105,23 @@ console.log("The PSMHash is:", credentialHash);
 			.on('error', console.error); 
 	})	
 
-
-
-console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",identityKeystore.address)
-console.log(typeof(`0x${identityKeystore.address}`),`0x${identityKeystore.address}`)
-console.log(typeof(identityKeystore.address),identityKeystore.address)
-let credentialList = transactionFactory.credentialRegistry.getSubjectCredentialList(web3, "0xde7ab34219563ac50ccc7b51d23b9a61d22a383e")
-console.log("THIS IS THE REAL SHIT", credentialList)
-
+/*
+return new Promise(async(resolve, reject)=>{
+	let credentialList = await transactionFactory.credentialRegistry.getSubjectCredentialList(web3)
+	let subjectCredentialList = await issuerIdentity.getKnownTransaction(credentialList)
+	console.log("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<", subjectCredentialList)
+	let aaaaaaaaa = await web3.eth.sendSignedTransaction(subjectCredentialList)
+	console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",aaaaaaaaa)
+	// .on('transactionHash',function(hash){
+	// 	console.log("HASHCredentialList: ", hash)
+	// 	web3.eth.call(hash)
+	// 	.then(ssl =>
+	// 	{
+	// 	let result = web3.eth.abi.decodeParameter("bytes32",ssl)
+	// 	console.log("result credential list",result);		
+	// 	resolve(result);
+	// 	})
+	// })
+	// .on('error', console.error);
+})
+*/
