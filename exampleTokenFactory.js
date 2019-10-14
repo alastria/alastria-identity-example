@@ -133,6 +133,11 @@ let txCreateAlastriaID = transactionFactory.identityManager.createAlastriaIdenti
 let aic = tokensFactory.tokens.createAIC(txCreateAlastriaID,alastriaToken,userPublicKey);
 console.log("\tAIC:", aic);
 
+const signedJWTAIC = tokensFactory.tokens.signJWT(aic, rawPrivateKey)
+console.log("AIC Signed:", signedJWTAIC)
+
+console.log("\n----END Create AIC ----")
+
 //End create AIC
 
 // TODO: CreatePresentationRequest and CreatePresentation

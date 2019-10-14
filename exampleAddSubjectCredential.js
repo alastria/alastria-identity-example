@@ -91,7 +91,7 @@ console.log("The PSMHash is:", credentialHash);
 			web3.eth.sendSignedTransaction(subjectCredentialSigned)
 			.on('transactionHash', function (hash) {
 				console.log("HASH: ", hash)
-				 let subjectCredentialTransaction = transactionFactory.credentialRegistry.getSubjectCredentialStatus(web3, "0xae117aa7bf21361ee71066c51a7a530f2370d9c8", hash)
+				 let subjectCredentialTransaction = transactionFactory.credentialRegistry.getSubjectCredentialStatus(web3, "0x5bd9d32ae116b7ff42885afeed6962f9061d7b20", hash)
 				 web3.eth.call(subjectCredentialTransaction)
 				 .then(SubjectCredentialStatus => {
 					let result = web3.eth.abi.decodeParameters(["bool","uint8"],SubjectCredentialStatus)
@@ -104,4 +104,12 @@ console.log("The PSMHash is:", credentialHash);
 			})
 			.on('error', console.error); 
 	})	
+
+
+
+console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",identityKeystore.address)
+console.log(typeof(`0x${identityKeystore.address}`),`0x${identityKeystore.address}`)
+console.log(typeof(identityKeystore.address),identityKeystore.address)
+let credentialList = transactionFactory.credentialRegistry.getSubjectCredentialList(web3, "0xde7ab34219563ac50ccc7b51d23b9a61d22a383e")
+console.log("THIS IS THE REAL SHIT", credentialList)
 
