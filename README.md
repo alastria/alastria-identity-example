@@ -8,6 +8,7 @@ This is an example of how to interact with the libraries from [alastria-identity
 |exampleTokensFactory.js| Contains examples of how to interact with [tokenFactory.ts](https://github.com/alastria/alastria-identity-lib/blob/develop/src/tokenFactory/tokensFactory.ts) functions|
 |exampleCreateAlastriaID.js| Contains a example of how to create an Alastria ID |
 |exampleAddSubjectCredential.js| Contains an example of how to give a subject a credential and how to verify the status of that credential |
+|exampleIdentityServiceProvider.js	| Contains an example of how to add and remove a Identity Service Provider|
 ## How to use it
 First of all, in your working directory init npm with
 ```sh
