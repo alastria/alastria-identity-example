@@ -77,19 +77,17 @@ console.log('The signed token is: ', signedJWTCredential)
 const credentialHash = tokensFactory.tokens.PSMHash(web3, signedJWTCredential, didIsssuer);
 console.log("The PSMHash is:", credentialHash);
 
-	let p1 = new Promise (async(resolve, reject) => {
+	let promiseAdSubjectCredential = new Promise (async(resolve, reject) => {
 		let subjectCredential = await transactionFactory.credentialRegistry.addSubjectCredential(web3, credentialHash, uri)
 		console.log('(addSubjectCredential)The transaction is: ', subjectCredential)
 		resolve(subjectCredential)
 	})
-	let hash1
 
 	function sendSigned(subjectCredentialSigned) {
 		return new Promise((resolve, reject) => {
 			web3.eth.sendSignedTransaction(subjectCredentialSigned)
 			.on('transactionHash', function (hash) {
 				console.log("HASH: ", hash)
-				hash1 = hash
 			})
 			.on('receipt', receipt => {
 				resolve(receipt)
@@ -100,14 +98,15 @@ console.log("The PSMHash is:", credentialHash);
 	}
 	
 		
-	Promise.all([p1])
-	.then(async values => {
-	let subjectCredentialSigned = await issuerIdentity.getKnownTransaction(values[0])
+	Promise.all([promiseAdSubjectCredential])
+	.then(async result => {
+		let subjectCredentialSigned = await issuerIdentity.getKnownTransaction(result[0])
 		console.log('(addSubjectCredential)The transaction bytes data is: ', subjectCredentialSigned)
 		sendSigned(subjectCredentialSigned)
 		.then(receipt => {
 			console.log('RECEIPT:', receipt)
-			let subjectCredentialTransaction = transactionFactory.credentialRegistry.getSubjectCredentialStatus(web3, "0xae117aa7bf21361ee71066c51a7a530f2370d9c8", hash1)
+			let subject = "0x9d700a2fc6069555a42d39c6df0398087376c3f2"  //by the moment, change it manually from alastriaProxyAddress result in script exampleCreateAlastriaID.js 
+			let subjectCredentialTransaction = transactionFactory.credentialRegistry.getSubjectCredentialStatus(web3, subject, credentialHash)
 				web3.eth.call(subjectCredentialTransaction)
 				.then(SubjectCredentialStatus => {
 				let result = web3.eth.abi.decodeParameters(["bool","uint8"],SubjectCredentialStatus)

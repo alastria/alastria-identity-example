@@ -37,21 +37,21 @@ try{
 let subjectIdentity = new UserIdentity(web3, `0x${identityKeystore.address}`, subjectPrivateKey)
 // End data
 
-let p1 = new Promise (async(resolve, reject) => {
+let promisePreparedAlastriaId = new Promise (async(resolve, reject) => {
 	let preparedId = await transactionFactory.identityManager.prepareAlastriaID(web3, identityKeystore.address)
 	resolve(preparedId)
 })
 
-let p2 = new Promise(async(resolve, reject) => {
+let promiseCreateAlastriaId = new Promise(async(resolve, reject) => {
 	let txCreateAlastriaID = await transactionFactory.identityManager.createAlastriaIdentity(web3, rawPublicKey)
 	resolve(txCreateAlastriaID)
 })
 
 console.log('\n ------ Step three---> A promise all where prepareAlastriaID and createAlsatriaID transactions are signed and sent ------ \n')
-Promise.all([p1, p2])
-.then(async values => {
-	let signedCreateTransaction =	await subjectIdentity.getKnownTransaction(values[1])
-	let signedPreparedTransaction = await adminIdentity.getKnownTransaction(values[0])
+Promise.all([promisePreparedAlastriaId, promiseCreateAlastriaId])
+.then(async result => {
+	let signedCreateTransaction =	await subjectIdentity.getKnownTransaction(result[1])
+	let signedPreparedTransaction = await adminIdentity.getKnownTransaction(result[0])
 	web3.eth.sendSignedTransaction(signedPreparedTransaction)
 	.on('transactionHash', function (hash) {
 		console.log("HASH: ", hash)
