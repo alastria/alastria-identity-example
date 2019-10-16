@@ -7,7 +7,7 @@ let rawdata = fs.readFileSync('./configuration.json')
 let configData = JSON.parse(rawdata)
 
 // Init your blockchain provider
-let myBlockchainServiceIp = configData.nodeURL
+let myBlockchainServiceIp = 'http://localhost:8545'
 const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 
 //------------------------------------------------------------------------------
@@ -15,9 +15,11 @@ console.log('\n ------ Preparing Issuer identity ------ \n')
 
 // Some fake data to test
 
-let identityKeystore = configData.identityKeystore
+let identityKeystore = {
+	address: 'e9a9acd150c1a0f30f3b2353fe4ab5ccd9015ef0'
+}
 
-let issuerPrivateKey
+let issuerPrivateKey ='87ef3ecf012cc2f4619b9e69dbd237a8bf5ca3d420e771e6841f8a82ee267b73'
 try{
 	issuerPrivateKey = keythereum.recover(configData.addressPassword, identityKeystore)
 }catch(error){
@@ -78,7 +80,7 @@ console.log("The PSMHash is:", credentialHash);
 
 		})
 	}
-
+	
 	Promise.all([promiseAdSubjectCredential])
 	.then(async result => {
 		let subjectCredentialSigned = await issuerIdentity.getKnownTransaction(result[0])
@@ -86,17 +88,25 @@ console.log("The PSMHash is:", credentialHash);
 		sendSigned(subjectCredentialSigned)
 		.then(receipt => {
 			console.log('RECEIPT:', receipt)
-			let subject = '0x9d700a2fc6069555a42d39c6df0398087376c3f2'  //by the moment, change it manually from alastriaProxyAddress result in script exampleCreateAlastriaID.js 
-			let subjectCredentialTransaction = transactionFactory.credentialRegistry.getSubjectCredentialStatus(web3, subject, credentialHash)
-				web3.eth.call(subjectCredentialTransaction)
-				.then(SubjectCredentialStatus => {
-					let result = web3.eth.abi.decodeParameters(["bool","uint8"],SubjectCredentialStatus)
-					let credentialStatus = { 
-						"exists": result[0],
-						"status":result[1]
-					}
-					console.log("(SubjectCredentialStatus) -----> ", credentialStatus);
+			let credentialList = transactionFactory.credentialRegistry.getSubjectCredentialList(web3)
+			credentialList.from = `0x${identityKeystore.address}`
+			console.log('(credentialList) Transaction ------>', credentialList)
+			web3.eth.call(credentialList)
+			.then(subjectCredentialList => {
+				console.log('(subjectCredentialList) Transaction ------->', subjectCredentialList)
+				let resultList = web3.eth.abi.decodeParameters(["uint256", "bytes32[]"], subjectCredentialList)
+				let credentialList = {
+					"uint256": resultList[0],
+					"bytes32[]": resultList[1]
+				}
+				console.log('(subjectCredentialList) TransactionList: ', credentialList)
 			})
+			.catch(errorList => {
+				console.log('Error List -----> ', errorList)
+			})
+		})
+		.catch(errorReceipt => {
+			console.log('Error Receipt ----->', errorReceipt)
 		})
 	})	
 

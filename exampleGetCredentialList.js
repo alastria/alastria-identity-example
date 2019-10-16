@@ -78,7 +78,7 @@ console.log("The PSMHash is:", credentialHash);
 
 		})
 	}
-
+	
 	Promise.all([promiseAdSubjectCredential])
 	.then(async result => {
 		let subjectCredentialSigned = await issuerIdentity.getKnownTransaction(result[0])
@@ -86,17 +86,25 @@ console.log("The PSMHash is:", credentialHash);
 		sendSigned(subjectCredentialSigned)
 		.then(receipt => {
 			console.log('RECEIPT:', receipt)
-			let subject = '0x9d700a2fc6069555a42d39c6df0398087376c3f2'  //by the moment, change it manually from alastriaProxyAddress result in script exampleCreateAlastriaID.js 
-			let subjectCredentialTransaction = transactionFactory.credentialRegistry.getSubjectCredentialStatus(web3, subject, credentialHash)
-				web3.eth.call(subjectCredentialTransaction)
-				.then(SubjectCredentialStatus => {
-					let result = web3.eth.abi.decodeParameters(["bool","uint8"],SubjectCredentialStatus)
-					let credentialStatus = { 
-						"exists": result[0],
-						"status":result[1]
-					}
-					console.log("(SubjectCredentialStatus) -----> ", credentialStatus);
+			let credentialList = transactionFactory.credentialRegistry.getSubjectCredentialList(web3)
+			credentialList.from = `0xe049B2747d02CB8d5282a1B98E289ceEbE47C28a`
+			console.log('(credentialList) Transaction ------>', credentialList)
+			web3.eth.call(credentialList)
+			.then(subjectCredentialList => {
+				console.log('(subjectCredentialList) Transaction ------->', subjectCredentialList)
+				let resultList = web3.eth.abi.decodeParameters(["uint256", "bytes32[]"], subjectCredentialList)
+				let credentialList = {
+					"uint256": resultList[0],
+					"bytes32[]": resultList[1]
+				}
+				console.log('(subjectCredentialList) TransactionList: ', credentialList)
 			})
+			.catch(errorList => {
+				console.log('Error List -----> ', errorList)
+			})
+		})
+		.catch(errorReceipt => {
+			console.log('Error Receipt ----->', errorReceipt)
 		})
 	})	
 
