@@ -16,10 +16,26 @@
   "tokenActivationDate": 1563782792,
   "jsonTokenId": "ze298y42sba",
   "tokenPayload": {"iss": "joe","exp": 1300819380,"http://example.com/is_root": true},
-  "jti": "https://www.metrovacesa.com/alastria/credentials/3734",
+  "jti": "https://www.empresa.com/alastria/credentials/3734",
   "kidCredential": "did:ala:quor:redt:QmeeasCZ9jLbXueBJ7d7csxhb#keys-1",
   "subjectAlastriaID": "did:alastria:quorum:redt:QmeeasCZ9jLbXueBJ7d7csxhb",
   "credentialKey": "StudentID",
   "credentialValue":"11235813",
-  "uri":"www.google.com"
+  "uri":"www.google.com",
+  "procUrl": "https://www.empresa.com/alastria/businessprocess/4583",
+  "procHash": "H398sjHd...kldjUYn475n",
+  "data": [
+      {
+        "@context": "JWT",
+        "levelOfAssurance": "High",
+        "required": true,
+        "field_name": "name"
+      },
+      {
+        "@context": "JWT",
+        "levelOfAssurance": "High",
+        "required": true,
+        "field_name": "email"
+      }
+    ]
 }
