@@ -18,6 +18,6 @@
   },
   "homepage": "https://github.com/alastria/alastria-identity-example#readme",
   "dependencies": {
-    "alastria-identity-lib": "github:alastria/alastria-identity-lib#feature/addSubjectCredential"
+    "alastria-identity-lib": "github:alastria/alastria-identity-lib#develop"
   }
 }
