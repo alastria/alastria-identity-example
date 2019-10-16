@@ -136,8 +136,17 @@ console.log("\tAIC:", aic);
 const signedJWTAIC = tokensFactory.tokens.signJWT(aic, rawPrivateKey)
 console.log("AIC Signed:", signedJWTAIC)
 
-console.log("\n----END Create AIC ----")
+// Data
+let procUrl = config.procUrl
+let procHash = config.procHash
+let data = config.data
+// End data
 
-//End create AIC
+console.log("\n---- createPresentationRequest ----")
+const createPresentationReq = tokensFactory.tokens.createPresentationRequest(kidCredential, didIsssuer, subjectAlastriaID, context, credentialSubject, procUrl, procHash, data, tokenExpTime, tokenActivationDate, jti);
+console.log('\nThe createPresentationReq is: \n', createPresentationReq);
 
-// TODO: CreatePresentationRequest and CreatePresentation
+
+console.log("\n---- createPresentation ----")
+const createPresentation = tokensFactory.tokens.createPresentation(kidCredential, didIsssuer, subjectAlastriaID, context, credentialSubject, procUrl,procHash, tokenExpTime, tokenActivationDate, jti);
+console.log('\nThe createPresentation is: \n', createPresentation);
