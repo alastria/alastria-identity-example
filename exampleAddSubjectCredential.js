@@ -86,7 +86,7 @@ console.log("The PSMHash is:", credentialHash);
 		sendSigned(subjectCredentialSigned)
 		.then(receipt => {
 			console.log('RECEIPT:', receipt)
-			let subject = '0x9d700a2fc6069555a42d39c6df0398087376c3f2'  //by the moment, change it manually from alastriaProxyAddress result in script exampleCreateAlastriaID.js 
+			let subject = '0x537b90f1c210f58ff45951d5edc83e92ecce6e17'  //by the moment, change it manually from alastriaProxyAddress result in script exampleCreateAlastriaID.js 
 			let subjectCredentialTransaction = transactionFactory.credentialRegistry.getSubjectCredentialStatus(web3, subject, credentialHash)
 				web3.eth.call(subjectCredentialTransaction)
 				.then(SubjectCredentialStatus => {

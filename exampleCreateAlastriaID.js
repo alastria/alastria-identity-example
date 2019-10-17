@@ -70,6 +70,9 @@ Promise.all([promisePreparedAlastriaId, promiseCreateAlastriaId])
 				})
 				.then (AlastriaIdentity => {
 					console.log(`alastriaProxyAddress: 0x${AlastriaIdentity.slice(26)}`)
+
+					// TODO meter el subject en el config
+					// configData.subject = `0x${AlastriaIdentity.slice(26)}`
 					let alastriaDID = tokensFactory.tokens.createDID('quor', AlastriaIdentity.slice(26));
 					console.log('the alastria DID is:', alastriaDID)
 				})

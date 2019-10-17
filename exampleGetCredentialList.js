@@ -56,55 +56,19 @@ console.log('The signed token is: ', signedJWTCredential)
 const credentialHash = tokensFactory.tokens.PSMHash(web3, signedJWTCredential, didIsssuer);
 console.log("The PSMHash is:", credentialHash);
 
-	let promiseAdSubjectCredential = new Promise (async(resolve, reject) => {
-		let subjectCredential = await transactionFactory.credentialRegistry.addSubjectCredential(web3, credentialHash, uri)
-		console.log('(addSubjectCredential)The transaction is: ', subjectCredential)
-		resolve(subjectCredential)
+	let subject = `0x537b90f1c210f58ff45951d5edc83e92ecce6e17`
+	let credentialList = transactionFactory.credentialRegistry.getSubjectCredentialList(web3, subject)
+	console.log('(credentialList) Transaction ------>', credentialList)
+	web3.eth.call(credentialList)
+	.then(subjectCredentialList => {
+		console.log('(subjectCredentialList) Transaction ------->', subjectCredentialList)
+		let resultList = web3.eth.abi.decodeParameters(["uint256", "bytes32[]"], subjectCredentialList)
+		let credentialList = {
+			"uint": resultList[0],
+			"bytes32[]": resultList[1]
+		}
+		console.log('(subjectCredentialList) TransactionList: ', credentialList)
 	})
-
-	function sendSigned(subjectCredentialSigned) {
-		return new Promise((resolve, reject) => {
-			web3.eth.sendSignedTransaction(subjectCredentialSigned)
-			.on('transactionHash', function (hash) {
-				console.log("HASH: ", hash)
-			})
-			.on('receipt', receipt => {
-				resolve(receipt)
-			})
-			.on('error', error => {
-				console.log('Error------>', error)
-				reject(error)
-			}); 
-
-		})
-	}
-	
-	Promise.all([promiseAdSubjectCredential])
-	.then(async result => {
-		let subjectCredentialSigned = await issuerIdentity.getKnownTransaction(result[0])
-		console.log('(addSubjectCredential)The transaction bytes data is: ', subjectCredentialSigned)
-		sendSigned(subjectCredentialSigned)
-		.then(receipt => {
-			console.log('RECEIPT:', receipt)
-			let credentialList = transactionFactory.credentialRegistry.getSubjectCredentialList(web3)
-			credentialList.from = `0xe049B2747d02CB8d5282a1B98E289ceEbE47C28a`
-			console.log('(credentialList) Transaction ------>', credentialList)
-			web3.eth.call(credentialList)
-			.then(subjectCredentialList => {
-				console.log('(subjectCredentialList) Transaction ------->', subjectCredentialList)
-				let resultList = web3.eth.abi.decodeParameters(["uint256", "bytes32[]"], subjectCredentialList)
-				let credentialList = {
-					"uint256": resultList[0],
-					"bytes32[]": resultList[1]
-				}
-				console.log('(subjectCredentialList) TransactionList: ', credentialList)
-			})
-			.catch(errorList => {
-				console.log('Error List -----> ', errorList)
-			})
-		})
-		.catch(errorReceipt => {
-			console.log('Error Receipt ----->', errorReceipt)
-		})
-	})	
-
+	.catch(errorList => {
+		console.log('Error List -----> ', errorList)
+	})
