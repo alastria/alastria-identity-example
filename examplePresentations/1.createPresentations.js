@@ -9,7 +9,7 @@ let keythereum = require('keythereum')
 let rawdata = fs.readFileSync('../configuration.json')
 let configData = JSON.parse(rawdata)
 
-let presentationRawData = fs.readFileSync('./presentations.json')
+let presentationRawData = fs.readFileSync('./mockPresentations.json')
 let presentationData = JSON.parse(presentationRawData)
 
 let keyData = fs.readFileSync('../keystore.json')
