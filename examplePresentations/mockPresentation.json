@@ -1,0 +1,27 @@
+{
+  "didIssuer": "did:alastria:quorum:redt:QmeeasCZ9jLbX...ueBJ7d7csxhb",
+  "didSubject": "did:alastria:quorum:redt:QmeeasCZ9jLbXueBJ7d7csxhb",
+  "credentials": [{
+    "header": {
+      "typ": "JWT",
+      "alg": "ES256K",
+      "kid": "did:ala:quor:redt:QmeeasCZ9jLbXueBJ7d7csxhb#keys-1"
+    },
+    "payload": {
+      "jti": "https://www.empresa.com/alastria/credentials/3734",
+      "iss": "did:ala:quor:telsius:0x12345",
+      "sub": "did:alastria:quorum:redt:QmeeasCZ9jLbXueBJ7d7csxhb",
+      "iat": 1571318791,
+      "exp": 1563783392,
+      "nbf": 1563782792,
+      "vc": {
+        "@context": [],
+        "type": [],
+        "credentialSubject": []
+      }
+    }
+  }],
+  "timeExp": 1530735444,
+  "timeNbf": 1525465044,
+  "jti": "https://www.metrovacesa.com/alastria/credentials/3732"
+}
