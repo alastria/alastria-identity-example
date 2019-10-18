@@ -3,8 +3,11 @@ let Web3 = require('web3')
 let fs = require('fs')
 let keythereum = require('keythereum')
 
-let rawdata = fs.readFileSync('./configuration.json')
+let rawdata = fs.readFileSync('../configuration.json')
 let configData = JSON.parse(rawdata)
+
+let keyData = fs.readFileSync('../keystore.json')
+let keystoreData = JSON.parse(keyData)
 
 // Init your blockchain provider
 let myBlockchainServiceIp = configData.nodeURL
@@ -15,16 +18,16 @@ console.log('\n ------ Preparing Issuer identity ------ \n')
 
 // Some fake data to test
 
-let identityKeystore = configData.identityKeystore
+let identityKeystore = keystoreData.identityKeystore
 
-let issuerPrivateKey
+let identityPrivateKey
 try{
-	issuerPrivateKey = keythereum.recover(configData.addressPassword, identityKeystore)
+	identityPrivateKey = keythereum.recover(keystoreData.addressPassword, identityKeystore)
 }catch(error){
 	console.log("ERROR: ", error)
 }
 
-let issuerIdentity = new UserIdentity(web3, `0x${identityKeystore.address}`, issuerPrivateKey)
+let issuerIdentity = new UserIdentity(web3, `0x${identityKeystore.address}`, identityPrivateKey)
  
 console.log('\n ------ Creating credential ------ \n')
 
@@ -50,7 +53,7 @@ const credential = tokensFactory.tokens.createCredential(kidCredential, didIsssu
 console.log('The credential1 is: ', credential)
 
 
-const signedJWTCredential = tokensFactory.tokens.signJWT(credential, issuerPrivateKey)
+const signedJWTCredential = tokensFactory.tokens.signJWT(credential, identityPrivateKey)
 console.log('The signed token is: ', signedJWTCredential)
 
 const credentialHash = tokensFactory.tokens.PSMHash(web3, signedJWTCredential, didIsssuer);
@@ -86,7 +89,7 @@ console.log("The PSMHash is:", credentialHash);
 		sendSigned(subjectCredentialSigned)
 		.then(receipt => {
 			console.log('RECEIPT:', receipt)
-			let subject = '0x537b90f1c210f58ff45951d5edc83e92ecce6e17'  //by the moment, change it manually from alastriaProxyAddress result in script exampleCreateAlastriaID.js 
+			let subject = configData.subject  //by the moment, change it manually from alastriaProxyAddress result in script exampleCreateAlastriaID.js 
 			let subjectCredentialTransaction = transactionFactory.credentialRegistry.getSubjectCredentialStatus(web3, subject, credentialHash)
 				web3.eth.call(subjectCredentialTransaction)
 				.then(SubjectCredentialStatus => {

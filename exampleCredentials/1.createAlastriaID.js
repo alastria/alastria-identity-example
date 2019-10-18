@@ -3,8 +3,11 @@ const fs = require('fs')
 const Web3 = require('web3')
 const keythereum = require('keythereum')
 
-let rawdata = fs.readFileSync('./configuration.json')
+let rawdata = fs.readFileSync('../configuration.json')
 let configData = JSON.parse(rawdata)
+
+let keyData = fs.readFileSync('../keystore.json')
+let keystoreData = JSON.parse(keyData)
 
 // Init your blockchain provider
 let myBlockchainServiceIp = configData.nodeURL
@@ -14,22 +17,22 @@ console.log('\n ------ Example of prepare Alastria ID, addKey and createAlastris
 // Data
 const rawPublicKey = configData.rawPublicKey
 
-let adminKeyStore = configData.adminKeyStore
+let adminKeyStore = keystoreData.adminKeystore
 
 let adminPrivateKey
 try{
-	adminPrivateKey = keythereum.recover(configData.addressPassword, adminKeyStore)
+	adminPrivateKey = keythereum.recover(keystoreData.addressPassword, adminKeyStore)
 }catch(error){
 	console.log("ERROR: ", error)
 }
 
 let adminIdentity = new UserIdentity(web3, `0x${adminKeyStore.address}`, adminPrivateKey)
 
-let identityKeystore = configData.identityKeystore
+let identityKeystore = keystoreData.identityKeystore
 
 let subjectPrivateKey
 try{
-	subjectPrivateKey = keythereum.recover(configData.addressPassword, identityKeystore)
+	subjectPrivateKey = keythereum.recover(keystoreData.addressPassword, identityKeystore)
 }catch(error){
 	console.log("ERROR: ", error)
 }
@@ -72,7 +75,8 @@ Promise.all([promisePreparedAlastriaId, promiseCreateAlastriaId])
 					console.log(`alastriaProxyAddress: 0x${AlastriaIdentity.slice(26)}`)
 
 					// TODO meter el subject en el config
-					// configData.subject = `0x${AlastriaIdentity.slice(26)}`
+					configData.subject = `0x${AlastriaIdentity.slice(26)}`
+					fs.writeFileSync('../configuration.json', JSON.stringify(configData))
 					let alastriaDID = tokensFactory.tokens.createDID('quor', AlastriaIdentity.slice(26));
 					console.log('the alastria DID is:', alastriaDID)
 				})

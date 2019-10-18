@@ -1,20 +1,23 @@
-const {transactionFactory, UserIdentity, config} = require('alastria-identity-lib')
+const {transactionFactory, UserIdentity} = require('alastria-identity-lib')
 let Web3 = require('web3')
 let fs = require('fs')
 let keythereum = require('keythereum')
 
-let rawdata = fs.readFileSync('./configuration.json')
+let rawdata = fs.readFileSync('../configuration.json')
 let configData = JSON.parse(rawdata)
+
+let keyData = fs.readFileSync('../keystore.json')
+let keystoreData = JSON.parse(keyData)
 
 // Init your blockchain provider
 let myBlockchainServiceIp = configData.nodeURL
 const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 
-let adminKeyStore = configData.adminKeyStore
+let adminKeyStore = keystoreData.adminKeystore
 
 let adminPrivateKey
 try{
-	adminPrivateKey = keythereum.recover(configData.addressPassword, adminKeyStore)
+	adminPrivateKey = keythereum.recover(keystoreData.addressPassword, adminKeyStore)
 }catch(error){
 	console.log("ERROR: ", error)
 }
@@ -22,16 +25,17 @@ try{
 let adminIdentity = new UserIdentity(web3, `0x${adminKeyStore.address}`, adminPrivateKey)
 
 // Im not sure if this is needed
-new Promise((resolver, rechazar) => {
-web3.eth.personal.unlockAccount(adminIdentity.address,"Passw0rd", 500)
-.then(() => {
-	resolver(0);
+new Promise((resolve, reject) => {
+web3.eth.personal.unlockAccount(adminIdentity.address,keystoreData.addressPassword, 500)
+.then(unlocked => {
+	console.log(unlocked)
+	resolve();
 }).catch(error=> {
 	console.log(error);
-	rechazar(error);
+	reject(error);
 })});
 
-let newSPKeyStore = configData.serviceProviderKeyStore; 
+let newSPKeyStore = keystoreData.serviceProviderKeyStore;
 
 new Promise (async() => {
 	console.log('\n ------ Example of adding a Service Provider ------ \n')
