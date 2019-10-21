@@ -50,10 +50,8 @@ let subjectIdentity = new UserIdentity(web3, `0x${identityKeystore.address}`, id
 const subjectPresentationHash = tokensFactory.tokens.PSMHash(web3, signedJWTPresentation, presentationData.didIsssuer)
 console.log("The PSMHash is:", subjectPresentationHash);
 fs.writeFileSync(`./PSMHash.json`, JSON.stringify({psmhash: subjectPresentationHash, jwt: signedJWTPresentation}))
-console.log("----------------------------------------------------------------------------------------------------- ORA ORA ORA")
 
 let addPresentationTransaction = transactionFactory.presentationRegistry.addSubjectPresentation(web3, subjectPresentationHash, uri)
-console.log("----------------------------------------------------------------------------------------------------- YARE YARE", addPresentationTransaction)
 
 async function main() {
   let subjectPresentationSigned = await subjectIdentity.getKnownTransaction(addPresentationTransaction)
