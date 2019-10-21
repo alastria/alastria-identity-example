@@ -30,14 +30,17 @@ try {
   console.log("ERROR: ", error)
 }
 
-let createPresentation = tokensFactory.tokens.createPresentation(presentationData.didIssuer,
-  presentationData.didSubject, 
-  presentationData.credentials, 
-  presentationData.timeExp, 
-  presentationData.timeNbf, 
-  presentationData.jti)
+let createPresentation = tokensFactory.tokens.createPresentation(presentationData["credentials"][0]["header"]["kid"],
+presentationData["credentials"][0]["payload"]["iss"], 
+presentationData["credentials"][0]["payload"]["aud"],
+presentationData["credentials"][0]["payload"]["vp"]["@context"], 
+presentationData["credentials"][0]["payload"]["vp"]["verifiableCredential"], 
+presentationData["credentials"][0]["payload"]["vp"]["procUrl"],
+presentationData["credentials"][0]["payload"]["vp"]["procHash"],
+presentationData["credentials"][0]["payload"]["exp"],
+presentationData["credentials"][0]["payload"]["nbf"],
+presentationData["credentials"][0]["payload"]["jti"])
 console.log('createPresentation ---------->', createPresentation)
-
 
 let signedJWTPresentation = tokensFactory.tokens.signJWT(createPresentation, identityPrivateKey)
 console.log('signedJWTPresentation ------------->', signedJWTPresentation)
@@ -47,10 +50,10 @@ let subjectIdentity = new UserIdentity(web3, `0x${identityKeystore.address}`, id
 const subjectPresentationHash = tokensFactory.tokens.PSMHash(web3, signedJWTPresentation, presentationData.didIsssuer)
 console.log("The PSMHash is:", subjectPresentationHash);
 fs.writeFileSync(`./PSMHash.json`, JSON.stringify({psmhash: subjectPresentationHash, jwt: signedJWTPresentation}))
-
+console.log("----------------------------------------------------------------------------------------------------- ORA ORA ORA")
 
 let addPresentationTransaction = transactionFactory.presentationRegistry.addSubjectPresentation(web3, subjectPresentationHash, uri)
-
+console.log("----------------------------------------------------------------------------------------------------- YARE YARE", addPresentationTransaction)
 
 async function main() {
   let subjectPresentationSigned = await subjectIdentity.getKnownTransaction(addPresentationTransaction)
