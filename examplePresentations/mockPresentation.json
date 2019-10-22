@@ -8,20 +8,21 @@
       "kid": "did:ala:quor:redt:QmeeasCZ9jLbXueBJ7d7csxhb#keys-1"
     },
     "payload": {
-      "jti": "https://www.empresa.com/alastria/credentials/3734",
-      "iss": "did:ala:quor:telsius:0x12345",
-      "sub": "did:alastria:quorum:redt:QmeeasCZ9jLbXueBJ7d7csxhb",
-      "iat": 1571318791,
-      "exp": 1563783392,
-      "nbf": 1563782792,
-      "vc": {
-        "@context": [],
-        "type": [],
-        "credentialSubject": []
+      "jti": "https://www.empresa.com/alastria/credentials/3732",
+      "iss": "did:alastria:quorum:redt:QmeeasCZ9jLbX...ueBJ7d7csxhb",
+      "aud": "did:alastria:quorum:redt:QmeeasCZ9jLbX...ueBJ7d7csxhb",
+      "exp": 1530735444,
+      "nbf": 1525465044,
+      "vp": {
+        "@context": [
+          "https://www.w3.org/2018/credentials/v1",
+          "JWT"
+        ],
+        "type": ["VerifiablePresentation"],
+        "procHash": "H398sjHd...kldjUYn475n",
+        "procUrl": "https://www.empresa.com/alastria/businessprocess/4583",
+        "verifiableCredential": [{  }]
       }
     }
-  }],
-  "timeExp": 1530735444,
-  "timeNbf": 1525465044,
-  "jti": "https://www.metrovacesa.com/alastria/credentials/3732"
+  }]
 }
