@@ -1,7 +1,8 @@
 {
   "nodeURL": "http://63.33.206.111/rpc",
   "addressPassword": "Passw0rd",
-  "rawPublicKey": "03fdd57adec3d438ea237fe46b33ee1e016eda6b585c3e27ea66686c2ea5358479",
+  "rawPublicKeySubject": "03fdd57adec3d438ea237fe46b33ee1e016eda6b585c3e27ea66686c2ea5358479",
+  "rawPublicKeyReceiver": "8b82bb2b1b5b4c1d56beeb88c98fcf894c23e8dee598d94c1c77099d3a80367f46",
   "rawPrivateKey": "278a5de700e29faae8e40e366ec5012b5ec63d36ec77e8a2417154cc1d25383f",
   "context": "https://w3id.org/did/v1",
   "userPublicKey": "AE2309349218937HASKHIUE9287432",
@@ -36,5 +37,5 @@
     "required": true,
     "field_name": "email"
   }],
-  "subject": "0x66ec1f7d205d84c5d68911af8e6945a999b8f1fe"
+  "subject": "0xc764a031d27caf2d78b33cc20876b54987e63096"
 }
