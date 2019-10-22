@@ -36,5 +36,6 @@
     "required": true,
     "field_name": "email"
   }],
-  "subject": "0xaaf09cbe3c3192a966843deff5d4b2b4a90938bc"
+  "subject": "0xaaf09cbe3c3192a966843deff5d4b2b4a90938bc",
+  "status": "Received"
 }
