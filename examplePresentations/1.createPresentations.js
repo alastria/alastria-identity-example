@@ -47,9 +47,13 @@ console.log('signedJWTPresentation ------------->', signedJWTPresentation)
 
 let subjectIdentity = new UserIdentity(web3, `0x${identityKeystore.address}`, identityPrivateKey)
 
-const subjectPresentationHash = tokensFactory.tokens.PSMHash(web3, signedJWTPresentation, presentationData.didIsssuer)
+const subjectPresentationHash = tokensFactory.tokens.PSMHash(web3, signedJWTPresentation, presentationData.didSubject)
 console.log("The PSMHash is:", subjectPresentationHash);
 fs.writeFileSync(`./PSMHash.json`, JSON.stringify({psmhash: subjectPresentationHash, jwt: signedJWTPresentation}))
+
+const receiverPresentationHash = tokensFactory.tokens.PSMHash(web3, signedJWTPresentation, presentationData.didIsssuer)
+console.log("The PSMHashReceiver is:", receiverPresentationHash);
+fs.writeFileSync(`./PSMHashReceiver.json`, JSON.stringify({psmhash: receiverPresentationHash, jwt: signedJWTPresentation}))
 
 let addPresentationTransaction = transactionFactory.presentationRegistry.addSubjectPresentation(web3, subjectPresentationHash, uri)
 
