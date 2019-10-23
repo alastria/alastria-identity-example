@@ -31,6 +31,7 @@ console.log('\tIs the signedJWT verified?', verifyJWT)
 let context = config.context
 let userPublicKey = config.userPublicKey
 let didIsssuer = config.didIsssuer
+let didIssuerReciever = config.didIssuerReciever
 let providerURL = config.providerURL
 let callbackURL = config.callbackURL
 let alastriaNetId = config.alastriaNetId
@@ -78,6 +79,8 @@ const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 let psmHash = tokensFactory.tokens.PSMHash(web3, signedJWT, didIsssuer);
 console.log("\tThe PSMHash is:", psmHash);
 
+let psmHashReciever = tokensFactory.tokens.PSMHash(web3, signedJWT, didIssuerReciever);
+console.log("\tThe PSMHashReciever is:", psmHashReciever);
 
 console.log("\n---- Create AIC ----")
 //create AIC

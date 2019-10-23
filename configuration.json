@@ -40,7 +40,16 @@
             "field_name": "email"
         }
     ],
-    "subject": "0xcbb1d31f1859f673baa4e3f97814741238c70f4e",
-    "receiver": "0x3af19bf6d8430c43794ec1d41fbbec5d8dd5b8fe",
-    "updateSubjectPresentationTo": 2
+    "subject": "0xd7aa62f167c53f6c4ad9525f8be147a6eec9a58e",
+    "receiver": "0x4a67445aec5b2b66701f855d77feca57a598e44f",
+    "updateSubjectPresentationTo": 2,
+    "updateReceiverPresentationTo": 1,
+    "subjectPresentationStatus": {
+        "exist": true,
+        "status": "0"
+    },
+    "recieverPresentationStatus": {
+        "exist": true,
+        "status": "1"
+    }
 }
