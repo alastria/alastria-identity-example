@@ -30,6 +30,8 @@ let presentationStatus = {
 exist: resultStatus[0],
 status: resultStatus[1]
 }
+configData.recieverPresentationStatus = receiverPresentationStatus;
+fs.writeFileSync('../configuration.json', JSON.stringify(configData))
 console.log('presentationStatus ------>', presentationStatus)
 })
 

@@ -1,1 +1,55 @@
-{"nodeURL":"http://63.33.206.111/rpc","addressPassword":"Passw0rd","rawPublicKeySubject":"03fdd57adec3d438ea237fe46b33ee1e016eda6b585c3e27ea66686c2ea5358479","rawPublicKeyReceiver":"8b82bb2b1b5b4c1d56beeb88c98fcf894c23e8dee598d94c1c77099d3a80367f46","rawPrivateKey":"278a5de700e29faae8e40e366ec5012b5ec63d36ec77e8a2417154cc1d25383f","context":"https://w3id.org/did/v1","userPublicKey":"AE2309349218937HASKHIUE9287432","didIsssuer":"did:ala:quor:telsius:0x12345","didIsssuerReceiver":"did:ala:quor:telsius:0x56789","providerURL":"https://regular.telsius.blockchainbyeveris.io:2000","callbackURL":"https://serviceprovider.alastria.blockchainbyeveris.io/api/login/","alastriaNetId":"Alastria network","tokenExpTime":1563783392,"tokenActivationDate":1563782792,"jsonTokenId":"ze298y42sba","tokenPayload":{"iss":"joe","exp":1300819380,"http://example.com/is_root":true},"jti":"https://www.empresa.com/alastria/credentials/3734","kidCredential":"did:ala:quor:redt:QmeeasCZ9jLbXueBJ7d7csxhb#keys-1","subjectAlastriaID":"did:alastria:quorum:redt:QmeeasCZ9jLbXueBJ7d7csxhb","credentialKey":"StudentID","credentialValue":"11235813","uri":"www.google.com","procUrl":"https://www.empresa.com/alastria/businessprocess/4583","procHash":"H398sjHd...kldjUYn475n","data":[{"@context":"JWT","levelOfAssurance":"High","required":true,"field_name":"name"},{"@context":"JWT","levelOfAssurance":"High","required":true,"field_name":"email"}],"subject":"0x901c33b3ca52d0da1f22f5ad12c55c7ebbed4281","receiver":"0xd38746eadbc58f334ebee8f0b9bff2e1e6e69f00"}
+{
+    "nodeURL": "http://63.33.206.111/rpc",
+    "addressPassword": "Passw0rd",
+    "rawPublicKeySubject": "03fdd57adec3d438ea237fe46b33ee1e016eda6b585c3e27ea66686c2ea5358479",
+    "rawPublicKeyReceiver": "8b82bb2b1b5b4c1d56beeb88c98fcf894c23e8dee598d94c1c77099d3a80367f46",
+    "rawPrivateKey": "278a5de700e29faae8e40e366ec5012b5ec63d36ec77e8a2417154cc1d25383f",
+    "context": "https://w3id.org/did/v1",
+    "userPublicKey": "AE2309349218937HASKHIUE9287432",
+    "didIsssuer": "did:ala:quor:telsius:0x12345",
+    "providerURL": "https://regular.telsius.blockchainbyeveris.io:2000",
+    "callbackURL": "https://serviceprovider.alastria.blockchainbyeveris.io/api/login/",
+    "alastriaNetId": "Alastria network",
+    "tokenExpTime": 1563783392,
+    "tokenActivationDate": 1563782792,
+    "jsonTokenId": "ze298y42sba",
+    "tokenPayload": {
+        "iss": "joe",
+        "exp": 1300819380,
+        "http://example.com/is_root": true
+    },
+    "jti": "https://www.empresa.com/alastria/credentials/3734",
+    "kidCredential": "did:ala:quor:redt:QmeeasCZ9jLbXueBJ7d7csxhb#keys-1",
+    "subjectAlastriaID": "did:alastria:quorum:redt:QmeeasCZ9jLbXueBJ7d7csxhb",
+    "credentialKey": "StudentID",
+    "credentialValue": "11235813",
+    "uri": "www.google.com",
+    "procUrl": "https://www.empresa.com/alastria/businessprocess/4583",
+    "procHash": "H398sjHd...kldjUYn475n",
+    "data": [
+        {
+            "@context": "JWT",
+            "levelOfAssurance": "High",
+            "required": true,
+            "field_name": "name"
+        },
+        {
+            "@context": "JWT",
+            "levelOfAssurance": "High",
+            "required": true,
+            "field_name": "email"
+        }
+    ],
+    "subject": "0xd7aa62f167c53f6c4ad9525f8be147a6eec9a58e",
+    "receiver": "0x4a67445aec5b2b66701f855d77feca57a598e44f",
+    "updateSubjectPresentationTo": 2,
+    "updateReceiverPresentationTo": 1,
+    "subjectPresentationStatus": {
+        "exist": true,
+        "status": "0"
+    },
+    "recieverPresentationStatus": {
+        "exist": true,
+        "status": "1"
+    }
+}
