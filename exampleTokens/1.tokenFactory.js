@@ -7,7 +7,7 @@ let config = JSON.parse(rawdata)
 console.log(config)
 
 // Data
-const rawPublicKey = config.rawPublicKey
+const rawPublicKey = config.rawPublicKeySubject
 const rawPrivateKey = config.rawPrivateKey
 const tokenPayload = config.tokenPayload
 // End data
