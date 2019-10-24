@@ -42,7 +42,9 @@ async function main() {
             exist: resultStatus[0],
             status: resultStatus[1]
           }
-          console.log('presentationStatus ------>', presentationStatus)
+          configData.subjectPresentationStatus = presentationStatus;
+          fs.writeFileSync('../configuration.json', JSON.stringify(configData))
+          console.log('presentationStatus ------>', configData.subjectPresentationStatus)
         })
     })
 }
