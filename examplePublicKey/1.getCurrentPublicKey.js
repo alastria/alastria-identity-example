@@ -12,7 +12,6 @@ const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 let subject = configData.subject
 
 let currentPubKey = transactionFactory.publicKeyRegistry.getCurrentPublicKey(web3, subject)
-console.log(currentPubKey)
 
 web3.eth.call(currentPubKey)
 .then(result => {

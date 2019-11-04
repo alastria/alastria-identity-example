@@ -49,7 +49,7 @@ let subjectIdentity = new UserIdentity(web3, `0x${identityKeystore.address}`, id
 
 const subjectPresentationHash = tokensFactory.tokens.PSMHash(web3, signedJWTPresentation, presentationData.didSubject)
 console.log("The PSMHash is:", subjectPresentationHash);
-fs.writeFileSync(`./PSMHash.json`, JSON.stringify({psmhash: subjectPresentationHash, jwt: signedJWTPresentation}))
+fs.writeFileSync(`./PSMHashSubject.json`, JSON.stringify({psmhash: subjectPresentationHash, jwt: signedJWTPresentation}))
 
 const receiverPresentationHash = tokensFactory.tokens.PSMHash(web3, signedJWTPresentation, presentationData.didIsssuer)
 console.log("The PSMHashReceiver is:", receiverPresentationHash);

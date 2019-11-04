@@ -21,7 +21,6 @@ if(configData.receiver == undefined) {
 
 let presentationStatus = transactionFactory.presentationRegistry.getReceiverPresentationStatus(web3, receiver, presentationHash.psmhash)
 console.log("VIEW", presentationHash.psmhash)
-console.log(presentationStatus)
 
 web3.eth.call(presentationStatus)
 .then(result => {
