@@ -1,4 +1,4 @@
-const {transactionFactory, UserIdentity, tokensFactory} = require('alastria-identity-lib')
+const {transactionFactory, tokensFactory} = require('alastria-identity-lib')
 const Web3 = require('web3')
 const fs = require('fs')
 
@@ -76,8 +76,8 @@ let myBlockchainServiceIp = config.nodeUrl
 
 const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 
-let psmHash = tokensFactory.tokens.PSMHash(web3, signedJWT, didIsssuer);
-console.log("\tThe PSMHash is:", psmHash);
+let psmHashSubject = tokensFactory.tokens.PSMHash(web3, signedJWT, didIsssuer);
+console.log("\tThe PSMHash is:", psmHashSubject);
 
 let psmHashReciever = tokensFactory.tokens.PSMHash(web3, signedJWT, didIssuerReciever);
 console.log("\tThe PSMHashReciever is:", psmHashReciever);
@@ -92,9 +92,3 @@ console.log("\tAIC:", aic);
 
 const signedJWTAIC = tokensFactory.tokens.signJWT(aic, rawPrivateKey)
 console.log("AIC Signed:", signedJWTAIC)
-
-// Data
-let procUrl = config.procUrl
-let procHash = config.procHash
-let data = config.data
-// End data
