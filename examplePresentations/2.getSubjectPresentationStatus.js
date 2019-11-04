@@ -4,7 +4,7 @@ let fs = require('fs')
 let rawdata = fs.readFileSync('../configuration.json')
 let configData = JSON.parse(rawdata)
 
-let presentationHashData = fs.readFileSync(`./PSMHash.json`)
+let presentationHashData = fs.readFileSync(`./PSMHashSubject.json`)
 let presentationHash = JSON.parse(presentationHashData)
 
 let Web3 = require('web3')

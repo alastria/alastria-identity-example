@@ -4,12 +4,6 @@ let fs = require('fs')
 let rawdata = fs.readFileSync('../configuration.json')
 let configData = JSON.parse(rawdata)
 
-let presentationHashData = fs.readFileSync(`./PSMHash.json`)
-let presentationHash = JSON.parse(presentationHashData)
-
-let presentationHashDataReceiver = fs.readFileSync(`./PSMHashReceiver.json`)
-let presentationHashReceiver = JSON.parse(presentationHashDataReceiver)
-
 let Web3 = require('web3')
 let myBlockchainServiceIp = configData.nodeURL
 const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
