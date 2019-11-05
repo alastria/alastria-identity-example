@@ -73,8 +73,6 @@ Promise.all([promisePreparedAlastriaId, promiseCreateAlastriaId])
 				})
 				.then (AlastriaIdentity => {
 					console.log(`alastriaProxyAddress: 0x${AlastriaIdentity.slice(26)}`)
-
-					// TODO meter el subject en el config
 					configData.receiver = `0x${AlastriaIdentity.slice(26)}`
 					fs.writeFileSync('../configuration.json', JSON.stringify(configData))
 					let alastriaDID = tokensFactory.tokens.createDID('quor', AlastriaIdentity.slice(26));

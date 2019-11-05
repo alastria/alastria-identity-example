@@ -4,23 +4,14 @@ let fs = require('fs')
 let rawdata = fs.readFileSync('../configuration.json')
 let configData = JSON.parse(rawdata)
 
-let presentationHashData = fs.readFileSync(`./PSMHash.json`)
-let presentationHash = JSON.parse(presentationHashData)
-
-let presentationHashDataReceiver = fs.readFileSync(`./PSMHashReceiver.json`)
-let presentationHashReceiver = JSON.parse(presentationHashDataReceiver)
-
 let Web3 = require('web3')
 let myBlockchainServiceIp = configData.nodeURL
 const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 
-if(configData.subject == undefined) {
-  console.log('You must create an Alastria ID')
-  process.exit()
-}else if(configData.recieverPresentationStatus == undefined || configData.subjectPresentationStatus == undefined){
-  console.log('You must create Presentation')
-  process.exit()
-}
+  if(configData.recieverPresentationStatus == undefined || configData.subjectPresentationStatus == undefined){
+    console.log('You must create Presentation')
+    process.exit()
+  }
 
 let globalStatus = transactionFactory.presentationRegistry.getPresentationStatus(web3, configData.subjectPresentationStatus.status, configData.recieverPresentationStatus.status)
 web3.eth.call(globalStatus)

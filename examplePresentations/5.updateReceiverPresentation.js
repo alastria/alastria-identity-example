@@ -27,8 +27,11 @@ let receiverIdentity = new UserIdentity(web3, `0x${receiverKeystore.address}`, i
 
 
 let updateReceiverPresentation = transactionFactory.presentationRegistry.updateReceiverPresentation(web3, presentationHash.psmhash, configData.updateReceiverPresentationTo)
-console.log(updateReceiverPresentation)
 
+  if(configData.receiver == undefined) {
+    console.log('You must create an Alastria ID')
+    process.exit()
+  }
 
 async function main() {
   let updateReceivP = await receiverIdentity.getKnownTransaction(updateReceiverPresentation)

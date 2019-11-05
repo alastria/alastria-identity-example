@@ -4,17 +4,17 @@ let fs = require('fs')
 let rawdata = fs.readFileSync('../configuration.json')
 let configData = JSON.parse(rawdata)
 
-let presentationHashData = fs.readFileSync(`./PSMHash.json`)
+let presentationHashData = fs.readFileSync(`./PSMHashSubject.json`)
 let presentationHash = JSON.parse(presentationHashData)
 
 let Web3 = require('web3')
 let myBlockchainServiceIp = configData.nodeURL
 const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 
-if(configData.subject == undefined) {
-  console.log('You must create an Alastria ID')
-  process.exit()
-}
+  if(configData.subject == undefined) {
+    console.log('You must create an Alastria ID')
+    process.exit()
+  }
 
 let presentationStatus = transactionFactory.presentationRegistry.getSubjectPresentationStatus(web3, configData.subject, presentationHash.psmhash)
 console.log(presentationStatus)
