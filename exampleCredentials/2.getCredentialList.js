@@ -12,8 +12,12 @@ const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 //------------------------------------------------------------------------------
 console.log('\n ------ Getting Credential List ------ \n')
 
-	let subject = configData.subject
-	let credentialList = transactionFactory.credentialRegistry.getSubjectCredentialList(web3, subject)
+	if(configData.subject == undefined) {
+		console.log('You must create an Alastria ID')
+		process.exit()
+	}
+
+	let credentialList = transactionFactory.credentialRegistry.getSubjectCredentialList(web3, configData.subject)
 	console.log('(credentialList) Transaction ------>', credentialList)
 	web3.eth.call(credentialList)
 	.then(subjectCredentialList => {

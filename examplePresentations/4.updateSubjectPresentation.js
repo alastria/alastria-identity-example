@@ -27,6 +27,11 @@ try {
 
 let subjectIdentity = new UserIdentity(web3, `0x${identityKeystore.address}`, identityPrivateKey)
 
+  if(configData.subject == undefined) {
+    console.log('You must create an Alastria ID')
+    process.exit()
+  }
+
 async function main() {
   let updateSubjP = await subjectIdentity.getKnownTransaction(updateSubjectPresentation)
   console.log('(updateSubjectPresentation)The transaction bytes data is: ', updateSubjP)
