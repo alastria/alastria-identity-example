@@ -25,19 +25,16 @@ try{
 let adminIdentity = new UserIdentity(web3, `0x${adminKeyStore.address}`, adminPrivateKey)
 
 // Im not sure if this is needed
-new Promise((resolve, reject) => {
-web3.eth.personal.unlockAccount(adminIdentity.address,keystoreData.addressPassword, 500)
-.then(unlocked => {
-	console.log(unlocked)
-	resolve();
-}).catch(error=> {
-	console.log(error);
-	reject(error);
-})});
+async function unlockAccount() {
+	let unlockedAccount = await web3.eth.personal.unlockAccount(adminIdentity.address, keystoreData.addressPassword, 500)
+	console.log('Account unlocked:', unlockedAccount)
+	return unlockedAccount
+}
 
 let newSPKeyStore = keystoreData.serviceProviderKeyStore;
 
-new Promise (async() => {
+async function mainAdd() {
+	unlockAccount()
 	console.log('\n ------ Example of adding a Service Provider ------ \n')
 	let transactionA = await transactionFactory.identityManager.addIdentityServiceProvider(web3, `0x${newSPKeyStore.address}`)
 	let getKnownTxA = await adminIdentity.getKnownTransaction(transactionA)
@@ -48,7 +45,7 @@ new Promise (async() => {
 	})
 	.on('receipt', function (receiptA) {
 		console.log("RECEIPT: ", receiptA)
-		new Promise (async() => {
+		async function mainDel() {
 			console.log('\n ------ Example of deleting a Service Provider ------ \n')
 			let transactionD = await transactionFactory.identityManager.deleteIdentityServiceProvider(web3, `0x${newSPKeyStore.address}`)
 			console.log("transaction", transactionD)
@@ -62,8 +59,11 @@ new Promise (async() => {
 				console.log("RECEIPT: ", receiptD)
 			})
 			.on('error', console.error); 
-		})
+		}
+		mainDel()
 	})
 	.on('error', console.error); 
 	// If this is a revert, probably this Subject (address) is already a SP
-})
+}
+
+mainAdd()
