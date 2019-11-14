@@ -40,20 +40,20 @@ try{
 let subjectIdentity = new UserIdentity(web3, `0x${receiverKeystore.address}`, subjectPrivateKey)
 // End data
 
-async function promisePreparedAlastriaId()  {
-	let preparedId = await transactionFactory.identityManager.prepareAlastriaID(web3, receiverKeystore.address)
+function preparedAlastriaId()  {
+	let preparedId = transactionFactory.identityManager.prepareAlastriaID(web3, receiverKeystore.address)
 	return preparedId
 }
 
-async function promiseCreateAlastriaId() {
-	let txCreateAlastriaID = await transactionFactory.identityManager.createAlastriaIdentity(web3, rawPublicKeyReceiver)
+function createAlastriaId() {
+	let txCreateAlastriaID = transactionFactory.identityManager.createAlastriaIdentity(web3, rawPublicKeyReceiver)
 	return txCreateAlastriaID
 }
 
 console.log('\n ------ Step three---> A promise all where prepareAlastriaID and createAlsatriaID transactions are signed and sent ------ \n')
 async function main() {
-	let prepareResult = await promisePreparedAlastriaId()
-	let createResult = await promiseCreateAlastriaId()
+	let prepareResult = await preparedAlastriaId()
+	let createResult = await createAlastriaId()
 
 	let signedPreparedTransaction = await adminIdentity.getKnownTransaction(prepareResult)
 	let signedCreateTransaction =	await subjectIdentity.getKnownTransaction(createResult)
