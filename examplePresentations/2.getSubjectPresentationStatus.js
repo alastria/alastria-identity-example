@@ -17,7 +17,6 @@ const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
   }
 
 let presentationStatus = transactionFactory.presentationRegistry.getSubjectPresentationStatus(web3, configData.subject, presentationHash.psmhash)
-console.log(presentationStatus)
 
 web3.eth.call(presentationStatus)
 .then(result => {
