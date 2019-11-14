@@ -59,8 +59,8 @@ console.log('The signed token is: ', signedJWTCredential)
 const credentialHash = tokensFactory.tokens.PSMHash(web3, signedJWTCredential, didIsssuer);
 console.log("The PSMHash is:", credentialHash);
 
-	async function promiseAdSubjectCredential() {
-		let subjectCredential = await transactionFactory.credentialRegistry.addSubjectCredential(web3, credentialHash, uri)
+	function addSubjectCredential() {
+		let subjectCredential = transactionFactory.credentialRegistry.addSubjectCredential(web3, credentialHash, uri)
 		console.log('(addSubjectCredential)The transaction is: ', subjectCredential)
 		return subjectCredential
 	}
@@ -83,7 +83,7 @@ console.log("The PSMHash is:", credentialHash);
 	}
 
 	async function main() {
-		let resultSubjectCredential = await promiseAdSubjectCredential()
+		let resultSubjectCredential = await addSubjectCredential()
 
 		let subjectCredentialSigned = await issuerIdentity.getKnownTransaction(resultSubjectCredential)
 		console.log('(addSubjectCredential)The transaction bytes data is: ', subjectCredentialSigned)
