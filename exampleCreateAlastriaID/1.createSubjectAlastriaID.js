@@ -40,21 +40,23 @@ try{
 let subjectIdentity = new UserIdentity(web3, `0x${identityKeystore.address}`, subjectPrivateKey)
 // End data
 
-let promisePreparedAlastriaId = new Promise (async(resolve, reject) => {
-	let preparedId = await transactionFactory.identityManager.prepareAlastriaID(web3, identityKeystore.address)
-	resolve(preparedId)
-})
+function preparedAlastriaId() {
+	let preparedId = transactionFactory.identityManager.prepareAlastriaID(web3, identityKeystore.address)
+	return preparedId
+}
 
-let promiseCreateAlastriaId = new Promise(async(resolve, reject) => {
-	let txCreateAlastriaID = await transactionFactory.identityManager.createAlastriaIdentity(web3, rawPublicKey)
-	resolve(txCreateAlastriaID)
-})
+function createAlastriaId() {
+	let txCreateAlastriaID = transactionFactory.identityManager.createAlastriaIdentity(web3, rawPublicKey)
+	return txCreateAlastriaID
+}
 
 console.log('\n ------ Step three---> A promise all where prepareAlastriaID and createAlsatriaID transactions are signed and sent ------ \n')
-Promise.all([promisePreparedAlastriaId, promiseCreateAlastriaId])
-.then(async result => {
-	let signedCreateTransaction =	await subjectIdentity.getKnownTransaction(result[1])
-	let signedPreparedTransaction = await adminIdentity.getKnownTransaction(result[0])
+async function main() {
+	let prepareResult = await preparedAlastriaId()
+	let createResult = await createAlastriaId()
+
+	let signedPreparedTransaction = await adminIdentity.getKnownTransaction(prepareResult)
+	let signedCreateTransaction =	await subjectIdentity.getKnownTransaction(createResult)
 	web3.eth.sendSignedTransaction(signedPreparedTransaction)
 	.on('transactionHash', function (hash) {
 		console.log("HASH: ", hash)
@@ -82,5 +84,7 @@ Promise.all([promisePreparedAlastriaId, promiseCreateAlastriaId])
 		.on('error', console.error); // If a out of gas error, the second parameter is the receipt.
 	})
 	.on('error', console.error); // If a out of gas error, the second parameter is the receipt.
-})
+}
+
+main()
 
