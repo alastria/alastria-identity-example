@@ -42,6 +42,7 @@
     ],
     "subject": "0xd7aa62f167c53f6c4ad9525f8be147a6eec9a58e",
     "receiver": "0x4a67445aec5b2b66701f855d77feca57a598e44f",
+    "issuer": "0x74abcb8e47a2ab78a309d0e147ae1155c1fdae19",
     "updateSubjectPresentationTo": 2,
     "updateReceiverPresentationTo": 1,
     "subjectPresentationStatus": {
