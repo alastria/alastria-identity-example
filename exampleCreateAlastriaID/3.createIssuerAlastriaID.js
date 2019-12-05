@@ -37,7 +37,7 @@ try{
 	console.log("ERROR: ", error)
 }
 
-let subjectIdentity = new UserIdentity(web3, `0x${issuerKeystore.address}`, issuerPrivateKey)
+let issuerIdentity = new UserIdentity(web3, `0x${issuerKeystore.address}`, issuerPrivateKey)
 // End data
 
 function preparedAlastriaId() {
@@ -56,7 +56,7 @@ async function main() {
 	let createResult = await createAlastriaId()
 
 	let signedPreparedTransaction = await adminIdentity.getKnownTransaction(prepareResult)
-	let signedCreateTransaction =	await subjectIdentity.getKnownTransaction(createResult)
+	let signedCreateTransaction =	await issuerIdentity.getKnownTransaction(createResult)
 	web3.eth.sendSignedTransaction(signedPreparedTransaction)
 	.on('transactionHash', function (hash) {
 		console.log("HASH: ", hash)
