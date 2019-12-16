@@ -14,20 +14,20 @@ let myBlockchainServiceIp = configData.nodeURL
 const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 
 //------------------------------------------------------------------------------
-console.log('\n ------ Preparing Issuer identity ------ \n')
+console.log('\n ------ Preparing Subject identity ------ \n')
 
 // Some fake data to test
 
-let identityKeystore = keystoreData.identityKeystore
+let issuerKeystore = keystoreData.issuerKeystore
 
-let identityPrivateKey
+let issuerPrivateKey
 try{
-	identityPrivateKey = keythereum.recover(keystoreData.addressPassword, identityKeystore)
+	issuerPrivateKey = keythereum.recover(keystoreData.addressPassword, issuerKeystore)
 }catch(error){
 	console.log("ERROR: ", error)
 }
 
-let issuerIdentity = new UserIdentity(web3, `0x${identityKeystore.address}`, identityPrivateKey)
+let issuerIdentity = new UserIdentity(web3, `0x${issuerKeystore.address}`, issuerPrivateKey)
  
 console.log('\n ------ Creating credential ------ \n')
 
@@ -53,7 +53,7 @@ const credential = tokensFactory.tokens.createCredential(kidCredential, didIsssu
 console.log('The credential1 is: ', credential)
 
 
-const signedJWTCredential = tokensFactory.tokens.signJWT(credential, identityPrivateKey)
+const signedJWTCredential = tokensFactory.tokens.signJWT(credential, issuerPrivateKey)
 console.log('The signed token is: ', signedJWTCredential)
 
 const credentialHash = tokensFactory.tokens.PSMHash(web3, signedJWTCredential, didIsssuer);
@@ -81,6 +81,7 @@ console.log("The PSMHash is:", credentialHash);
 
 		})
 	}
+
 
 	async function main() {
 		let resultSubjectCredential = await addSubjectCredential()
