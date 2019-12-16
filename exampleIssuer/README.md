@@ -1,5 +1,5 @@
 # Important
-In this folder we have two files, one of addIdentityIssuer ([`exampleServiceProvider/1.identityIssuer.js`](https://github.com/alastria/alastria-identity-example/blob/develop/exampleServiceProvider/1.identityIssuer.js)) and the other of deleteIdentityServiceProvider ([`exampleServiceProvider/2.deleteIdentityIssuer.js`](https://github.com/alastria/alastria-identity-example/blob/develop/exampleServiceProvider/2.deleteIdentityIssuer.js)).
+In this folder we have two files, one of addIdentityIssuer ([`exampleIssuer/1.identityIssuer.js`](1.identityIssuer.js)) and the other of deleteIdentityServiceProvider ([`exampleIssuer/2.deleteIdentityIssuer.js`](2.deleteIdentityIssuer.js)).
 
 ## Error cases
 The following cases will return an error (`Transaction has been reverted by the EVM`)
