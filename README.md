@@ -4,9 +4,15 @@
 
 This is an example of how to interact with the libraries from [alastria-identity-lib](https://github.com/alastria/alastria-identity-lib). The library alastria-identity-lib re-covers the Smart Contracts from [alastria-identity](https://github.com/alastria/alastria-identity).
 
-### folders of example
 
-|**folder**|**What it does**|
+**Important**: You need to clone again this repository or update `alastria-identity` **whenever a deploy of new smart contracts is made**. You can do it easily with:
+```sh
+cd node_modules/alastria-identity-lib/alastria-identity
+git pull
+```
+### Folders of example
+
+|**Folder**|**What it does**|
 |:--|:--|
 |exampleCreateAlastriaID| Contains an example of how to create an Alastria ID
 |exampleTokens| Contains an example of how to interact with [tokenFactory.ts](https://github.com/alastria/alastria-identity-lib/blob/develop/src/tokenFactory/tokensFactory.ts) functions|
