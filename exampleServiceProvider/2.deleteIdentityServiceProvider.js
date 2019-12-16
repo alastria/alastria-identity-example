@@ -26,7 +26,7 @@ let adminIdentity = new UserIdentity(web3, `0x${adminKeyStore.address}`, adminPr
 
 // Im not sure if this is needed
 async function unlockAccount() {
-	let unlockedAccount = await web3.eth.personal.unlockAccount(adminIdentity.address, keystoreData.addressPassword, 500)
+	let unlockedAccount = await web3.eth.personal.unlockAccount(adminIdentity.address, keystoreData.addressPassword, 3600)
 	console.log('Account unlocked:', unlockedAccount)
 	return unlockedAccount
 }

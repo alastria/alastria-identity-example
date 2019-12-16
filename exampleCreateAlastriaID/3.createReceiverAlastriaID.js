@@ -17,17 +17,6 @@ console.log('\n ------ Example of prepare Alastria ID, addKey and createAlastris
 // Data
 const rawPublicKeyReceiver = configData.rawPublicKeyReceiver
 
-// let adminKeyStore = keystoreData.adminKeystore
-
-// let adminPrivateKey
-// try{
-// 	adminPrivateKey = keythereum.recover(keystoreData.addressPassword, adminKeyStore)
-// }catch(error){
-// 	console.log("ERROR: ", error)
-// }
-
-// let adminIdentity = new UserIdentity(web3, `0x${adminKeyStore.address}`, adminPrivateKey)
-
 let identityKeystore = keystoreData.identityKeystore
 
 
