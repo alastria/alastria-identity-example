@@ -68,9 +68,8 @@ console.log('The credential1 is: ', credential)
 const signedJWTCredential = tokensFactory.tokens.signJWT(credential, issuerPrivateKey)
 console.log('The signed token is: ', signedJWTCredential)
 
-const issuerCredentialHash = tokensFactory.tokens.PSMHash(web3, signedJWTCredential, didIsssuer);
 const subjectCredentialHash = tokensFactory.tokens.PSMHash(web3, signedJWTCredential, didSubject);
-console.log("The PSMHashes are:\n issuerCredentialHash: " + issuerCredentialHash + "\n subjectCredentialHash: " + subjectCredentialHash);
+console.log("The Subject PSMHash is " ,subjectCredentialHash);
 
 	function addSubjectCredential() {
 		let subjectCredential = transactionFactory.credentialRegistry.addSubjectCredential(web3, subjectCredentialHash, uri)
