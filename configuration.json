@@ -6,7 +6,8 @@
     "rawPrivateKey": "278a5de700e29faae8e40e366ec5012b5ec63d36ec77e8a2417154cc1d25383f",
     "context": "https://w3id.org/did/v1",
     "userPublicKey": "AE2309349218937HASKHIUE9287432",
-    "didIsssuer": "did:ala:quor:telsius:0x12345",
+    "didIsssuer": "did:ala:quor:telsius:0x3dde3716c45b7cc5c0c9004dea3f7b81c016a0d2",
+    "didSubject": "did:ala:quor:telsius:0xdd445936466e82d849417e45777b0c5bca4ebd50",
     "providerURL": "https://regular.telsius.blockchainbyeveris.io:2000",
     "callbackURL": "https://serviceprovider.alastria.blockchainbyeveris.io/api/login/",
     "alastriaNetId": "Alastria network",
@@ -40,9 +41,9 @@
             "field_name": "email"
         }
     ],
-    "subject": "0xdd445936466e82d849417e45777b0c5bca4ebd50",
-    "receiver": "0x388822ca1a31f50d52fca753b825d4a16c38a853",
-    "issuer": "0xdd445936466e82d849417e45777b0c5bca4ebd50",
+    "subject": "0x76f352b4d956fe37355e8ef38b8cbdcd0e5232ee",
+    "receiver": "0xdb230499e4599d1bb2c4df667657f7197ee64d1d",
+    "issuer": "0x20981a419f7fb10cd7e6cb1e787c8ce3308ebea7",
     "issuerLevel": 2,
     "updateSubjectPresentationTo": 2,
     "updateReceiverPresentationTo": 1,
