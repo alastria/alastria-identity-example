@@ -57,6 +57,7 @@ async function main() {
 
 	let signedPreparedTransaction = await issuerIdentity.getKnownTransaction(prepareResult)
 	let signedCreateTransaction =	await subjectIdentity.getKnownTransaction(createResult)
+	console.log("---->signedCreateTransaction<----",signedCreateTransaction)
 	web3.eth.sendSignedTransaction(signedPreparedTransaction)
 	.on('transactionHash', function (hash) {
 		console.log("HASH: ", hash)
@@ -78,6 +79,8 @@ async function main() {
 					configData.subject = `0x${AlastriaIdentity.slice(26)}`
 					fs.writeFileSync('../configuration.json', JSON.stringify(configData))
 					let alastriaDID = tokensFactory.tokens.createDID('quor', AlastriaIdentity.slice(26));
+					configData.didSubject = alastriaDID
+					fs.writeFileSync('../configuration.json', JSON.stringify(configData))
 					console.log('the alastria DID is:', alastriaDID)
 				})
 		})

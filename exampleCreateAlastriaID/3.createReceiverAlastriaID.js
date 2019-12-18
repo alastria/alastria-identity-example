@@ -17,9 +17,6 @@ console.log('\n ------ Example of prepare Alastria ID, addKey and createAlastris
 // Data
 const rawPublicKeyReceiver = configData.rawPublicKeyReceiver
 
-let identityKeystore = keystoreData.identityKeystore
-
-
 let issuerKeystore = keystoreData.issuerKeystore
 
 let issuerPrivateKey
@@ -33,14 +30,14 @@ let issuerIdentity = new UserIdentity(web3, `0x${issuerKeystore.address}`, issue
 
 let receiverKeystore = keystoreData.receiverKeystore
 
-let subjectPrivateKey
+let receiverPrivateKey
 try{
-	subjectPrivateKey = keythereum.recover(keystoreData.addressPassword, receiverKeystore)
+	receiverPrivateKey = keythereum.recover(keystoreData.addressPassword, receiverKeystore)
 }catch(error){
 	console.log("ERROR: ", error)
 }
 
-let subjectIdentity = new UserIdentity(web3, `0x${receiverKeystore.address}`, subjectPrivateKey)
+let receiverIdentity = new UserIdentity(web3, `0x${receiverKeystore.address}`, receiverPrivateKey)
 // End data
 
 function preparedAlastriaId()  {
@@ -59,7 +56,7 @@ async function main() {
 	let createResult = await createAlastriaId()
 
 	let signedPreparedTransaction = await issuerIdentity.getKnownTransaction(prepareResult)
-	let signedCreateTransaction =	await subjectIdentity.getKnownTransaction(createResult)
+	let signedCreateTransaction =	await receiverIdentity.getKnownTransaction(createResult)
 	web3.eth.sendSignedTransaction(signedPreparedTransaction)
 	.on('transactionHash', function (hash) {
 		console.log("HASH: ", hash)
@@ -81,6 +78,8 @@ async function main() {
 					configData.receiver = `0x${AlastriaIdentity.slice(26)}`
 					fs.writeFileSync('../configuration.json', JSON.stringify(configData))
 					let alastriaDID = tokensFactory.tokens.createDID('quor', AlastriaIdentity.slice(26));
+					configData.didReceiver = alastriaDID
+					fs.writeFileSync('../configuration.json', JSON.stringify(configData))
 					console.log('the alastria DID is:', alastriaDID)
 				})
 		})
