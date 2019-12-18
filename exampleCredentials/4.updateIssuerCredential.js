@@ -11,13 +11,8 @@ let Web3 = require('web3')
 let myBlockchainServiceIp = configData.nodeURL
 const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 
-console.log("-------------------------> issuer", configData.issuer)
-console.log("-------------------------> psmHash", credentialHash.psmhash)
-console.log("-------------------------> update to",  configData.updateIssuerCredentialTo)
-//credentialHash.psmhash
 let updateCredentialStatus = transactionFactory.credentialRegistry.updateCredentialStatus(web3, credentialHash.psmhash, configData.updateIssuerCredentialTo)
 
-console.log("-----------------------> PASS")
 let keyData = fs.readFileSync('../keystore.json')
 let keystoreData = JSON.parse(keyData)
 
