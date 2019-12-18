@@ -31,23 +31,23 @@ async function unlockAccount() {
 	return unlockedAccount
 }
 
-let newSPKeyStore = keystoreData.serviceProviderKeyStore;
+let newIssuerKeyStore = keystoreData.issuerKeystore;
 
-async function mainAdd() {
+async function mainDel() {
 	unlockAccount()
-	console.log('\n ------ Example of adding a Service Provider ------ \n')
-	let transactionA = await transactionFactory.identityManager.addIdentityServiceProvider(web3, `0x${newSPKeyStore.address}`)
-	let getKnownTxA = await adminIdentity.getKnownTransaction(transactionA)
-	console.log('The transaction bytes data is: ', getKnownTxA)
-	web3.eth.sendSignedTransaction(getKnownTxA)
-	.on('transactionHash', function (hashA) {
-		console.log("HASH: ", hashA)
+	console.log('\n ------ Example of deleting a Issuer ------ \n')
+	let transactionD = await transactionFactory.identityManager.deleteIdentityIssuer(web3, `0x${newIssuerKeyStore.address}`)
+	console.log("transaction", transactionD)
+	let getKnownTxD = await adminIdentity.getKnownTransaction(transactionD)
+	console.log('The transaction bytes data is: ', getKnownTxD)
+	web3.eth.sendSignedTransaction(getKnownTxD)
+	.on('transactionHash', function (hashD) {
+		console.log("HASH: ", hashD)
 	})
-	.on('receipt', function (receiptA) {
-		console.log("RECEIPT: ", receiptA)
+	.on('receipt', function (receiptD) {
+		console.log("RECEIPT: ", receiptD)
 	})
 	.on('error', console.error); 
-	// If this is a revert, probably this Subject (address) is already a SP
 }
+mainDel()
 
-mainAdd()

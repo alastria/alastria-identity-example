@@ -19,6 +19,7 @@ git pull
 |exampleCredentials| Contains examples of how to add and get Credentials in AlastriaID |
 |examplePresentations| Contains examples of how to create, add and get Presentations in AlastriaID |
 |exampleIdentityServiceProvider| Contains an example of how to add and remove a Identity Service Provider|
+|exampleIdentityIssuer| Contains an example of how to add and remove a Identity Issuer|
 
 ## How to use it
 

@@ -12,22 +12,33 @@ let keystoreData = JSON.parse(keyData)
 // Init your blockchain provider
 let myBlockchainServiceIp = configData.nodeURL
 const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
-
 //------------------------------------------------------------------------------
-console.log('\n ------ Preparing Issuer identity ------ \n')
+console.log('\n ------ Preparing Subject identity ------ \n')
 
 // Some fake data to test
 
-let identityKeystore = keystoreData.identityKeystore
+let issuerKeystore = keystoreData.issuerKeystore
 
-let identityPrivateKey
+let issuerPrivateKey
 try{
-	identityPrivateKey = keythereum.recover(keystoreData.addressPassword, identityKeystore)
+	issuerPrivateKey = keythereum.recover(keystoreData.addressPassword, issuerKeystore)
 }catch(error){
 	console.log("ERROR: ", error)
 }
 
-let issuerIdentity = new UserIdentity(web3, `0x${identityKeystore.address}`, identityPrivateKey)
+let issuerIdentity = new UserIdentity(web3, `0x${issuerKeystore.address}`, issuerPrivateKey)
+
+
+let subjectKeystore = keystoreData.subjectKeystore
+
+let subjectPrivateKey
+try{
+	subjectPrivateKey = keythereum.recover(keystoreData.addressPassword, subjectKeystore)
+}catch(error){
+	console.log("ERROR: ", error)
+}
+
+let subjectIdentity = new UserIdentity(web3, `0x${subjectKeystore.address}`, subjectPrivateKey)
  
 console.log('\n ------ Creating credential ------ \n')
 
@@ -35,6 +46,7 @@ let jti = configData.jti
 let kidCredential = configData.kidCredential
 let subjectAlastriaID = configData.subjectAlastriaID
 let didIsssuer = configData.didIsssuer
+let didSubject = configData.didSubject
 let context = configData.context
 let tokenExpTime = configData.tokenExpTime
 let tokenActivationDate = configData.tokenActivationDate
@@ -53,20 +65,21 @@ const credential = tokensFactory.tokens.createCredential(kidCredential, didIsssu
 console.log('The credential1 is: ', credential)
 
 
-const signedJWTCredential = tokensFactory.tokens.signJWT(credential, identityPrivateKey)
+const signedJWTCredential = tokensFactory.tokens.signJWT(credential, issuerPrivateKey)
 console.log('The signed token is: ', signedJWTCredential)
 
-const credentialHash = tokensFactory.tokens.PSMHash(web3, signedJWTCredential, didIsssuer);
-console.log("The PSMHash is:", credentialHash);
+const subjectCredentialHash = tokensFactory.tokens.PSMHash(web3, signedJWTCredential, didSubject);
+console.log("The Subject PSMHash is " ,subjectCredentialHash);
 
 	function addSubjectCredential() {
-		let subjectCredential = transactionFactory.credentialRegistry.addSubjectCredential(web3, credentialHash, uri)
+		let subjectCredential = transactionFactory.credentialRegistry.addSubjectCredential(web3, subjectCredentialHash, uri)
 		console.log('(addSubjectCredential)The transaction is: ', subjectCredential)
 		return subjectCredential
 	}
 
 	function sendSigned(subjectCredentialSigned) {
 		return new Promise((resolve, reject) => {
+			// web3 default subject address
 			web3.eth.sendSignedTransaction(subjectCredentialSigned)
 			.on('transactionHash', function (hash) {
 				console.log("HASH: ", hash)
@@ -82,16 +95,17 @@ console.log("The PSMHash is:", credentialHash);
 		})
 	}
 
+
 	async function main() {
 		let resultSubjectCredential = await addSubjectCredential()
 
-		let subjectCredentialSigned = await issuerIdentity.getKnownTransaction(resultSubjectCredential)
+		let subjectCredentialSigned = await subjectIdentity.getKnownTransaction(resultSubjectCredential)
 		console.log('(addSubjectCredential)The transaction bytes data is: ', subjectCredentialSigned)
 		sendSigned(subjectCredentialSigned)
 		.then(receipt => {
 			console.log('RECEIPT:', receipt)
 			let subject = configData.subject  //by the moment, change it manually from alastriaProxyAddress result in script exampleCreateAlastriaID.js 
-			let subjectCredentialTransaction = transactionFactory.credentialRegistry.getSubjectCredentialStatus(web3, subject, credentialHash)
+			let subjectCredentialTransaction = transactionFactory.credentialRegistry.getSubjectCredentialStatus(web3, subject, subjectCredentialHash)
 				web3.eth.call(subjectCredentialTransaction)
 				.then(SubjectCredentialStatus => {
 					let result = web3.eth.abi.decodeParameters(["bool","uint8"],SubjectCredentialStatus)

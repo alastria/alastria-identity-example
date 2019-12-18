@@ -31,12 +31,12 @@ async function unlockAccount() {
 	return unlockedAccount
 }
 
-let newSPKeyStore = keystoreData.serviceProviderKeyStore;
+let newIssuerKeyStore = keystoreData.issuerKeystore;
 
 async function mainAdd() {
 	unlockAccount()
-	console.log('\n ------ Example of adding a Service Provider ------ \n')
-	let transactionA = await transactionFactory.identityManager.addIdentityServiceProvider(web3, `0x${newSPKeyStore.address}`)
+	console.log('\n ------ Example of adding a Issuer ------ \n')
+	let transactionA = await transactionFactory.identityManager.addIdentityIssuer(web3, `0x${newIssuerKeyStore.address}`, configData.issuerLevel)
 	let getKnownTxA = await adminIdentity.getKnownTransaction(transactionA)
 	console.log('The transaction bytes data is: ', getKnownTxA)
 	web3.eth.sendSignedTransaction(getKnownTxA)
