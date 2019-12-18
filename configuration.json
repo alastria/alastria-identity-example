@@ -48,6 +48,7 @@
     "issuerLevel": 2,
     "updateSubjectPresentationTo": 2,
     "updateReceiverPresentationTo": 1,
+    "updateIssuerCredentialTo": 2,
     "subjectPresentationStatus": {
         "exist": true,
         "status": "0"
