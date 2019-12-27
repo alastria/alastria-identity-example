@@ -14,16 +14,16 @@ const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 let keyData = fs.readFileSync('../keystore.json')
 let keystoreData = JSON.parse(keyData)
 
-let receiverKeystore = keystoreData.receiverKeystore
+let issuerKeystore = keystoreData.issuerKeystore
 
-let identityPrivateKey
+let issuerPrivateKey
 try {
-  identityPrivateKey = keythereum.recover(keystoreData.addressPassword, receiverKeystore)
+  issuerPrivateKey = keythereum.recover(keystoreData.addressPassword, issuerKeystore)
 } catch (error) {
   console.log("ERROR: ", error)
 }
 
-let receiverIdentity = new UserIdentity(web3, `0x${receiverKeystore.address}`, identityPrivateKey)
+let receiverIdentity = new UserIdentity(web3, `0x${issuerKeystore.address}`, issuerPrivateKey)
 
 
 let updateReceiverPresentation = transactionFactory.presentationRegistry.updateReceiverPresentation(web3, presentationHash.psmhash, configData.updateReceiverPresentationTo)
@@ -38,7 +38,7 @@ async function main() {
   console.log('(updateReceiverPresentation)The transaction bytes data is: ', updateReceivP)
   web3.eth.sendSignedTransaction(updateReceivP)
     .then(() => {
-      let presentationStatus = transactionFactory.presentationRegistry.getReceiverPresentationStatus(web3, configData.receiver, presentationHash.psmhash)
+      let presentationStatus = transactionFactory.presentationRegistry.getReceiverPresentationStatus(web3, configData.issuer, presentationHash.psmhash)
 
       web3.eth.call(presentationStatus)
         .then(result => {
