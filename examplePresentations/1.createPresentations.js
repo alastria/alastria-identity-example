@@ -21,15 +21,14 @@ const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 
 const uri = configData.uri
 
-let identityKeystore = keystoreData.identityKeystore
+let subjectKeystore = keystoreData.subjectKeystore
 
-let identityPrivateKey
+let subjectPrivateKey
 try {
-  identityPrivateKey = keythereum.recover(keystoreData.addressPassword, identityKeystore)
+  subjectPrivateKey = keythereum.recover(keystoreData.addressPassword, subjectKeystore)
 } catch (error) {
   console.log("ERROR: ", error)
 }
-
 let createPresentation = tokensFactory.tokens.createPresentation(presentationData["credentials"][0]["header"]["kid"],
 presentationData["credentials"][0]["payload"]["iss"], 
 presentationData["credentials"][0]["payload"]["aud"],
@@ -42,16 +41,16 @@ presentationData["credentials"][0]["payload"]["nbf"],
 presentationData["credentials"][0]["payload"]["jti"])
 console.log('createPresentation ---------->', createPresentation)
 
-let signedJWTPresentation = tokensFactory.tokens.signJWT(createPresentation, identityPrivateKey)
+let signedJWTPresentation = tokensFactory.tokens.signJWT(createPresentation, subjectPrivateKey)
 console.log('signedJWTPresentation ------------->', signedJWTPresentation)
 
-let subjectIdentity = new UserIdentity(web3, `0x${identityKeystore.address}`, identityPrivateKey)
-
-const subjectPresentationHash = tokensFactory.tokens.PSMHash(web3, signedJWTPresentation, presentationData.didSubject)
-console.log("The PSMHash is:", subjectPresentationHash);
+let subjectIdentity = new UserIdentity(web3, `0x${subjectKeystore.address}`, subjectPrivateKey)
+console.log("SUBJECT DID ------------------------------------", configData.didSubject)
+const subjectPresentationHash = tokensFactory.tokens.PSMHash(web3, signedJWTPresentation, configData.didSubject)
+console.log("The PSMHashSubject is:", subjectPresentationHash);
 fs.writeFileSync(`./PSMHashSubject.json`, JSON.stringify({psmhash: subjectPresentationHash, jwt: signedJWTPresentation}))
 
-const receiverPresentationHash = tokensFactory.tokens.PSMHash(web3, signedJWTPresentation, presentationData.didIsssuer)
+const receiverPresentationHash = tokensFactory.tokens.PSMHash(web3, signedJWTPresentation, configData.didIsssuer)
 console.log("The PSMHashReceiver is:", receiverPresentationHash);
 fs.writeFileSync(`./PSMHashReceiver.json`, JSON.stringify({psmhash: receiverPresentationHash, jwt: signedJWTPresentation}))
 
