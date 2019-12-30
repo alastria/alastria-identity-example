@@ -19,7 +19,6 @@ let presentationHash = JSON.parse(presentationHashData)
   }
 
 let presentationStatus = transactionFactory.presentationRegistry.getReceiverPresentationStatus(web3, configData.issuer, presentationHash.psmhash)
-console.log("VIEW", presentationHash.psmhash)
 
 web3.eth.call(presentationStatus)
 .then(result => {
