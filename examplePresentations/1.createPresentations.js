@@ -45,7 +45,6 @@ let signedJWTPresentation = tokensFactory.tokens.signJWT(createPresentation, sub
 console.log('signedJWTPresentation ------------->', signedJWTPresentation)
 
 let subjectIdentity = new UserIdentity(web3, `0x${subjectKeystore.address}`, subjectPrivateKey)
-console.log("SUBJECT DID ------------------------------------", configData.didSubject)
 const subjectPresentationHash = tokensFactory.tokens.PSMHash(web3, signedJWTPresentation, configData.didSubject)
 console.log("The PSMHashSubject is:", subjectPresentationHash);
 fs.writeFileSync(`./PSMHashSubject.json`, JSON.stringify({psmhash: subjectPresentationHash, jwt: signedJWTPresentation}))
