@@ -16,16 +16,16 @@ let updateSubjectPresentation = transactionFactory.presentationRegistry.updateSu
 let keyData = fs.readFileSync('../keystore.json')
 let keystoreData = JSON.parse(keyData)
 
-let identityKeystore = keystoreData.identityKeystore
+let subjectKeystore = keystoreData.subjectKeystore
 
-let identityPrivateKey
+let subjectPrivateKey
 try {
-  identityPrivateKey = keythereum.recover(keystoreData.addressPassword, identityKeystore)
+  subjectPrivateKey = keythereum.recover(keystoreData.addressPassword, subjectKeystore)
 } catch (error) {
   console.log("ERROR: ", error)
 }
 
-let subjectIdentity = new UserIdentity(web3, `0x${identityKeystore.address}`, identityPrivateKey)
+let subjectIdentity = new UserIdentity(web3, `0x${subjectKeystore.address}`, subjectPrivateKey)
 
   if(configData.subject == undefined) {
     console.log('You must create an Alastria ID')
