@@ -4,7 +4,7 @@ There are six different identities to play with the examples. In the file [keyst
 |Name|Role|
 |:--|--:|
 |admin|Service Provider + Issuer|
-|entity1|Service Provider +Issuer|
+|entity1|Service Provider + Issuer|
 |entity2|Service Provider|
 |entity3|Issuer|
 |subject1|Subject |
