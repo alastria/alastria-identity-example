@@ -50,14 +50,14 @@
     "subject2": "0xbaa7f23f6bc8ac14d65d8550e86a3b30e8a4840c",
     "didSubject2": "did:ala:quor:redT:baa7f23f6bc8ac14d65d8550e86a3b30e8a4840c",
     "issuerLevel": 2,
-    "updateSubjectPresentationTo": 2,
-    "updateReceiverPresentationTo": 1,
+    "updateSubject1PresentationTo": 2,
+    "updateEntity2PresentationTo": 1,
     "updateIssuerCredentialTo": 2,
-    "subjectPresentationStatus": {
+    "subject1PresentationStatus": {
         "exist": true,
-        "status": "0"
+        "status": "2"
     },
-    "recieverPresentationStatus": {
+    "entity2PresentationStatus": {
         "exist": true,
         "status": "1"
     }

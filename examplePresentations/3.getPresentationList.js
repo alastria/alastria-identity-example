@@ -12,12 +12,12 @@ const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 //------------------------------------------------------------------------------
 console.log('\n ------ Getting Presentation List ------ \n')
 
-	if(configData.subject == undefined) {
+	if(configData.subject1 == undefined) {
 		console.log('You must create an Alastria ID')
 		process.exit()
 	}
 
-	let presentationList = transactionFactory.presentationRegistry.getSubjectPresentationList(web3, configData.subject)
+	let presentationList = transactionFactory.presentationRegistry.getSubjectPresentationList(web3, configData.subject1)
 	console.log('(presentationList) Transaction ------>', presentationList)
 	web3.eth.call(presentationList)
 	.then(subjectPresentationList => {

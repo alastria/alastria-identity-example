@@ -25,7 +25,7 @@ web3.eth.call(presentationStatus)
     exist: resultStatus[0],
     status: resultStatus[1]
   }
-  configData.subjectPresentationStatus = presentationStatus;
+  configData.subject1PresentationStatus = presentationStatus;
   fs.writeFileSync('../configuration.json', JSON.stringify(configData))
   console.log('presentationStatus ------>', presentationStatus)
 })

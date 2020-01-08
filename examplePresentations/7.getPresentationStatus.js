@@ -8,12 +8,12 @@ let Web3 = require('web3')
 let myBlockchainServiceIp = configData.nodeURL
 const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 
-  if(configData.recieverPresentationStatus == undefined || configData.subjectPresentationStatus == undefined){
+  if(configData.entity2PresentationStatus == undefined || configData.subject1PresentationStatus == undefined){
     console.log('You must create Presentation')
     process.exit()
   }
 
-let globalStatus = transactionFactory.presentationRegistry.getPresentationStatus(web3, configData.subjectPresentationStatus.status, configData.recieverPresentationStatus.status)
+let globalStatus = transactionFactory.presentationRegistry.getPresentationStatus(web3, configData.subject1PresentationStatus.status, configData.entity2PresentationStatus.status)
 web3.eth.call(globalStatus)
 .then(result => {
     let resultStatus = web3.utils.hexToNumber(result);
