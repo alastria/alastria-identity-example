@@ -31,13 +31,12 @@ async function unlockAccount() {
 	return unlockedAccount
 }
 
-let entity3KeyStore = keystoreData.entity3;
+let entity2KeyStore = keystoreData.entity2;
 
-async function mainDel() {
+async function mainAdd() {
 	unlockAccount()
-	console.log('\n ------ Example of deleting entity3 like Issuer ------ \n')
-	let transaction = await transactionFactory.identityManager.deleteIdentityIssuer(web3, `0x${entity3KeyStore.address}`)
-	console.log("transaction", transaction)
+	console.log('\n ------ Example of adding the entity2 like a Service Provider ------ \n')
+	let transaction = await transactionFactory.identityManager.addIdentityServiceProvider(web3, `0x${entity2KeyStore.address}`)
 	let getKnownTx = await entity1Identity.getKnownTransaction(transaction)
 	console.log('The transaction bytes data is: ', getKnownTx)
 	web3.eth.sendSignedTransaction(getKnownTx)
@@ -48,6 +47,7 @@ async function mainDel() {
 		console.log("RECEIPT: ", receipt)
 	})
 	.on('error', console.error); 
+	// If this is a revert, probably this Subject (address) is already a SP
 }
-mainDel()
 
+mainAdd()

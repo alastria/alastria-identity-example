@@ -1,5 +1,5 @@
 # Important
-In this folder we have two files, one of addIdentityServiceProvider ([`exampleServiceProvider/1.identityServiceProvider.js`](1.identityServiceProvider.js)) and the other of deleteIdentityServiceProvider ([`exampleServiceProvider/2.deleteIdentityServiceProvider.js`](2.deleteIdentityServiceProvider.js)).
+In this folder we have two files, one of addIdentityServiceProvider ([`exampleServiceProvider/1.addIdentityServiceProvider.js`](1.addIdentityServiceProvider.js)) and the other of deleteIdentityServiceProvider ([`exampleServiceProvider/2.deleteIdentityServiceProvider.js`](2.deleteIdentityServiceProvider.js)).
 
 ## Error cases
 The following cases will return an error (`Transaction has been reverted by the EVM`)

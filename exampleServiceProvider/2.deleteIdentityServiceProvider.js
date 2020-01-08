@@ -6,45 +6,45 @@ let keythereum = require('keythereum')
 let rawdata = fs.readFileSync('../configuration.json')
 let configData = JSON.parse(rawdata)
 
-let keyData = fs.readFileSync('../keystore.json')
+let keyData = fs.readFileSync('../keystore/keystore.json')
 let keystoreData = JSON.parse(keyData)
 
 // Init your blockchain provider
 let myBlockchainServiceIp = configData.nodeURL
 const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 
-let adminKeyStore = keystoreData.adminKeystore
+let entity1Keystore = keystoreData.entity1
 
-let adminPrivateKey
-try {
-	adminPrivateKey = keythereum.recover(keystoreData.addressPassword, adminKeyStore)
-} catch (error) {
+let entity1PrivateKey
+try{
+	entity1PrivateKey = keythereum.recover(keystoreData.addressPassword, entity1Keystore)
+}catch(error){
 	console.log("ERROR: ", error)
 }
 
-let adminIdentity = new UserIdentity(web3, `0x${adminKeyStore.address}`, adminPrivateKey)
+let entity1Identity = new UserIdentity(web3, `0x${entity1Keystore.address}`, entity1PrivateKey)
 
 // Im not sure if this is needed
 async function unlockAccount() {
-	let unlockedAccount = await web3.eth.personal.unlockAccount(adminIdentity.address, keystoreData.addressPassword, 3600)
+	let unlockedAccount = await web3.eth.personal.unlockAccount(entity1Identity.address, keystoreData.addressPassword, 3600)
 	console.log('Account unlocked:', unlockedAccount)
 	return unlockedAccount
 }
 
-let newSPKeyStore = keystoreData.serviceProviderKeyStore;
+let entity2KeyStore = keystoreData.entity2;
 async function mainDel() {
 	unlockAccount()
-	console.log('\n ------ Example of deleting a Service Provider ------ \n')
-	let transactionD = await transactionFactory.identityManager.deleteIdentityServiceProvider(web3, `0x${newSPKeyStore.address}`)
-	console.log("transaction", transactionD)
-	let getKnownTxD = await adminIdentity.getKnownTransaction(transactionD)
-	console.log('The transaction bytes data is: ', getKnownTxD)
-	web3.eth.sendSignedTransaction(getKnownTxD)
-		.on('transactionHash', function (hashD) {
-			console.log("HASH: ", hashD)
+	console.log('\n ------ Example of deleting the entity2 like Service Provider ------ \n')
+	let transaction = await transactionFactory.identityManager.deleteIdentityServiceProvider(web3, `0x${entity2KeyStore.address}`)
+	console.log("transaction", transaction)
+	let getKnownTx = await entity1Identity.getKnownTransaction(transaction)
+	console.log('The transaction bytes data is: ', getKnownTx)
+	web3.eth.sendSignedTransaction(getKnownTx)
+		.on('transactionHash', function (hash) {
+			console.log("HASH: ", hash)
 		})
-		.on('receipt', function (receiptD) {
-			console.log("RECEIPT: ", receiptD)
+		.on('receipt', function (receipt) {
+			console.log("RECEIPT: ", receipt)
 		})
 		.on('error', console.error);
 }

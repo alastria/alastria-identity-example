@@ -6,14 +6,14 @@ let keythereum = require('keythereum')
 let rawdata = fs.readFileSync('../configuration.json')
 let configData = JSON.parse(rawdata)
 
-let keyData = fs.readFileSync('../keystore.json')
+let keyData = fs.readFileSync('../keystore/keystore.json')
 let keystoreData = JSON.parse(keyData)
 
 // Init your blockchain provider
 let myBlockchainServiceIp = configData.nodeURL
 const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 
-let adminKeyStore = keystoreData.adminKeystore
+let adminKeyStore = keystoreData.admin
 
 let adminPrivateKey
 try{
@@ -31,23 +31,23 @@ async function unlockAccount() {
 	return unlockedAccount
 }
 
-let newSPKeyStore = keystoreData.serviceProviderKeyStore;
+let entity1KeyStore = keystoreData.entity1;
 
-async function mainAdd() {
+async function mainDel() {
 	unlockAccount()
-	console.log('\n ------ Example of adding a Service Provider ------ \n')
-	let transactionA = await transactionFactory.identityManager.addIdentityServiceProvider(web3, `0x${newSPKeyStore.address}`)
-	let getKnownTxA = await adminIdentity.getKnownTransaction(transactionA)
-	console.log('The transaction bytes data is: ', getKnownTxA)
-	web3.eth.sendSignedTransaction(getKnownTxA)
-	.on('transactionHash', function (hashA) {
-		console.log("HASH: ", hashA)
+	console.log('\n ------ Example of deleting the entity1 like Issuer ------ \n')
+	let transactionD = await transactionFactory.identityManager.deleteIdentityIssuer(web3, `0x${entity1KeyStore.address}`)
+	console.log("transaction", transactionD)
+	let getKnownTxD = await adminIdentity.getKnownTransaction(transactionD)
+	console.log('The transaction bytes data is: ', getKnownTxD)
+	web3.eth.sendSignedTransaction(getKnownTxD)
+	.on('transactionHash', function (hashD) {
+		console.log("HASH: ", hashD)
 	})
-	.on('receipt', function (receiptA) {
-		console.log("RECEIPT: ", receiptA)
+	.on('receipt', function (receiptD) {
+		console.log("RECEIPT: ", receiptD)
 	})
 	.on('error', console.error); 
-	// If this is a revert, probably this Subject (address) is already a SP
 }
+mainDel()
 
-mainAdd()

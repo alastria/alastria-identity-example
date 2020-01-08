@@ -6,14 +6,14 @@ let keythereum = require('keythereum')
 let rawdata = fs.readFileSync('../configuration.json')
 let configData = JSON.parse(rawdata)
 
-let keyData = fs.readFileSync('../keystore.json')
+let keyData = fs.readFileSync('../keystore/keystore.json')
 let keystoreData = JSON.parse(keyData)
 
 // Init your blockchain provider
 let myBlockchainServiceIp = configData.nodeURL
 const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 
-let adminKeyStore = keystoreData.adminKeystore
+let adminKeyStore = keystoreData.admin
 
 let adminPrivateKey
 try{
@@ -31,20 +31,20 @@ async function unlockAccount() {
 	return unlockedAccount
 }
 
-let newIssuerKeyStore = keystoreData.issuerKeystore;
+let entity1KeyStore = keystoreData.entity1;
 
 async function mainAdd() {
 	unlockAccount()
-	console.log('\n ------ Example of adding a Issuer ------ \n')
-	let transactionA = await transactionFactory.identityManager.addIdentityIssuer(web3, `0x${newIssuerKeyStore.address}`, configData.issuerLevel)
-	let getKnownTxA = await adminIdentity.getKnownTransaction(transactionA)
-	console.log('The transaction bytes data is: ', getKnownTxA)
-	web3.eth.sendSignedTransaction(getKnownTxA)
-	.on('transactionHash', function (hashA) {
-		console.log("HASH: ", hashA)
+	console.log('\n ------ Example of adding the entity1 like a Service Provider ------ \n')
+	let transaction = await transactionFactory.identityManager.addIdentityServiceProvider(web3, `0x${entity1KeyStore.address}`)
+	let getKnownTx = await adminIdentity.getKnownTransaction(transaction)
+	console.log('The transaction bytes data is: ', getKnownTx)
+	web3.eth.sendSignedTransaction(getKnownTx)
+	.on('transactionHash', function (hash) {
+		console.log("HASH: ", hash)
 	})
-	.on('receipt', function (receiptA) {
-		console.log("RECEIPT: ", receiptA)
+	.on('receipt', function (receipt) {
+		console.log("RECEIPT: ", receipt)
 	})
 	.on('error', console.error); 
 	// If this is a revert, probably this Subject (address) is already a SP
