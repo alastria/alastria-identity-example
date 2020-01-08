@@ -1,4 +1,4 @@
-const { transactionFactory, UserIdentity } = require('alastria-identity-lib')
+const {transactionFactory, UserIdentity} = require('alastria-identity-lib')
 let Web3 = require('web3')
 let fs = require('fs')
 let keythereum = require('keythereum')
@@ -26,26 +26,28 @@ let entity1Identity = new UserIdentity(web3, `0x${entity1Keystore.address}`, ent
 
 // Im not sure if this is needed
 async function unlockAccount() {
-	let unlockedAccount = await web3.eth.personal.unlockAccount(entity1Identity.address, keystoreData.addressPassword, 3600)
+	let unlockedAccount = await web3.eth.personal.unlockAccount(entity1Identity.address, keystoreData.addressPassword, 500)
 	console.log('Account unlocked:', unlockedAccount)
 	return unlockedAccount
 }
 
 let entity2KeyStore = keystoreData.entity2;
-async function mainDel() {
+
+async function mainAdd() {
 	unlockAccount()
-	console.log('\n ------ Example of deleting a Service Provider ------ \n')
-	let transaction = await transactionFactory.identityManager.deleteIdentityServiceProvider(web3, `0x${entity2KeyStore.address}`)
-	console.log("transaction", transaction)
+	console.log('\n ------ Example of adding a Service Provider ------ \n')
+	let transaction = await transactionFactory.identityManager.addIdentityServiceProvider(web3, `0x${entity2KeyStore.address}`)
 	let getKnownTx = await entity1Identity.getKnownTransaction(transaction)
 	console.log('The transaction bytes data is: ', getKnownTx)
 	web3.eth.sendSignedTransaction(getKnownTx)
-		.on('transactionHash', function (hash) {
-			console.log("HASH: ", hash)
-		})
-		.on('receipt', function (receipt) {
-			console.log("RECEIPT: ", receipt)
-		})
-		.on('error', console.error);
+	.on('transactionHash', function (hash) {
+		console.log("HASH: ", hash)
+	})
+	.on('receipt', function (receipt) {
+		console.log("RECEIPT: ", receipt)
+	})
+	.on('error', console.error); 
+	// If this is a revert, probably this Subject (address) is already a SP
 }
-mainDel()
+
+mainAdd()
