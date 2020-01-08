@@ -48,11 +48,11 @@ let signedJWTPresentation = tokensFactory.tokens.signJWT(createPresentation, sub
 console.log('signedJWTPresentation ------------->', signedJWTPresentation)
 
 
-const subjectPresentationHash = tokensFactory.tokens.PSMHash(web3, signedJWTPresentation, presentationData.didSubject1)
+const subjectPresentationHash = tokensFactory.tokens.PSMHash(web3, signedJWTPresentation, configData.didSubject1)
 console.log("The PSMHashSubject1 is:", subjectPresentationHash);
 fs.writeFileSync(`./PSMHashSubject1.json`, JSON.stringify({psmhash: subjectPresentationHash, jwt: signedJWTPresentation}))
 
-const receiverPresentationHash = tokensFactory.tokens.PSMHash(web3, signedJWTPresentation, presentationData.didEntity1)
+const receiverPresentationHash = tokensFactory.tokens.PSMHash(web3, signedJWTPresentation, configData.didEntity1)
 console.log("The PSMHashEntity2 is:", receiverPresentationHash);
 fs.writeFileSync(`./PSMHashEntity2.json`, JSON.stringify({psmhash: receiverPresentationHash, jwt: signedJWTPresentation}))
 
