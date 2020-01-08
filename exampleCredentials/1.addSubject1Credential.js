@@ -13,7 +13,7 @@ let keystoreData = JSON.parse(keyData)
 let myBlockchainServiceIp = configData.nodeURL
 const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 //------------------------------------------------------------------------------
-console.log('\n ------ Preparing Subject identity ------ \n')
+console.log('\n ------ Preparing Subject1 identity ------ \n')
 
 // Some fake data to test
 
@@ -68,8 +68,8 @@ const signedJWTCredential = tokensFactory.tokens.signJWT(credential, entity1Priv
 console.log('The signed token is: ', signedJWTCredential)
 
 const subjectCredentialHash = tokensFactory.tokens.PSMHash(web3, signedJWTCredential, didSubject1);
-console.log("The Subject PSMHash is " ,subjectCredentialHash);
-fs.writeFileSync(`./PSMHashSubject.json`, JSON.stringify({psmhash: subjectCredentialHash, jwt: signedJWTCredential}))
+console.log("The Subject1 PSMHash is " ,subjectCredentialHash);
+fs.writeFileSync(`./PSMHashSubject1.json`, JSON.stringify({psmhash: subjectCredentialHash, jwt: signedJWTCredential}))
 
 
 	function addSubjectCredential() {
