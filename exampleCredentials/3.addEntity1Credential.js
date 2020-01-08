@@ -14,7 +14,7 @@ let myBlockchainServiceIp = configData.nodeURL
 const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 
 //------------------------------------------------------------------------------
-console.log('\n ------ Preparing Issuer identity ------ \n')
+console.log('\n ------ Preparing Entity1 identity ------ \n')
 
 // Some fake data to test
 
@@ -56,7 +56,7 @@ const signedJWTCredential = tokensFactory.tokens.signJWT(credential, entity1Priv
 console.log('The signed token is: ', signedJWTCredential)
 
 const credentialHash = tokensFactory.tokens.PSMHash(web3, signedJWTCredential, didEntity1);
-console.log("The Issuer PSMHash is:", credentialHash);
+console.log("The Entity1 PSMHash is:", credentialHash);
 fs.writeFileSync(`./PSMHashEntity1.json`, JSON.stringify({psmhash: credentialHash, jwt: signedJWTCredential}))
 
 	function addIssuerCredential() {
