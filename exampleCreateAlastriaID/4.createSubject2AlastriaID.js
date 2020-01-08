@@ -6,7 +6,7 @@ const keythereum = require('keythereum')
 let rawdata = fs.readFileSync('../configuration.json')
 let configData = JSON.parse(rawdata)
 
-let keyData = fs.readFileSync('../keystore.json')
+let keyData = fs.readFileSync('../keystore/keystore.json')
 let keystoreData = JSON.parse(keyData)
 
 // Init your blockchain provider
@@ -15,38 +15,39 @@ const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 
 console.log('\n ------ Example of prepare Alastria ID, addKey and createAlastrisID necessary to have an Alastria ID ------ \n')
 // Data
-const rawPublicKey = configData.rawPublicKeySubject
+const rawPublicKeyReceiver = configData.rawPublicKeyReceiver
 
-let adminKeyStore = keystoreData.adminKeystore
+let entity1KeyStore = keystoreData.entity1
 
-let adminPrivateKey
+let entity1PrivateKey
 try{
-	adminPrivateKey = keythereum.recover(keystoreData.addressPassword, adminKeyStore)
+	entity1PrivateKey = keythereum.recover(keystoreData.addressPassword, entity1KeyStore)
 }catch(error){
 	console.log("ERROR: ", error)
 }
 
-let adminIdentity = new UserIdentity(web3, `0x${adminKeyStore.address}`, adminPrivateKey)
+let entity1Identity = new UserIdentity(web3, `0x${entity1KeyStore.address}`, entity1PrivateKey)
 
-let issuerKeystore = keystoreData.issuerKeystore
 
-let issuerPrivateKey
+let subject2Keystore = keystoreData.subject2
+
+let subject2PrivateKey
 try{
-	issuerPrivateKey = keythereum.recover(keystoreData.addressPassword, issuerKeystore)
+	subject2PrivateKey = keythereum.recover(keystoreData.addressPassword, subject2Keystore)
 }catch(error){
 	console.log("ERROR: ", error)
 }
 
-let issuerIdentity = new UserIdentity(web3, `0x${issuerKeystore.address}`, issuerPrivateKey)
+let subject2Identity = new UserIdentity(web3, `0x${subject2Keystore.address}`, subject2PrivateKey)
 // End data
 
-function preparedAlastriaId() {
-	let preparedId = transactionFactory.identityManager.prepareAlastriaID(web3, issuerKeystore.address)
+function preparedAlastriaId()  {
+	let preparedId = transactionFactory.identityManager.prepareAlastriaID(web3, subject2Keystore.address)
 	return preparedId
 }
 
 function createAlastriaId() {
-	let txCreateAlastriaID = transactionFactory.identityManager.createAlastriaIdentity(web3, rawPublicKey)
+	let txCreateAlastriaID = transactionFactory.identityManager.createAlastriaIdentity(web3, rawPublicKeyReceiver)
 	return txCreateAlastriaID
 }
 
@@ -55,8 +56,8 @@ async function main() {
 	let prepareResult = await preparedAlastriaId()
 	let createResult = await createAlastriaId()
 
-	let signedPreparedTransaction = await adminIdentity.getKnownTransaction(prepareResult)
-	let signedCreateTransaction =	await issuerIdentity.getKnownTransaction(createResult)
+	let signedPreparedTransaction = await entity1Identity.getKnownTransaction(prepareResult)
+	let signedCreateTransaction =	await subject2Identity.getKnownTransaction(createResult)
 	web3.eth.sendSignedTransaction(signedPreparedTransaction)
 	.on('transactionHash', function (hash) {
 		console.log("HASH: ", hash)
@@ -71,14 +72,14 @@ async function main() {
 				console.log("RECEIPT: ", receipt)
 				web3.eth.call({
 					to: config.alastriaIdentityManager,				       
-					data: web3.eth.abi.encodeFunctionCall(config.contractsAbi['AlastriaIdentityManager']['identityKeys'], [issuerKeystore.address])
+					data: web3.eth.abi.encodeFunctionCall(config.contractsAbi['AlastriaIdentityManager']['identityKeys'], [subject2Keystore.address])
 				})
 				.then (AlastriaIdentity => {
 					console.log(`alastriaProxyAddress: 0x${AlastriaIdentity.slice(26)}`)
-					configData.issuer = `0x${AlastriaIdentity.slice(26)}`
+					configData.subject2 = `0x${AlastriaIdentity.slice(26)}`
 					fs.writeFileSync('../configuration.json', JSON.stringify(configData))
 					let alastriaDID = tokensFactory.tokens.createDID('quor', AlastriaIdentity.slice(26));
-					configData.didIssuer = alastriaDID
+					configData.didSubject2 = alastriaDID
 					fs.writeFileSync('../configuration.json', JSON.stringify(configData))
 					console.log('the alastria DID is:', alastriaDID)
 				})
@@ -87,6 +88,5 @@ async function main() {
 	})
 	.on('error', console.error); // If a out of gas error, the second parameter is the receipt.
 }
-
 main()
 

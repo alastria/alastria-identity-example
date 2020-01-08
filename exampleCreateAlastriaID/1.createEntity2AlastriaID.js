@@ -6,42 +6,42 @@ const keythereum = require('keythereum')
 let rawdata = fs.readFileSync('../configuration.json')
 let configData = JSON.parse(rawdata)
 
-let keyData = fs.readFileSync('../keystore.json')
+let keyData = fs.readFileSync('../keystore/keystore.json')
 let keystoreData = JSON.parse(keyData)
 
 // Init your blockchain provider
 let myBlockchainServiceIp = configData.nodeURL
 const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 
-console.log('\n ------ Example of prepare Alastria ID, addKey and createAlastriaID necessary to have an Alastria ID ------ \n')
+console.log('\n ------ Example of prepare Alastria ID, addKey and createAlastrisID necessary to have an Alastria ID ------ \n')
 // Data
 const rawPublicKey = configData.rawPublicKeySubject
 
-let issuerKeystore = keystoreData.issuerKeystore
+let entity1KeyStore = keystoreData.entity1
 
-let issuerPrivateKey
+let entity1PrivateKey
 try{
-	issuerPrivateKey = keythereum.recover(keystoreData.addressPassword, issuerKeystore)
+	entity1PrivateKey = keythereum.recover(keystoreData.addressPassword, entity1KeyStore)
 }catch(error){
 	console.log("ERROR: ", error)
 }
 
-let issuerIdentity = new UserIdentity(web3, `0x${issuerKeystore.address}`, issuerPrivateKey)
+let entity1Identity = new UserIdentity(web3, `0x${entity1KeyStore.address}`, entity1PrivateKey)
 
-let subjectKeystore = keystoreData.subjectKeystore
+let entity2Keystore = keystoreData.entity2
 
-let subjectPrivateKey
+let entity2PrivateKey
 try{
-	subjectPrivateKey = keythereum.recover(keystoreData.addressPassword, subjectKeystore)
+	entity2PrivateKey = keythereum.recover(keystoreData.addressPassword, entity2Keystore)
 }catch(error){
 	console.log("ERROR: ", error)
 }
 
-let subjectIdentity = new UserIdentity(web3, `0x${subjectKeystore.address}`, subjectPrivateKey)
+let entity2Identity = new UserIdentity(web3, `0x${entity2Keystore.address}`, entity2PrivateKey)
 // End data
 
 function preparedAlastriaId() {
-	let preparedId = transactionFactory.identityManager.prepareAlastriaID(web3, subjectKeystore.address)
+	let preparedId = transactionFactory.identityManager.prepareAlastriaID(web3, entity2Identity.address)
 	return preparedId
 }
 
@@ -55,9 +55,8 @@ async function main() {
 	let prepareResult = await preparedAlastriaId()
 	let createResult = await createAlastriaId()
 
-	let signedPreparedTransaction = await issuerIdentity.getKnownTransaction(prepareResult)
-	let signedCreateTransaction =	await subjectIdentity.getKnownTransaction(createResult)
-	console.log("---->signedCreateTransaction<----",signedCreateTransaction)
+	let signedPreparedTransaction = await entity1Identity.getKnownTransaction(prepareResult)
+	let signedCreateTransaction =	await entity2Identity.getKnownTransaction(createResult)
 	web3.eth.sendSignedTransaction(signedPreparedTransaction)
 	.on('transactionHash', function (hash) {
 		console.log("HASH: ", hash)
@@ -72,14 +71,14 @@ async function main() {
 				console.log("RECEIPT: ", receipt)
 				web3.eth.call({
 					to: config.alastriaIdentityManager,				       
-					data: web3.eth.abi.encodeFunctionCall(config.contractsAbi['AlastriaIdentityManager']['identityKeys'], [subjectKeystore.address])
+					data: web3.eth.abi.encodeFunctionCall(config.contractsAbi['AlastriaIdentityManager']['identityKeys'], [entity2Keystore.address])
 				})
 				.then (AlastriaIdentity => {
 					console.log(`alastriaProxyAddress: 0x${AlastriaIdentity.slice(26)}`)
-					configData.subject = `0x${AlastriaIdentity.slice(26)}`
+					configData.entity2 = `0x${AlastriaIdentity.slice(26)}`
 					fs.writeFileSync('../configuration.json', JSON.stringify(configData))
 					let alastriaDID = tokensFactory.tokens.createDID('quor', AlastriaIdentity.slice(26));
-					configData.didSubject = alastriaDID
+					configData.didEntity2 = alastriaDID
 					fs.writeFileSync('../configuration.json', JSON.stringify(configData))
 					console.log('the alastria DID is:', alastriaDID)
 				})
