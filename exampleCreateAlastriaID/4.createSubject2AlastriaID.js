@@ -51,7 +51,7 @@ function createAlastriaId() {
 	return txCreateAlastriaID
 }
 
-console.log('\n ------ Step three---> A promise all where prepareAlastriaID and createAlsatriaID transactions are signed and sent ------ \n')
+console.log('\n ------ A promise all where prepareAlastriaID and createAlsatriaID transactions are signed and sent ------ \n')
 async function main() {
 	let prepareResult = await preparedAlastriaId()
 	let createResult = await createAlastriaId()

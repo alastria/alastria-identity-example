@@ -20,9 +20,9 @@ console.log('\n ------ Getting Presentation List ------ \n')
 	let presentationList = transactionFactory.presentationRegistry.getSubjectPresentationList(web3, configData.subject1)
 	console.log('(presentationList) Transaction ------>', presentationList)
 	web3.eth.call(presentationList)
-	.then(subjectPresentationList => {
-		console.log('(subjectPresentationList) Transaction ------->', subjectPresentationList)
-		let resultList = web3.eth.abi.decodeParameters(["uint256", "bytes32[]"], subjectPresentationList)
+	.then(subject1PresentationList => {
+		console.log('(subjectPresentationList) Transaction ------->', subject1PresentationList)
+		let resultList = web3.eth.abi.decodeParameters(["uint256", "bytes32[]"], subject1PresentationList)
 		let presentationListresult = {
 			"uint": resultList[0],
 			"bytes32[]": resultList[1]

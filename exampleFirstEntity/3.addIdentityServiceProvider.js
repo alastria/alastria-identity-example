@@ -33,21 +33,21 @@ async function unlockAccount() {
 
 let entity1KeyStore = keystoreData.entity1;
 
-async function mainDel() {
+async function mainAdd() {
 	unlockAccount()
-	console.log('\n ------ Example of deleting a Issuer ------ \n')
-	let transactionD = await transactionFactory.identityManager.deleteIdentityIssuer(web3, `0x${entity1KeyStore.address}`)
-	console.log("transaction", transactionD)
-	let getKnownTxD = await adminIdentity.getKnownTransaction(transactionD)
-	console.log('The transaction bytes data is: ', getKnownTxD)
-	web3.eth.sendSignedTransaction(getKnownTxD)
-	.on('transactionHash', function (hashD) {
-		console.log("HASH: ", hashD)
+	console.log('\n ------ Example of adding the entity1 like a Service Provider ------ \n')
+	let transaction = await transactionFactory.identityManager.addIdentityServiceProvider(web3, `0x${entity1KeyStore.address}`)
+	let getKnownTx = await adminIdentity.getKnownTransaction(transaction)
+	console.log('The transaction bytes data is: ', getKnownTx)
+	web3.eth.sendSignedTransaction(getKnownTx)
+	.on('transactionHash', function (hash) {
+		console.log("HASH: ", hash)
 	})
-	.on('receipt', function (receiptD) {
-		console.log("RECEIPT: ", receiptD)
+	.on('receipt', function (receipt) {
+		console.log("RECEIPT: ", receipt)
 	})
 	.on('error', console.error); 
+	// If this is a revert, probably this Subject (address) is already a SP
 }
-mainDel()
 
+mainAdd()

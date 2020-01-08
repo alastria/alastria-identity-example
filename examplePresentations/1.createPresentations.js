@@ -59,9 +59,9 @@ fs.writeFileSync(`./PSMHashEntity2.json`, JSON.stringify({psmhash: receiverPrese
 let addPresentationTransaction = transactionFactory.presentationRegistry.addSubjectPresentation(web3, subjectPresentationHash, uri)
 
 async function main() {
-  let subjectPresentationSigned = await subject1Identity.getKnownTransaction(addPresentationTransaction)
-  console.log('(subjectPresentationSigned)The transaction bytes data is: ', subjectPresentationSigned)
-  web3.eth.sendSignedTransaction(subjectPresentationSigned)
+  let subject1PresentationSigned = await subject1Identity.getKnownTransaction(addPresentationTransaction)
+  console.log('(subject1PresentationSigned)The transaction bytes data is: ', subject1PresentationSigned)
+  web3.eth.sendSignedTransaction(subject1PresentationSigned)
   .on('hash', txHash => {
     console.log('txHash ---------->', txHash)
   })

@@ -35,7 +35,7 @@ let entity2KeyStore = keystoreData.entity2;
 
 async function mainAdd() {
 	unlockAccount()
-	console.log('\n ------ Example of adding a Service Provider ------ \n')
+	console.log('\n ------ Example of adding the entity2 like a Service Provider ------ \n')
 	let transaction = await transactionFactory.identityManager.addIdentityServiceProvider(web3, `0x${entity2KeyStore.address}`)
 	let getKnownTx = await entity1Identity.getKnownTransaction(transaction)
 	console.log('The transaction bytes data is: ', getKnownTx)
