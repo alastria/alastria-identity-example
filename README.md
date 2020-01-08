@@ -9,6 +9,8 @@ This is an example of how to interact with the libraries from [alastria-identity
 ```sh
 cd node_modules/alastria-identity-lib/alastria-identity
 git pull
+cd ..
+tsc
 ```
 ### Folders of example
 
