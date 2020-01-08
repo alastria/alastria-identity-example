@@ -5,7 +5,7 @@ You must be executed the following examples in order to create the first entity.
 2. addIdentityIssuer ([`exampleFirstEntity/2.addIdentityIssuer.js`](2.addIdentityIssuer.js))
 3. addIdentityServiceProvider ([`exampleFirstEntity/3.addIdentityServiceProvider.js`](3.addIdentityServiceProvider.js)) 
 
-Only if you want to remove the entity from the mapping of Service provider or the mapping of Issuer, you must execute the examples three and four.
+Only if you want to remove the entity from the mapping of Service provider or the mapping of Issuer, you must execute the examples 4 and 5.
 
 
 ## Error cases
