@@ -1,4 +1,4 @@
-const {transactionFactory, UserIdentity, config, tokensFactory} = require('alastria-identity-lib')
+const { transactionFactory, UserIdentity, config, tokensFactory } = require('alastria-identity-lib')
 const fs = require('fs')
 const Web3 = require('web3')
 const keythereum = require('keythereum')
@@ -22,9 +22,9 @@ const rawPublicKeyReceiver = configData.rawPublicKeyReceiver
 let entity1KeyStore = keystoreDataEntity1
 
 let entity1PrivateKey
-try{
+try {
 	entity1PrivateKey = keythereum.recover(configData.addressPassword, entity1KeyStore)
-}catch(error){
+} catch (error) {
 	console.log("ERROR: ", error)
 }
 
@@ -34,16 +34,16 @@ let entity1Identity = new UserIdentity(web3, `0x${entity1KeyStore.address}`, ent
 let subject1Keystore = keystoreDataSubject1
 
 let subject1PrivateKey
-try{
+try {
 	subject1PrivateKey = keythereum.recover(configData.addressPassword, subject1Keystore)
-}catch(error){
+} catch (error) {
 	console.log("ERROR: ", error)
 }
 
 let subject1Identity = new UserIdentity(web3, `0x${subject1Keystore.address}`, subject1PrivateKey)
 // End data
 
-function preparedAlastriaId()  {
+function preparedAlastriaId() {
 	let preparedId = transactionFactory.identityManager.prepareAlastriaID(web3, subject1Keystore.address)
 	return preparedId
 }
@@ -59,36 +59,44 @@ async function main() {
 	let createResult = await createAlastriaId()
 
 	let signedPreparedTransaction = await entity1Identity.getKnownTransaction(prepareResult)
-	let signedCreateTransaction =	await subject1Identity.getKnownTransaction(createResult)
+	let signedCreateTransaction = await subject1Identity.getKnownTransaction(createResult)
 	web3.eth.sendSignedTransaction(signedPreparedTransaction)
-	.on('transactionHash', function (hash) {
-		console.log("HASH: ", hash)
-	})
-	.on('receipt', function (receipt) {
-		console.log("RECEIPT: ", receipt)
-		web3.eth.sendSignedTransaction(signedCreateTransaction)
 		.on('transactionHash', function (hash) {
-				console.log("HASH: ", hash)
+			console.log("HASH: ", hash)
 		})
 		.on('receipt', function (receipt) {
-				console.log("RECEIPT: ", receipt)
-				web3.eth.call({
-					to: config.alastriaIdentityManager,				       
-					data: web3.eth.abi.encodeFunctionCall(config.contractsAbi['AlastriaIdentityManager']['identityKeys'], [subject1Keystore.address])
+			console.log("RECEIPT: ", receipt)
+			web3.eth.sendSignedTransaction(signedCreateTransaction)
+				.on('transactionHash', function (hash) {
+					console.log("HASH: ", hash)
 				})
-				.then (AlastriaIdentity => {
-					console.log(`alastriaProxyAddress: 0x${AlastriaIdentity.slice(26)}`)
-					configData.subject1 = `0x${AlastriaIdentity.slice(26)}`
-					fs.writeFileSync('../configuration.json', JSON.stringify(configData))
-					let alastriaDID = tokensFactory.tokens.createDID('quor', AlastriaIdentity.slice(26));
-					configData.didSubject1 = alastriaDID
-					fs.writeFileSync('../configuration.json', JSON.stringify(configData))
-					console.log('the alastria DID is:', alastriaDID)
+				.on('receipt', function (receipt) {
+					console.log("RECEIPT: ", receipt)
+					web3.eth.call({
+						to: config.alastriaIdentityManager,
+						data: web3.eth.abi.encodeFunctionCall(config.contractsAbi['AlastriaIdentityManager']['identityKeys'], [subject1Keystore.address])
+					})
+						.then(AlastriaIdentity => {
+							console.log(`alastriaProxyAddress: 0x${AlastriaIdentity.slice(26)}`)
+							configData.subject1 = `0x${AlastriaIdentity.slice(26)}`
+							fs.writeFileSync('../configuration.json', JSON.stringify(configData))
+							let alastriaDID = tokensFactory.tokens.createDID('quor', AlastriaIdentity.slice(26));
+							configData.didSubject1 = alastriaDID
+							fs.writeFileSync('../configuration.json', JSON.stringify(configData))
+							console.log('the alastria DID is:', alastriaDID)
+						})
 				})
+
+				.on('error', function (error) {
+					console.error(error)
+					process.exit(1);
+				}); // If a out of gas error, the second parameter is the receipt.
 		})
-		.on('error', console.error); // If a out of gas error, the second parameter is the receipt.
-	})
-	.on('error', console.error); // If a out of gas error, the second parameter is the receipt.
+
+		.on('error', function (error) {
+			console.error(error)
+			process.exit(1);
+		}); // If a out of gas error, the second parameter is the receipt.
 }
 main()
 

@@ -1,4 +1,4 @@
-const {transactionFactory, UserIdentity} = require('alastria-identity-lib')
+const { transactionFactory, UserIdentity } = require('alastria-identity-lib')
 let Web3 = require('web3')
 let fs = require('fs')
 let keythereum = require('keythereum')
@@ -18,9 +18,9 @@ const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 let adminKeyStore = keystoreDataAdmin
 
 let adminPrivateKey
-try{
+try {
 	adminPrivateKey = keythereum.recover(configData.addressPassword, adminKeyStore)
-}catch(error){
+} catch (error) {
 	console.log("ERROR: ", error)
 }
 
@@ -43,13 +43,16 @@ async function mainDel() {
 	let getKnownTxD = await adminIdentity.getKnownTransaction(transactionD)
 	console.log('The transaction bytes data is: ', getKnownTxD)
 	web3.eth.sendSignedTransaction(getKnownTxD)
-	.on('transactionHash', function (hashD) {
-		console.log("HASH: ", hashD)
-	})
-	.on('receipt', function (receiptD) {
-		console.log("RECEIPT: ", receiptD)
-	})
-	.on('error', console.error); 
+		.on('transactionHash', function (hashD) {
+			console.log("HASH: ", hashD)
+		})
+		.on('receipt', function (receiptD) {
+			console.log("RECEIPT: ", receiptD)
+		})
+		.on('error', function (error) {
+			console.error(error)
+			process.exit(1);
+		});
 }
 mainDel()
 

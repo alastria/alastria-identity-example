@@ -1,4 +1,4 @@
-const {transactionFactory, UserIdentity} = require('alastria-identity-lib')
+const { transactionFactory, UserIdentity } = require('alastria-identity-lib')
 let Web3 = require('web3')
 let fs = require('fs')
 let keythereum = require('keythereum')
@@ -18,9 +18,9 @@ const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 let adminKeyStore = keystoreDataAdmin
 
 let adminPrivateKey
-try{
+try {
 	adminPrivateKey = keythereum.recover(configData.addressPassword, adminKeyStore)
-}catch(error){
+} catch (error) {
 	console.log("ERROR: ", error)
 }
 
@@ -42,13 +42,17 @@ async function mainAdd() {
 	let getKnownTxA = await adminIdentity.getKnownTransaction(transactionA)
 	console.log('The transaction bytes data is: ', getKnownTxA)
 	web3.eth.sendSignedTransaction(getKnownTxA)
-	.on('transactionHash', function (hashA) {
-		console.log("HASH: ", hashA)
-	})
-	.on('receipt', function (receiptA) {
-		console.log("RECEIPT: ", receiptA)
-	})
-	.on('error', console.error); 
+		.on('transactionHash', function (hashA) {
+			console.log("HASH: ", hashA)
+		})
+		.on('receipt', function (receiptA) {
+			console.log("RECEIPT: ", receiptA)
+		})
+
+		.on('error', function (error) {
+			console.error(error)
+			process.exit(1);
+		});
 	// If this is a revert, probably this Subject (address) is already a SP
 }
 

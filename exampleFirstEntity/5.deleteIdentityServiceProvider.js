@@ -49,6 +49,9 @@ async function mainDel() {
 		.on('receipt', function (receiptD) {
 			console.log("RECEIPT: ", receiptD)
 		})
-		.on('error', console.error);
+		.on('error', function (error) {
+			console.error(error)
+			process.exit(1);
+		});
 }
 mainDel()
