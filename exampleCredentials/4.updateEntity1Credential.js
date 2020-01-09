@@ -4,7 +4,7 @@ let keythereum = require('keythereum')
 let rawdata = fs.readFileSync('../configuration.json')
 let configData = JSON.parse(rawdata)
 
-let issuerHashData = fs.readFileSync(`./PSMHashIssuer.json`)
+let issuerHashData = fs.readFileSync(`./PSMHashEntity1.json`)
 let credentialHash = JSON.parse(issuerHashData)
 
 let Web3 = require('web3')
