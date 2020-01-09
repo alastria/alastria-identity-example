@@ -13,14 +13,14 @@ const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 
 let updateSubjectPresentation = transactionFactory.presentationRegistry.updateSubjectPresentation(web3, presentationHash.psmhash, configData.updateSubject1PresentationTo)
 
-let keyData = fs.readFileSync('../keystore/keystore.json')
-let keystoreData = JSON.parse(keyData)
+let keyDataSubject1 = fs.readFileSync('../keystores/subject1-806bc0d7a47b890383a831634bcb92dd4030b092.json')
+let keystoreDataSubject1 = JSON.parse(keyDataSubject1)
 
-let subject1Keystore = keystoreData.subject1
+let subject1Keystore = keystoreDataSubject1
 
 let subject1PrivateKey
 try{
-	subject1PrivateKey = keythereum.recover(keystoreData.addressPassword, subject1Keystore)
+	subject1PrivateKey = keythereum.recover(configData.addressPassword, subject1Keystore)
 }catch(error){
 	console.log("ERROR: ", error)
 }

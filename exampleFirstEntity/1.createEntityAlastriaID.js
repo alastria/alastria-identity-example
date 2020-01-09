@@ -6,8 +6,10 @@ const keythereum = require('keythereum')
 let rawdata = fs.readFileSync('../configuration.json')
 let configData = JSON.parse(rawdata)
 
-let keyData = fs.readFileSync('../keystore/keystore.json')
-let keystoreData = JSON.parse(keyData)
+let keyDataEntity1 = fs.readFileSync('../keystores/entity1-a9728125c573924b2b1ad6a8a8cd9bf6858ced49.json')
+let keystoreDataEntity1 = JSON.parse(keyDataEntity1)
+let keyDataAdmin = fs.readFileSync('../keystores/admin-6e3976aeaa3a59e4af51783cc46ee0ffabc5dc11.json')
+let keystoreDataAdmin = JSON.parse(keyDataAdmin)
 
 // Init your blockchain provider
 let myBlockchainServiceIp = configData.nodeURL
@@ -17,22 +19,22 @@ console.log('\n ------ Example of prepare Alastria ID, addKey and createAlastris
 // Data
 const rawPublicKey = configData.rawPublicKeySubject
 
-let adminKeyStore = keystoreData.admin
+let adminKeyStore = keystoreDataAdmin
 
 let adminPrivateKey
 try{
-	adminPrivateKey = keythereum.recover(keystoreData.addressPassword, adminKeyStore)
+	adminPrivateKey = keythereum.recover(configData.addressPassword, adminKeyStore)
 }catch(error){
 	console.log("ERROR: ", error)
 }
 
 let adminIdentity = new UserIdentity(web3, `0x${adminKeyStore.address}`, adminPrivateKey)
 
-let entity1Keystore = keystoreData.entity1
+let entity1Keystore = keystoreDataEntity1
 
 let entity1PrivateKey
 try{
-	entity1PrivateKey = keythereum.recover(keystoreData.addressPassword, entity1Keystore)
+	entity1PrivateKey = keythereum.recover(configData.addressPassword, entity1Keystore)
 }catch(error){
 	console.log("ERROR: ", error)
 }

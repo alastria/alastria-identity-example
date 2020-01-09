@@ -6,18 +6,20 @@ let keythereum = require('keythereum')
 let rawdata = fs.readFileSync('../configuration.json')
 let configData = JSON.parse(rawdata)
 
-let keyData = fs.readFileSync('../keystore/keystore.json')
-let keystoreData = JSON.parse(keyData)
+let keyDataEntity1 = fs.readFileSync('../keystores/entity1-a9728125c573924b2b1ad6a8a8cd9bf6858ced49.json')
+let keystoreDataEntity1 = JSON.parse(keyDataEntity1)
+let keyDataEntity2 = fs.readFileSync('../keystores/entity2-ad88f1a89cf02a32010b971d8c8af3a2c7b3bd94.json')
+let keystoreDataEntity2 = JSON.parse(keyDataEntity2)
 
 // Init your blockchain provider
 let myBlockchainServiceIp = configData.nodeURL
 const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 
-let entity1Keystore = keystoreData.entity1
+let entity1Keystore = keystoreDataEntity1
 
 let entity1PrivateKey
 try{
-	entity1PrivateKey = keythereum.recover(keystoreData.addressPassword, entity1Keystore)
+	entity1PrivateKey = keythereum.recover(configData.addressPassword, entity1Keystore)
 }catch(error){
 	console.log("ERROR: ", error)
 }
@@ -26,12 +28,13 @@ let entity1Identity = new UserIdentity(web3, `0x${entity1Keystore.address}`, ent
 
 // Im not sure if this is needed
 async function unlockAccount() {
-	let unlockedAccount = await web3.eth.personal.unlockAccount(entity1Identity.address, keystoreData.addressPassword, 3600)
+	let unlockedAccount = await web3.eth.personal.unlockAccount(entity1Identity.address, configData.addressPassword, 3600)
 	console.log('Account unlocked:', unlockedAccount)
 	return unlockedAccount
 }
 
-let entity2KeyStore = keystoreData.entity2;
+let entity2KeyStore = keystoreDataEntity2;
+
 async function mainDel() {
 	unlockAccount()
 	console.log('\n ------ Example of deleting the entity2 like Service Provider ------ \n')
