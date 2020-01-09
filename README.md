@@ -12,6 +12,7 @@ git pull
 cd ..
 tsc
 ```
+
 ### Folders of example
 
 |**Folder**|**What it does**|
@@ -22,6 +23,8 @@ tsc
 |examplePresentations| Contains examples of how to create, add and get Presentations in AlastriaID |
 |exampleIdentityServiceProvider| Contains an example of how to add and remove a Identity Service Provider|
 |exampleIdentityIssuer| Contains an example of how to add and remove a Identity Issuer|
+|exampleFirstEntity| Contains an example of how to create the first identity with the admin account|
+|keystore| Contains the mocked keystore that we used to create the identities with different roles. These roles are explained in the [README.md](https://github.com/alastria/alastria-identity-example/blob/develop/keystore/README.md) of the keystore folder |
 
 ## How to use it
 
