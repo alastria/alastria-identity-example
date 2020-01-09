@@ -2,7 +2,7 @@
 
 ## What it does
 
-This is an example of how to interact with the libraries from [alastria-identity-lib](https://github.com/alastria/alastria-identity-lib). The library alastria-identity-lib re-covers the Smart Contracts from [alastria-identity](https://github.com/alastria/alastria-identity).
+This is an example of how to interact with the libraries from [alastria-identity-lib](https://github.com/alastria/alastria-identity-lib). The library alastria-identity-lib recovers the Smart Contracts from [alastria-identity](https://github.com/alastria/alastria-identity).
 
 
 **Important**: You need to clone again this repository or update `alastria-identity` **whenever a deploy of new smart contracts is made**. You easily update your repo with:
@@ -26,7 +26,7 @@ tsc
 |exampleIdentityServiceProvider| Contains an example of how to add and remove a Identity Service Provider|
 |exampleIdentityIssuer| Contains an example of how to add and remove a Identity Issuer|
 |exampleFirstEntity| Contains an example of how to create the first identity with the admin account|
-|keystore| Contains the mocked keystore that we used to create the identities with different roles. These roles are explained in the [README.md](https://github.com/alastria/alastria-identity-example/blob/develop/keystore/README.md) of the keystore folder |
+|keystore| Contains the mocked keystores that we used to create the identities with different roles. These roles are explained [here](/keystore/README.md)  |
 
 ## How to use it
 
