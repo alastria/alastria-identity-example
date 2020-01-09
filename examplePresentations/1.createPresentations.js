@@ -12,8 +12,8 @@ let configData = JSON.parse(rawdata)
 let presentationRawData = fs.readFileSync('./mockPresentation.json')
 let presentationData = JSON.parse(presentationRawData)
 
-let keyData = fs.readFileSync('../keystore/keystore.json')
-let keystoreData = JSON.parse(keyData)
+let keyDataSubject1 = fs.readFileSync('../keystores/subject1-806bc0d7a47b890383a831634bcb92dd4030b092.json')
+let keystoreDataSubject1 = JSON.parse(keyDataSubject1)
 
 let Web3 = require('web3')
 let myBlockchainServiceIp = configData.nodeURL
@@ -21,11 +21,11 @@ const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 
 const uri = configData.uri
 
-let subject1Keystore = keystoreData.subject1
+let subject1Keystore = keystoreDataSubject1
 
 let subject1PrivateKey
 try{
-	subject1PrivateKey = keythereum.recover(keystoreData.addressPassword, subject1Keystore)
+	subject1PrivateKey = keythereum.recover(configData.addressPassword, subject1Keystore)
 }catch(error){
 	console.log("ERROR: ", error)
 }
