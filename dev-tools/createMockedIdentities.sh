@@ -1,5 +1,20 @@
 #!/bin/bash
 
+# Script Name: createMockIdentities.sh
+#
+# Author: Víctor Nieves Sánchez (IECISA)
+# Date : 13/01/2020
+#
+# Description:	The following script executes all the examples needed to create the mock
+#		identities and entities. You can find more information about the mock identities
+#		at: https://github.com/alastria/alastria-identity-example/blob/develop/keystores/README.md
+#
+# Run Information: You can execute this script by running ./createMockIdentities.sh while
+#		   in dev-tools directory
+#
+# Errors and Issues: If you find any bug, error or issue, create a new Issue in the GitHub
+#		     page: https://github.com/alastria/alastria-identity-example/issues
+
 # Some colors
 GREEN='\033[0;32m'
 RED='\033[0;31m'
