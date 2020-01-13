@@ -1,5 +1,5 @@
 # Mocked identities
-There are six different identities to play with the examples. In the file [keystore.json](/keystore/keystore.json) you will find the six keystores associated to them. **Each identity has a different role**, as you can see in the table below:
+There are six different identities to play with the examples. In this directory you will find the six keystores used in the examples. **Each identity has a different role**, as you can see in the table below:
 
 |Name|Role|
 |:--|:--|
@@ -12,7 +12,6 @@ There are six different identities to play with the examples. In the file [keyst
 
 The used concepts are:
 - **Entity** &rarr; Company or organization (legal person) which can be one or both:
-
   - **Sercice Provider** &rarr; Entity which requests information from a subject, so it creates Presentation Requests and receives Presentations. Also, it can help anyone to create a new identity.
   - **Issuer** &rarr; Entity which emits certified information about a subject, so it creates Credentials.
 
