@@ -6,6 +6,7 @@ RED='\033[0;31m'
 NC='\033[0m' # No Color
 
 function print_msg_identity() {
+	echo "status $1"
 	if [ $1 -ne 0 ];then
 		printf "${RED} No se ha podido crear la identidad  ${NC}\n "
 	else
@@ -22,12 +23,9 @@ function print_msg_role() {
 }
 
 cd exampleFirstEntity/
-node 1.createEntityAlastriaID.js 1>/dev/null 2>&1
-print_msg_identity $?
-node 2.addIdentityIssuer.js 1>/dev/null 2>&1
-print_msg_role $? "Issuer"
-node 3.addIdentityServiceProvider.js 1>/dev/null 2>&1
-print_msg_role $? "Service Provider"
+#node 1.createEntityAlastriaID.js >/dev/null 2>&1 ; print_msg_identity $?
+node 2.addIdentityIssuer.js >/dev/null 2>&1 ; print_msg_role $? "Issuer"
+#node 3.addIdentityServiceProvider.js >/dev/null 2>&1 ; print_msg_role $? "Service Provider"
 
 
 #cd exampleIssuer
