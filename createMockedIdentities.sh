@@ -9,22 +9,27 @@ NC='\033[0m' # No Color
 function print_msg_identity() {
 	# Expected 1)exit status 2)name of the identity/entity 3)file name
 	if [ $1 -ne 0 ];then
-		printf "${RED}Culd not create the $2 identity. ${NC} \n\tFile --> $3\n"
+		printf "${RED}\nCuld not create the $2 identity. ${NC} \n\tFile --> $3\n"
 	else
-		printf "${GREEN}Identity $2 successfully created. ${NC} \n\tFile --> $3\n"
+		printf "${GREEN}\nIdentity $2 successfully created. ${NC} \n\tFile --> $3\n"
 	fi
 }
 
 function print_msg_role() {
 	# Expected 1)exit status 2)role name 3)name of the identity/entity 4)file name
 	if [ $1 -ne 0 ];then
-		printf "${RED}Culd not asign the role $2 to the entity $3. ${NC} \n\tFile --> $4\n"
+		printf "${RED}\nCuld not asign the role $2 to the entity $3. ${NC} \n\tFile --> $4\n"
 	else
-		printf "${GREEN}$2 role asigned to entity $3. ${NC} \n\tFile --> $4\n"
+		printf "${GREEN}\n$2 role asigned to entity $3. ${NC} \n\tFile --> $4\n"
 	fi
 }
 
-echo "Starting script ..."
+echo "Starting script"
+
+# Indicator that the script is running
+while true; do echo -n .; sleep 1; done &
+child_pid=$!
+
 # Create the first entity (Service Provider + Issuer)
 cd exampleFirstEntity/ 
 node 1.createEntityAlastriaID.js >/dev/null 2>&1 ; print_msg_identity $? "entity1" "exampleFirstEntity/1.createEntityAlastriaID.js"
@@ -46,4 +51,8 @@ node 1.addIdentityIssuer.js >/dev/null 2>&1 ; print_msg_role $? "Issuer" "entity
 cd ../exampleServiceProvider/
 node 1.addIdentityServiceProvider.js >/dev/null 2>&1 ; print_msg_role $? "Service Provider" "entity2" "exampleServiceProvider/1.addIdentityServiceProvider.js"
 
+# Kill the indicator
+kill $child_pid ; wait $child_pid 2>/dev/null
+
 echo "Script ended"
+exit 0
