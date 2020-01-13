@@ -31,7 +31,7 @@ while true; do echo -n .; sleep 1; done &
 child_pid=$!
 
 # Create the first entity (Service Provider + Issuer)
-cd exampleFirstEntity/ 
+cd ../exampleFirstEntity/ 
 node 1.createEntityAlastriaID.js >/dev/null 2>&1 ; print_msg_identity $? "entity1" "exampleFirstEntity/1.createEntityAlastriaID.js"
 node 2.addIdentityIssuer.js >/dev/null 2>&1 ; print_msg_role $? "Issuer" "entity1" "exampleFirstEntity/2.addIdentityIssuer.js"
 node 3.addIdentityServiceProvider.js >/dev/null 2>&1 ; print_msg_role $? "Service Provider" "entity1" "exampleFirstEntity/3.addIdentityServiceProvider.js"
