@@ -10,7 +10,7 @@ There are six different identities to play with the examples. In this directory 
 |subject1|Subject |
 |subject2|Subject |
 
-The used concepts are:
+The used concepts are used in this example repository:
 - **Entity** &rarr; Company or organization (legal person) which can be one or both:
   - **Sercice Provider** &rarr; Entity which requests information from a subject, so it creates Presentation Requests and receives Presentations. Also, it can help anyone to create a new identity.
   - **Issuer** &rarr; Entity which emits certified information about a subject, so it creates Credentials.
