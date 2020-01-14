@@ -11,8 +11,8 @@ There are six different identities to play with the examples. In this directory 
 |subject2|Subject |
 
 The concepts that are being used in these examples are:
-- **Entity** &rarr; Company or organization (legal person) which can be one or both:
-  - **Sercice Provider** &rarr; Entity which requests information from a subject, so it creates Presentation Requests and receives Presentations. Also, it can help anyone to create a new identity.
+- **Entity** &rarr; Company or organization (legal person). It can help anyone to create a new identity. An entity can be one or both:
+  - **Sercice Provider** &rarr; Entity which requests information from a subject, so it creates Presentation Requests and receives Presentations. 
   - **Issuer** &rarr; Entity which emits certified information about a subject, so it creates Credentials.
 
 - **Subject** &rarr; Person (natural or legal) who has information certified by an issuer and sends it to a service provider, so it receives credentials and creates presentations. It is the information owner. This information is saved and controlled from a wallet.
