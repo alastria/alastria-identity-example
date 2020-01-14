@@ -26,6 +26,7 @@ try {
 	entity1PrivateKey = keythereum.recover(configData.addressPassword, entity1KeyStore)
 } catch (error) {
 	console.log("ERROR: ", error)
+	process.exit(1);
 }
 
 let entity1Identity = new UserIdentity(web3, `0x${entity1KeyStore.address}`, entity1PrivateKey)
@@ -37,6 +38,7 @@ try {
 	entity3PrivateKey = keythereum.recover(configData.addressPassword, entity3Keystore)
 } catch (error) {
 	console.log("ERROR: ", error)
+	process.exit(1);
 }
 
 let entity3Identity = new UserIdentity(web3, `0x${entity3Keystore.address}`, entity3PrivateKey)
