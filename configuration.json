@@ -1,1 +1,64 @@
-{"nodeURL":"http://63.33.206.111/rpc","addressPassword":"Passw0rd","rawPublicKeySubject":"03fdd57adec3d438ea237fe46b33ee1e016eda6b585c3e27ea66686c2ea5358479","rawPublicKeyReceiver":"8b82bb2b1b5b4c1d56beeb88c98fcf894c23e8dee598d94c1c77099d3a80367f46","rawPrivateKey":"278a5de700e29faae8e40e366ec5012b5ec63d36ec77e8a2417154cc1d25383f","context":"https://w3id.org/did/v1","userPublicKey":"AE2309349218937HASKHIUE9287432","providerURL":"https://regular.telsius.blockchainbyeveris.io:2000","callbackURL":"https://serviceprovider.alastria.blockchainbyeveris.io/api/login/","alastriaNetId":"Alastria network","tokenExpTime":1563783392,"tokenActivationDate":1563782792,"jsonTokenId":"ze298y42sba","tokenPayload":{"iss":"joe","exp":1300819380,"http://example.com/is_root":true},"jti":"https://www.empresa.com/alastria/credentials/3734","kidCredential":"did:ala:quor:redt:QmeeasCZ9jLbXueBJ7d7csxhb#keys-1","subjectAlastriaID":"did:alastria:quorum:redt:QmeeasCZ9jLbXueBJ7d7csxhb","credentialKey":"StudentID","credentialValue":"11235813","uri":"www.google.com","procUrl":"https://www.empresa.com/alastria/businessprocess/4583","procHash":"H398sjHd...kldjUYn475n","data":[{"@context":"JWT","levelOfAssurance":"High","required":true,"field_name":"name"},{"@context":"JWT","levelOfAssurance":"High","required":true,"field_name":"email"}],"entity1":"0x1340eebad6ea2b06312e30efaae29b3fcb0ed016","didEntity1":"did:ala:quor:redT:1340eebad6ea2b06312e30efaae29b3fcb0ed016","entity2":"0x8da94d39004803cdf6d86e5095d86dc9d972b9cb","didEntity2":"did:ala:quor:redT:8da94d39004803cdf6d86e5095d86dc9d972b9cb","entity3":"0x28cb403c28ca90ff37d49cbd450b7ae75c2e488a","didEntity3":"did:ala:quor:redT:28cb403c28ca90ff37d49cbd450b7ae75c2e488a","subject1":"0xbf4ddbefe65484448990103b0e3029331db269f0","didSubject1":"did:ala:quor:redT:bf4ddbefe65484448990103b0e3029331db269f0","subject2":"0xc9d475ca421ed589ef07a3033217a4c5b227a449","didSubject2":"did:ala:quor:redT:c9d475ca421ed589ef07a3033217a4c5b227a449","issuerLevel":2,"updateSubject1PresentationTo":2,"updateEntity2PresentationTo":1,"updateIssuerCredentialTo":2,"subject1PresentationStatus":{"exist":true,"status":"2"},"entity2PresentationStatus":{"exist":true,"status":"1"}}
+{
+    "nodeURL": "http://63.33.206.111/rpc",
+    "addressPassword": "Passw0rd",
+    "rawPublicKeySubject": "03fdd57adec3d438ea237fe46b33ee1e016eda6b585c3e27ea66686c2ea5358479",
+    "rawPublicKeyReceiver": "8b82bb2b1b5b4c1d56beeb88c98fcf894c23e8dee598d94c1c77099d3a80367f46",
+    "rawPrivateKey": "278a5de700e29faae8e40e366ec5012b5ec63d36ec77e8a2417154cc1d25383f",
+    "context": "https://w3id.org/did/v1",
+    "userPublicKey": "AE2309349218937HASKHIUE9287432",
+    "providerURL": "https://regular.telsius.blockchainbyeveris.io:2000",
+    "callbackURL": "https://serviceprovider.alastria.blockchainbyeveris.io/api/login/",
+    "alastriaNetId": "Alastria network",
+    "tokenExpTime": 1563783392,
+    "tokenActivationDate": 1563782792,
+    "jsonTokenId": "ze298y42sba",
+    "tokenPayload": {
+        "iss": "joe",
+        "exp": 1300819380,
+        "http://example.com/is_root": true
+    },
+    "jti": "https://www.empresa.com/alastria/credentials/3734",
+    "kidCredential": "did:ala:quor:redt:QmeeasCZ9jLbXueBJ7d7csxhb#keys-1",
+    "subjectAlastriaID": "did:alastria:quorum:redt:QmeeasCZ9jLbXueBJ7d7csxhb",
+    "credentialKey": "StudentID",
+    "credentialValue": "11235813",
+    "uri": "www.google.com",
+    "procUrl": "https://www.empresa.com/alastria/businessprocess/4583",
+    "procHash": "H398sjHd...kldjUYn475n",
+    "data": [
+        {
+            "@context": "JWT",
+            "levelOfAssurance": "High",
+            "required": true,
+            "field_name": "name"
+        },
+        {
+            "@context": "JWT",
+            "levelOfAssurance": "High",
+            "required": true,
+            "field_name": "email"
+        }
+    ],
+    "entity1": "0x02f8b53194cb2def36df8c3cd585d843e392469d",
+    "didEntity1": "did:ala:quor:redT:02f8b53194cb2def36df8c3cd585d843e392469d",
+    "entity2": "0x6d8c1f9088e1ebc70dc9d4c4577ddeb2c15ddd59",
+    "didEntity2": "did:ala:quor:redT:6d8c1f9088e1ebc70dc9d4c4577ddeb2c15ddd59",
+    "entity3": "0x7b33f3d2da6697daac2b0b62a5421c4afcc55586",
+    "didEntity3": "did:ala:quor:redT:7b33f3d2da6697daac2b0b62a5421c4afcc55586",
+    "subject1": "0xaada4501c20cbdf0b5988583f03d340d57f8133a",
+    "didSubject1": "did:ala:quor:redT:aada4501c20cbdf0b5988583f03d340d57f8133a",
+    "subject2": "0x75df03e7f1c4704d92d0bd5c9c922e1a157e2606",
+    "didSubject2": "did:ala:quor:redT:75df03e7f1c4704d92d0bd5c9c922e1a157e2606",
+    "issuerLevel": 2,
+    "updateSubject1PresentationTo": 2,
+    "updateEntity2PresentationTo": 1,
+    "updateIssuerCredentialTo": 2,
+    "subject1PresentationStatus": {
+        "exist": true,
+        "status": "2"
+    },
+    "entity2PresentationStatus": {
+        "exist": true,
+        "status": "1"
+    }
+}
