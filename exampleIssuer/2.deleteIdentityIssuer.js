@@ -22,6 +22,7 @@ try{
 	entity1PrivateKey = keythereum.recover(configData.addressPassword, entity1Keystore)
 }catch(error){
 	console.log("ERROR: ", error)
+	process.exit(1);
 }
 
 let entity1Identity = new UserIdentity(web3, `0x${entity1Keystore.address}`, entity1PrivateKey)
@@ -49,7 +50,10 @@ async function mainDel() {
 	.on('receipt', function (receipt) {
 		console.log("RECEIPT: ", receipt)
 	})
-	.on('error', console.error); 
+	.on('error', function (error) {
+		console.error(error)
+		process.exit(1);
+	}); 
 }
 mainDel()
 
