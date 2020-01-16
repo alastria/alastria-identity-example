@@ -2,10 +2,17 @@
 You must be executed the following examples in order to create the first entity.
 
 1. createEntityAlastriaID ([`exampleFirstEntity/1.createEntityAlastriaID.js`](1.createEntityAlastriaID.js)) 
-2. addIdentityIssuer ([`exampleFirstEntity/2.addIdentityIssuer.js`](2.addIdentityIssuer.js))
-3. addIdentityServiceProvider ([`exampleFirstEntity/3.addIdentityServiceProvider.js`](3.addIdentityServiceProvider.js)) 
+2. addEntity ([`exampleFirstEntity/2.addEntity.js`](2.addEntity.js))
+3. addIdentityIssuer ([`exampleFirstEntity/3.addIdentityIssuer.js`](3.addIdentityIssuer.js)) 
+4. addIdentityServiceProvider ([`exampleFirstEntity/4.addIdentityServiceProvider.js`](4.addIdentityServiceProvider.js)) 
+5. deleteIdentityIssuer.js ([`exampleFirstEntity/5.deleteIdentityIssuer.js`](5.deleteIdentityIssuer.js))
+6. deleteIdentityServiceProvider ([`exampleFirstEntity/6.deleteIdentityServiceProvider.js`](6.deleteIdentityServiceProvider.js)) 
+7. isIdentityIssuer ([`exampleFirstEntity/7.isIdentityIssuer.js`](7.isIdentityIssuer.js)) 
+8. isIdentityServiceProvider ([`exampleFirstEntity/8.isIdentityServiceProvider.js`](8.isIdentityServiceProvider.js)) 
 
 Only if you want to remove the entity from the mapping of Service provider or the mapping of Issuer, you must execute the examples 4 and 5.
+
+If you want to check that the entity is Service Provider or Issuer, in any moment execute scrypts 7.IsIdentityIssuer.js and/or 8.isIdentityServiceProvider.js
 
 
 ## Error cases

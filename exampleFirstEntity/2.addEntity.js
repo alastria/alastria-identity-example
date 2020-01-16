@@ -36,25 +36,26 @@ async function unlockAccount() {
 
 let entity1KeyStore = keystoreDataEntity1;
 
-async function mainAdd() {
+async function mainAddEntity(){
 	unlockAccount()
-	console.log('\n ------ Example of adding the entity1 like a Issuer ------ \n')
-	let transactionA = await transactionFactory.identityManager.addIdentityIssuer(web3, `0x${entity1KeyStore.address}`, configData.issuerLevel)
-	let getKnownTxA = await adminIdentity.getKnownTransaction(transactionA)
-	console.log('The transaction bytes data is: ', getKnownTxA)
-	web3.eth.sendSignedTransaction(getKnownTxA)
-		.on('transactionHash', function (hashA) {
-			console.log("HASH: ", hashA)
+	console.log('\n ------ Example of adding the entity1 like a Entity ------ \n')
+	let transactionAddEntity = await transactionFactory.identityManager.addEntity(web3, `0x${entity1KeyStore.address}`, configData.entityData1.name,
+		configData.entityData1.cif, configData.entityData1.urlLogo, configData.entityData1.urlCreateAID, configData.entityData1.urlAOA, 
+		configData.entityData1.status)
+	let getKnownTxAddEntity = await adminIdentity.getKnownTransaction(transactionAddEntity)
+	console.log('The transaction bytes data is: ', getKnownTxAddEntity)
+	web3.eth.sendSignedTransaction(getKnownTxAddEntity)
+		.on('transactionHash', function (hashAddEntity) {
+			console.log("HASH: ", hashAddEntity)
 		})
-		.on('receipt', function (receiptA) {
-			console.log("RECEIPT: ", receiptA)
+		.on('receipt', function (receiptAddEntity) {
+			console.log("RECEIPT: ", receiptAddEntity)
 		})
 
 		.on('error', function (error) {
 			console.error(error)
 			process.exit(1);
-		});
-	// If this is a revert, probably this Subject (address) is already a SP
+		});// If this is a revert, probably this Subject (address) is already a SP
 }
 
-mainAdd()
+mainAddEntity()
