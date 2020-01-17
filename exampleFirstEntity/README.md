@@ -10,9 +10,9 @@ You must be executed the following examples in order to create the first entity.
 7. isIdentityIssuer ([`exampleFirstEntity/7.isIdentityIssuer.js`](7.isIdentityIssuer.js)) 
 8. isIdentityServiceProvider ([`exampleFirstEntity/8.isIdentityServiceProvider.js`](8.isIdentityServiceProvider.js)) 
 
-Only if you want to remove the entity from the mapping of Service provider or the mapping of Issuer, you must execute the examples 4 and 5.
+Only if you want to remove the entity from being a Service provider or Issuer, you must execute the examples 5 and/or 6.
 
-If you want to check that the entity is Service Provider or Issuer, in any moment execute scrypts 7.IsIdentityIssuer.js and/or 8.isIdentityServiceProvider.js
+If you want to check that the entity is Service Provider or Issuer in any moment execute scripts 7.IsIdentityIssuer.js and/or 8.isIdentityServiceProvider.js
 
 
 ## Error cases
