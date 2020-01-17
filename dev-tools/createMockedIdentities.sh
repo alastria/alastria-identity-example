@@ -48,8 +48,9 @@ child_pid=$!
 # Create the first entity (Service Provider + Issuer)
 cd ../exampleFirstEntity/ 
 node 1.createEntityAlastriaID.js >/dev/null 2>&1 ; print_msg_identity $? "entity1" "exampleFirstEntity/1.createEntityAlastriaID.js"
-node 2.addIdentityIssuer.js >/dev/null 2>&1 ; print_msg_role $? "Issuer" "entity1" "exampleFirstEntity/2.addIdentityIssuer.js"
-node 3.addIdentityServiceProvider.js >/dev/null 2>&1 ; print_msg_role $? "Service Provider" "entity1" "exampleFirstEntity/3.addIdentityServiceProvider.js"
+node 2.addEntity.js >/dev/null 2>&1 ; print_msg_identity $? "entity1" "exampleFirstEntity/2.addEntity.js"
+node 3.addIdentityIssuer.js >/dev/null 2>&1 ; print_msg_role $? "Issuer" "entity1" "exampleFirstEntity/2.addIdentityIssuer.js"
+node 4.addIdentityServiceProvider.js >/dev/null 2>&1 ; print_msg_role $? "Service Provider" "entity1" "exampleFirstEntity/3.addIdentityServiceProvider.js"
 
 # Create the rest of AlastriaID's
 cd ../exampleCreateAlastriaID/ ; 
@@ -60,11 +61,13 @@ node 4.createSubject2AlastriaID.js >/dev/null 2>&1 ; print_msg_identity $? "subj
 
 # Set entity3 as Issuer
 cd ../exampleIssuer/
-node 1.addIdentityIssuer.js >/dev/null 2>&1 ; print_msg_role $? "Issuer" "entity3" "exampleIssuer/1.addIdentityIssuer.js"
+node 1.addEntity.js >/dev/null 2>&1 ; print_msg_role $? "Issuer" "entity3" "exampleIssuer/1.addEntity.js"
+node 2.addIdentityIssuer.js >/dev/null 2>&1 ; print_msg_role $? "Issuer" "entity3" "exampleIssuer/2.addIdentityIssuer.js"
 
 # Set entity2 as Service Provider
 cd ../exampleServiceProvider/
-node 1.addIdentityServiceProvider.js >/dev/null 2>&1 ; print_msg_role $? "Service Provider" "entity2" "exampleServiceProvider/1.addIdentityServiceProvider.js"
+node 1.addEntity.js >/dev/null 2>&1 ; print_msg_role $? "Service Provider" "entity2" "exampleServiceProvider/1.addEntity.js"
+node 2.addIdentityServiceProvider.js >/dev/null 2>&1 ; print_msg_role $? "Service Provider" "entity2" "exampleServiceProvider/2.addIdentityServiceProvider.js"
 
 # Kill the indicator
 kill $child_pid ; wait $child_pid 2>/dev/null
