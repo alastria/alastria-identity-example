@@ -3,7 +3,7 @@
 # Script Name: createMockIdentities.sh
 #
 # Author: Víctor Nieves Sánchez (IECISA)
-# Date : 13/01/2020
+# Date : 17/01/2020
 #
 # Description:	The following script executes all the examples needed to create the mock
 #		identities and entities. You can find more information about the mock identities
@@ -30,6 +30,16 @@ function print_msg_identity() {
 	fi
 }
 
+function print_msg_new_entity() {
+	# Expected 1)exit status 2)name of the entity 3)file name
+	if [ $1 -ne 0 ];then
+		printf "${RED}\nCuld not create the $2 as a entity. ${NC} \n\tFile --> $3\n"
+	else
+		printf "${GREEN}\nEntity $2 successfully created. ${NC} \n\tFile --> $3\n"
+	fi
+}
+
+
 function print_msg_role() {
 	# Expected 1)exit status 2)role name 3)name of the identity/entity 4)file name
 	if [ $1 -ne 0 ];then
@@ -48,7 +58,7 @@ child_pid=$!
 # Create the first entity (Service Provider + Issuer)
 cd ../exampleFirstEntity/ 
 node 1.createEntityAlastriaID.js >/dev/null 2>&1 ; print_msg_identity $? "entity1" "exampleFirstEntity/1.createEntityAlastriaID.js"
-node 2.addEntity.js >/dev/null 2>&1 ; print_msg_identity $? "entity1" "exampleFirstEntity/2.addEntity.js"
+node 2.addEntity.js >/dev/null 2>&1 ; print_msg_new_entity $? "entity1" "exampleFirstEntity/2.addEntity.js"
 node 3.addIdentityIssuer.js >/dev/null 2>&1 ; print_msg_role $? "Issuer" "entity1" "exampleFirstEntity/2.addIdentityIssuer.js"
 node 4.addIdentityServiceProvider.js >/dev/null 2>&1 ; print_msg_role $? "Service Provider" "entity1" "exampleFirstEntity/3.addIdentityServiceProvider.js"
 
@@ -61,12 +71,12 @@ node 4.createSubject2AlastriaID.js >/dev/null 2>&1 ; print_msg_identity $? "subj
 
 # Set entity3 as Issuer
 cd ../exampleIssuer/
-node 1.addEntity.js >/dev/null 2>&1 ; print_msg_role $? "Issuer" "entity3" "exampleIssuer/1.addEntity.js"
+node 1.addEntity.js >/dev/null 2>&1 ; print_msg_new_entity $? "entity3" "exampleIssuer/1.addEntity.js"
 node 2.addIdentityIssuer.js >/dev/null 2>&1 ; print_msg_role $? "Issuer" "entity3" "exampleIssuer/2.addIdentityIssuer.js"
 
 # Set entity2 as Service Provider
 cd ../exampleServiceProvider/
-node 1.addEntity.js >/dev/null 2>&1 ; print_msg_role $? "Service Provider" "entity2" "exampleServiceProvider/1.addEntity.js"
+node 1.addEntity.js >/dev/null 2>&1 ; print_msg_new_entity $? "entity2" "exampleServiceProvider/1.addEntity.js"
 node 2.addIdentityServiceProvider.js >/dev/null 2>&1 ; print_msg_role $? "Service Provider" "entity2" "exampleServiceProvider/2.addIdentityServiceProvider.js"
 
 # Kill the indicator
