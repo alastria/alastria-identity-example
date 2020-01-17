@@ -12,7 +12,7 @@ You must be executed the following examples in order to create the first entity.
 
 Only if you want to remove the entity from being a Service provider or Issuer, you must execute the examples 5 and/or 6.
 
-If you want to check that the entity is Service Provider or Issuer in any moment execute scripts 7.IsIdentityIssuer.js and/or 8.isIdentityServiceProvider.js
+If you want to check that the entity is Service Provider or Issuer in any moment execute scripts `7.IsIdentityIssuer.js` and/or `8.isIdentityServiceProvider.js`
 
 
 ## Error cases
@@ -21,4 +21,3 @@ The following cases will return an error (`Transaction has been reverted by the 
 2. Try to delete an issuer identity that doesn't exists
 3. Create an service provider identity that already exists
 4. Try to delete an service provider identity that doesn't exists
-
