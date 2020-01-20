@@ -33,22 +33,21 @@ console.log('\n ------ Getting entity info ------ \n')
 	}
 
 	//let entityData = transactionFactory.identityManager.getEntity(web3, entity1Identity.address)
-	let entityData = transactionFactory.identityManager.getEntity(web3, "0xa9728125c573924b2B1ad6A8A8cd9bF6858ceD49")
+	let entityData = transactionFactory.identityManager.getEntity(web3, entity1Identity.address)
 	console.log('(entityData) Transaction ------>', entityData)
 	web3.eth.call(entityData)
 	.then(entityInfo => {
 		console.log('(entityInfo) Transaction ------->', entityInfo)
-		let resultList = web3.eth.abi.decodeParameters(["address", "string", "string", "string", "string", "string", "bool"], entityInfo)
+		let resultList = web3.eth.abi.decodeParameters(["string", "string", "string", "string", "string", "bool"], entityInfo)
         let data = {
-			"address": resultList[0],
-            "name": resultList[1],
-            "cif":resultList[2],
-            "urlLogo":resultList[3],
-            "urlCreateAID":resultList[4],
-            "urlAOA":resultList[5],
-            "status":resultList[6]
+            "name": resultList[0],
+            "cif":resultList[1],
+            "urlLogo":resultList[2],
+            "urlCreateAID":resultList[3],
+            "urlAOA":resultList[4],
+            "status":resultList[5]
 		}
-        console.log('(Entity) TransactionList: ', resultList)
+        console.log('(Entity) TransactionList: ', data)
 	})
 	.catch(errorList => {
 		console.log('Error List -----> ', errorList)
