@@ -50,7 +50,7 @@ function preparedAlastriaId() {
 }
 
 function createAlastriaId() {
-	let txCreateAlastriaID = transactionFactory.identityManager.createAlastriaIdentity(web3, rawPublicKey)
+	let txCreateAlastriaID = transactionFactory.identityManager.createAlastriaIdentity(web3, configData.entity2Pubk.substr(2))
 	return txCreateAlastriaID
 }
 

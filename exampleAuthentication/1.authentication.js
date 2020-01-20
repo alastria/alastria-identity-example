@@ -20,7 +20,6 @@ const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 
 // Data
 let context = configData.context
-let userPublicKey = configData.userPublicKey
 let providerURL = configData.providerURL
 let callbackURL = configData.callbackURL
 let alastriaNetId = configData.alastriaNetId
@@ -64,7 +63,7 @@ console.log("entity1Puk pubk:", '04'+entity1Puk.getPublicKeyString().substr(2))
   console.log('\tIs the signedJWT verified?', verifyAT)
 
 
-const alastriaSession = tokensFactory.tokens.createAlastriaSession(context, configData.didSubject, userPublicKey, signedAT, tokenExpTime, tokenActivationDate, jsonTokenId)
+const alastriaSession = tokensFactory.tokens.createAlastriaSession(context, configData.didSubject, "04"+entity1Puk.getPublicKeyString().substr(2), signedAT, tokenExpTime, tokenActivationDate, jsonTokenId)
 console.log('\tThe Alastria session is:\n', alastriaSession)
 
 let signedAS = tokensFactory.tokens.signJWT(alastriaSession, subject1PrivateKey)
