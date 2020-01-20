@@ -27,6 +27,7 @@ tsc
 |exampleIdentityIssuer| Contains an example of how to add and remove a Identity Issuer|
 |exampleFirstEntity| Contains an example of how to create the first identity with the admin account|
 |exampleEntities| Contains an example of get list of entities and get entity information  |
+|exampleAuthentication| It contains an example of how authentication is done  |
 |keystores| Contains the mocked keystores that we used to create the identities with different roles. These roles are explained [here](/keystores/README.md)  |
 
 
