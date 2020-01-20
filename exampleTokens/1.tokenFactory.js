@@ -85,9 +85,10 @@ console.log("\n---- Create AIC ----")
 //create AIC
 
 let txCreateAlastriaID = transactionFactory.identityManager.createAlastriaIdentity(web3, rawPublicKey)
+let txCreateAlastriaIDSigned = tokensFactory.tokens.signJWT(txCreateAlastriaID, rawPrivateKey)
 
 //The Alastria Token must be signed
-let aic = tokensFactory.tokens.createAIC(txCreateAlastriaID,signedAT,userPublicKey);
+let aic = tokensFactory.tokens.createAIC(txCreateAlastriaIDSigned,signedAT,userPublicKey);
 console.log("\tAIC:", aic);
 
 const signedJWTAIC = tokensFactory.tokens.signJWT(aic, rawPrivateKey)

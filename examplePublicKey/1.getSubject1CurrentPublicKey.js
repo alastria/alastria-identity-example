@@ -17,7 +17,7 @@ let currentPubKey = transactionFactory.publicKeyRegistry.getCurrentPublicKey(web
 web3.eth.call(currentPubKey)
 .then(result => {
   let publicKey = web3.utils.hexToUtf8(result)
-  console.log('RESULT ----->', publicKey.substr(1))
+  console.log('RESULT ----->', publicKey)
 })
 .catch(error => {
   console.log('Error -------->', error)
