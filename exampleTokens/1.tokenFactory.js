@@ -36,6 +36,7 @@ console.log('\tThe decoded token is: \n', decodedJWT)
 
 console.log("\n---- verifyJWT ----")
 
+// '04' means uncompressed key (more info at https://github.com/indutny/elliptic/issues/138)
 let verifyJWT = tokensFactory.tokens.verifyJWT(signedJWT, '04'+config.adminPubk.substr(2))
 console.log('\tIs the signedJWT verified?', verifyJWT)
 

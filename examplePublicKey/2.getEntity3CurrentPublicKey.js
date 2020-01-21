@@ -17,6 +17,7 @@ let currentPubKey = transactionFactory.publicKeyRegistry.getCurrentPublicKey(web
 
 web3.eth.call(currentPubKey)
 .then(result => {
+  // We add this replace to find only the alphanumeric substring (the rest of null/void characters are not important)
   let publicKey = web3.utils.hexToAscii(result).replace(/[^0-9A-Z]+/gi,"")
   console.log('RESULT ----->', publicKey)
 })

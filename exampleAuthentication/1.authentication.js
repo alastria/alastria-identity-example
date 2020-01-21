@@ -57,8 +57,10 @@ console.log('\tThe Alastria token is: \n', alastriaToken)
 let signedAT = tokensFactory.tokens.signJWT(alastriaToken, entity1PrivateKey)
 
 const entity1Puk = Wallet.fromPrivateKey(entity1PrivateKey)
+// '04' means uncompressed key (more info at https://github.com/indutny/elliptic/issues/138)
 console.log("entity1Puk pubk:", '04'+entity1Puk.getPublicKeyString().substr(2))
 
+// '04' means uncompressed key (more info at https://github.com/indutny/elliptic/issues/138)
   let verifyAT = tokensFactory.tokens.verifyJWT(signedAT, "04"+entity1Puk.getPublicKeyString().substr(2))
   console.log('\tIs the signedJWT verified?', verifyAT)
 
@@ -69,7 +71,9 @@ console.log('\tThe Alastria session is:\n', alastriaSession)
 let signedAS = tokensFactory.tokens.signJWT(alastriaSession, subject1PrivateKey)
 
 const subject1Puk = Wallet.fromPrivateKey(subject1PrivateKey)
+// '04' means uncompressed key (more info at https://github.com/indutny/elliptic/issues/138)
 console.log("entity1Puk pubk:", '04'+subject1Puk.getPublicKeyString().substr(2))
 
+// '04' means uncompressed key (more info at https://github.com/indutny/elliptic/issues/138)
 let verifyAS = tokensFactory.tokens.verifyJWT(signedAS, "04"+subject1Puk.getPublicKeyString().substr(2))
 console.log('\tIs the signedJWT verified?', verifyAS)
