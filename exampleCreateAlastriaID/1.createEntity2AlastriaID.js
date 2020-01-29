@@ -34,7 +34,7 @@ try {
 let entity2Identity = new UserIdentity(web3, `0x${entity2Keystore.address}`, entity2PrivateKey)
 
 console.log('\n ------ Example of creating an Alastria ID for a Entity2 with Entity1. ------ \n')
-//(Inthis example the Entity1 is not added as service provider or issuer, only is the AlastriaIDentity creation)
+//(In this example the Entity1 is not added as service provider or issuer, only is the AlastriaIDentity creation)
 
 function preparedAlastriaId() {
 	let preparedId = transactionFactory.identityManager.prepareAlastriaID(web3, entity2Identity.address)
@@ -57,7 +57,7 @@ async function main() {
 	let createResult = await createAlastriaId()
 	let signedCreateTransaction = await entity2Identity.getKnownTransaction(createResult)
 
-	// Then, the subject, also from the wallet should build an AIC wich contains the signed AT, the signedTx and the Subject Public Key
+	// Then, the entity2, also from the wallet should build an AIC wich contains the signed AT, the signedTx and the entity2 Public Key
 	let entitySignedAT = tokensFactory.tokens.signJWT(signedAT, entity2PrivateKey)
 	let aic = tokensFactory.tokens.createAIC(signedCreateTransaction,entitySignedAT,config.entity2Pubk);
 	let signedAIC = tokensFactory.tokens.signJWT(aic, entity2PrivateKey)
@@ -65,7 +65,7 @@ async function main() {
 
 	// Then, Entity1 receive the AIC. It should decode it and verify the signature with the public key. 
 	// It can extract from the AIC all the necessary data for the next steps:
-	// wallet address (from public key ir signst tx), subject public key, the tx which is signed by the subject and the signed AT
+	// wallet address (from public key ir signst tx), entity2 public key, the tx which is signed by the entity2 and the signed AT
 
 	//Below, it should build the tx prepareAlastriaId and sign it
 	let prepareResult = await preparedAlastriaId()
