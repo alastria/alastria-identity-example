@@ -12,7 +12,8 @@ const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 
 console.log('\n ------ Example of creating an Alastria ID for a Subject with Entity1 ------ \n')
 
-// We have Entity1 which is an entity with both roles: Service Provider and Issuer. You get its private key and instantiate its UserIdentity
+// We have Entity1 which is an entity with both roles: Issuer (required) and Service Provider (not required).
+// You get its private key and instantiate its UserIdentity
 let keyDataEntity1 = fs.readFileSync('../keystores/entity1-a9728125c573924b2b1ad6a8a8cd9bf6858ced49.json')
 let entity1KeyStore = JSON.parse(keyDataEntity1)
 let entity1PrivateKey
@@ -25,6 +26,7 @@ try {
 let entity1Identity = new UserIdentity(web3, `0x${entity1KeyStore.address}`, entity1PrivateKey)
 
 // We have Subject1 which is a person with an identity wallet. You get its private key and instantiate its UserIdentity
+// This step should be done in the private Wallet.
 let keyDataSubject1 = fs.readFileSync('../keystores/subject1-806bc0d7a47b890383a831634bcb92dd4030b092.json')
 let subject1Keystore = JSON.parse(keyDataSubject1)
 let subject1PrivateKey
@@ -57,20 +59,22 @@ async function main() {
 	// The subject, from the wallet, should build the tx createAlastriaId and sign it
 	let createResult = await createAlastriaId()
 	let signedCreateTransaction = await subject1Identity.getKnownTransaction(createResult)
+	
 	// Then, the subject, also from the wallet should build an AIC wich contains the signed AT, the signedTx and the Subject Public Key
 	let subjectSignedAT = tokensFactory.tokens.signJWT(signedAT, subject1PrivateKey)
 	let aic = tokensFactory.tokens.createAIC(signedCreateTransaction,subjectSignedAT,config.subject1Pubk);
 	let signedAIC = tokensFactory.tokens.signJWT(aic, subject1PrivateKey)
 	console.log("\tsignedAIC: \n", signedAIC)
 	
-	// Then, Entity1 receive the AIC. It should decode it and verify the sign with the public key. 
-	// It can extract from the AIC all the necessary data for the next steps: wallet address, subject public key, the tx which is signed by the subject and the signed AT 
+	// Then, Entity1 receive the AIC. It should decode it and verify the signature with the public key. 
+	// It can extract from the AIC all the necessary data for the next steps:
+	// wallet address (from public key ir signst tx), subject public key, the tx which is signed by the subject and the signed AT 
 	
 	//Below, it should build the tx prepareAlastriaId and sign it
 	let prepareResult = await prepareAlastriaId()
 	let signedPreparedTransaction = await entity1Identity.getKnownTransaction(prepareResult)
 	
-	// At the end, Entity1 should send both tx to the blockchain as it follows:
+	// At the end, Entity1 should send both tx (prepareAlastriaId and createAlastriaID, in that order) to the blockchain as it follows:
 	web3.eth.sendSignedTransaction(signedPreparedTransaction)
 		.on('transactionHash', function (hash) {
 			console.log("HASH: ", hash)
