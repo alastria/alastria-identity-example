@@ -6,21 +6,12 @@ const keythereum = require('keythereum')
 let rawdata = fs.readFileSync('../configuration.json')
 let configData = JSON.parse(rawdata)
 
-let keyDataEntity1 = fs.readFileSync('../keystores/entity1-a9728125c573924b2b1ad6a8a8cd9bf6858ced49.json')
-let keystoreDataEntity1 = JSON.parse(keyDataEntity1)
-let keyDataEntity2 = fs.readFileSync('../keystores/entity2-ad88f1a89cf02a32010b971d8c8af3a2c7b3bd94.json')
-let keystoreDataEntity2 = JSON.parse(keyDataEntity2)
-
 // Init your blockchain provider
 let myBlockchainServiceIp = configData.nodeURL
 const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 
-console.log('\n ------ Example of prepare Alastria ID, addKey and createAlastrisID necessary to have an Alastria ID ------ \n')
-// Data
-const rawPublicKey = configData.rawPublicKeySubject
-
-let entity1KeyStore = keystoreDataEntity1
-
+let keyDataEntity1 = fs.readFileSync('../keystores/entity1-a9728125c573924b2b1ad6a8a8cd9bf6858ced49.json')
+let entity1KeyStore = JSON.parse(keyDataEntity1)
 let entity1PrivateKey
 try {
 	entity1PrivateKey = keythereum.recover(configData.addressPassword, entity1KeyStore)
@@ -28,11 +19,10 @@ try {
 	console.log("ERROR: ", error)
 	process.exit(1);
 }
-
 let entity1Identity = new UserIdentity(web3, `0x${entity1KeyStore.address}`, entity1PrivateKey)
 
-let entity2Keystore = keystoreDataEntity2
-
+let keyDataEntity2 = fs.readFileSync('../keystores/entity2-ad88f1a89cf02a32010b971d8c8af3a2c7b3bd94.json')
+let entity2Keystore = JSON.parse(keyDataEntity2)
 let entity2PrivateKey
 try {
 	entity2PrivateKey = keythereum.recover(configData.addressPassword, entity2Keystore)
@@ -42,7 +32,9 @@ try {
 }
 
 let entity2Identity = new UserIdentity(web3, `0x${entity2Keystore.address}`, entity2PrivateKey)
-// End data
+
+console.log('\n ------ Example of creating an Alastria ID for a Entity2 with Entity1. ------ \n')
+//(In this example the Entity1 is not added as service provider or issuer, only is the AlastriaIDentity creation)
 
 function preparedAlastriaId() {
 	let preparedId = transactionFactory.identityManager.prepareAlastriaID(web3, entity2Identity.address)
@@ -56,11 +48,30 @@ function createAlastriaId() {
 
 console.log('\n ------ A promise all where prepareAlastriaID and createAlsatriaID transactions are signed and sent ------ \n')
 async function main() {
-	let prepareResult = await preparedAlastriaId()
-	let createResult = await createAlastriaId()
 
-	let signedPreparedTransaction = await entity1Identity.getKnownTransaction(prepareResult)
+	//At the beggining, the Entity1 should create an AT, sign it and send it to the wallet
+	let at = tokensFactory.tokens.createAlastriaToken(config.didEntity1, config.providerURL, config.callbackURL, config.alastriaNetId, config.tokenExpTime, config.tokenActivationDate, config.jsonTokenId)
+	let signedAT = tokensFactory.tokens.signJWT(at, entity1PrivateKey)
+	console.log('\tsignedAT: \n', signedAT)
+
+	let createResult = await createAlastriaId()
 	let signedCreateTransaction = await entity2Identity.getKnownTransaction(createResult)
+
+	// Then, the entity2, also from the wallet should build an AIC wich contains the signed AT, the signedTx and the entity2 Public Key
+	let entitySignedAT = tokensFactory.tokens.signJWT(signedAT, entity2PrivateKey)
+	let aic = tokensFactory.tokens.createAIC(signedCreateTransaction,entitySignedAT,config.entity2Pubk);
+	let signedAIC = tokensFactory.tokens.signJWT(aic, entity2PrivateKey)
+	console.log("\tsignedAIC: \n", signedAIC)
+
+	// Then, Entity1 receive the AIC. It should decode it and verify the signature with the public key. 
+	// It can extract from the AIC all the necessary data for the next steps:
+	// wallet address (from public key ir signst tx), entity2 public key, the tx which is signed by the entity2 and the signed AT
+
+	//Below, it should build the tx prepareAlastriaId and sign it
+	let prepareResult = await preparedAlastriaId()
+	let signedPreparedTransaction = await entity1Identity.getKnownTransaction(prepareResult)
+
+	// At the end, Entity1 should send both tx (prepareAlastriaId and createAlastriaID, in that order) to the blockchain as it follows:
 	web3.eth.sendSignedTransaction(signedPreparedTransaction)
 		.on('transactionHash', function (hash) {
 			console.log("HASH: ", hash)
