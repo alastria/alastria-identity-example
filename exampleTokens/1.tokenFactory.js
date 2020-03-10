@@ -42,7 +42,7 @@ console.log('\tIs the signedJWT verified?', verifyJWT)
 
 // Data
 let context = config.context
-let didIsssuer = config.didIsssuer
+let didIsssuer = config.didEntity3
 let providerURL = config.providerURL
 let callbackURL = config.callbackURL
 let alastriaNetId = config.alastriaNetId
