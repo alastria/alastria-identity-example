@@ -96,7 +96,7 @@ async function main() {
 							console.log(`alastriaProxyAddress: 0x${AlastriaIdentity.slice(26)}`)
 							configData.subject2 = `0x${AlastriaIdentity.slice(26)}`
 							fs.writeFileSync('../configuration.json', JSON.stringify(configData))
-							let alastriaDID = tokensFactory.tokens.createDID('quor', AlastriaIdentity.slice(26));
+							let alastriaDID = tokensFactory.tokens.createDID('quor', AlastriaIdentity.slice(26), 'redT');
 							configData.didSubject2 = alastriaDID
 							fs.writeFileSync('../configuration.json', JSON.stringify(configData))
 							console.log('the alastria DID is:', alastriaDID)
