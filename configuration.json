@@ -47,8 +47,8 @@
             "field_name": "email"
         }
     ],
-    "entity1": "0xb238ce01fa350387cd33d7007709422c521a0126",
-    "didEntity1": "did:ala:quor:redT:b238ce01fa350387cd33d7007709422c521a0126",
+    "entity1": "0x05c5e87b79022b0b85280efb332f7506d9294fe0",
+    "didEntity1": "did:ala:quor:redT:05c5e87b79022b0b85280efb332f7506d9294fe0",
     "entity2": "0xf86484b4ae0148de488f4b66d0bf578bb3779fcd",
     "didEntity2": "did:ala:quor:redT:f86484b4ae0148de488f4b66d0bf578bb3779fcd",
     "entity3": "0xb0462601a17581ed1b5dda86272aee5e49e2f5f7",
