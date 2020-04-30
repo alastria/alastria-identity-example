@@ -27,7 +27,7 @@ try{
 
 let subject1Identity = new UserIdentity(web3, `0x${subject1Keystore.address}`, subject1PrivateKey)
 
-  if(configData.subject1 == undefined) {
+  if(configData.didSubject1 == undefined) {
     console.log('You must create an Alastria ID')
     process.exit()
   }
@@ -37,7 +37,7 @@ async function main() {
   console.log('(updateSubjectPresentation)The transaction bytes data is: ', updateSubjP)
   web3.eth.sendSignedTransaction(updateSubjP)
     .then(() => {
-      let presentationStatus = transactionFactory.presentationRegistry.getSubjectPresentationStatus(web3, configData.subject1, presentationHash.psmhash)
+      let presentationStatus = transactionFactory.presentationRegistry.getSubjectPresentationStatus(web3, configData.didSubject1, presentationHash.psmhash)
 
       web3.eth.call(presentationStatus)
         .then(result => {
