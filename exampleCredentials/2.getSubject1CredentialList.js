@@ -17,7 +17,7 @@ console.log('\n ------ Getting Credential List os Subject1 ------ \n')
 		process.exit()
 	}
 
-	let credentialList = transactionFactory.credentialRegistry.getSubjectCredentialList(web3, configData.subject1)
+	let credentialList = transactionFactory.credentialRegistry.getSubjectCredentialList(web3, configData.didSubject1)
 	console.log('(credentialList) Transaction ------>', credentialList)
 	web3.eth.call(credentialList)
 	.then(subjectCredentialList => {
