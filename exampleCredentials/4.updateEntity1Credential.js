@@ -27,7 +27,7 @@ try{
 
 let entity1Identity = new UserIdentity(web3, `0x${entity1Keystore.address}`, entity1PrivateKey)
 
-  if(configData.subject1 == undefined) {
+  if(configData.didEntity1 == undefined) {
     console.log('You must create an Alastria ID')
     process.exit()
   }
@@ -37,8 +37,7 @@ async function main() {
   console.log('(updateCredentialStatus)The transaction bytes data is: ', updateCredStat)
   web3.eth.sendSignedTransaction(updateCredStat)
     .then(() => {
-      let entity1 = configData.entity1  //by the moment, change it manually from alastriaProxyAddress result in script exampleCreateAlastriaID.js 
-			let issuerCredentialTransaction = transactionFactory.credentialRegistry.getIssuerCredentialStatus(web3, entity1, credentialHash.psmhash)
+			let issuerCredentialTransaction = transactionFactory.credentialRegistry.getIssuerCredentialStatus(web3, configData.didEntity1, credentialHash.psmhash)
 				web3.eth.call(issuerCredentialTransaction)
 				.then(IssuerCredentialStatus => {
 					let result = web3.eth.abi.decodeParameters(["bool","uint8"],IssuerCredentialStatus)
