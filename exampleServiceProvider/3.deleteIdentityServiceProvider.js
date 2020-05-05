@@ -39,7 +39,7 @@ let entity2KeyStore = keystoreDataEntity2;
 async function mainDel() {
 	unlockAccount()
 	console.log('\n ------ Example of deleting the entity2 like Service Provider ------ \n')
-	let transaction = await transactionFactory.identityManager.deleteIdentityServiceProvider(web3, `0x${entity2KeyStore.address}`)
+	let transaction = await transactionFactory.identityManager.deleteIdentityServiceProvider(web3, configData.didEntity2)
 	console.log("transaction", transaction)
 	let getKnownTx = await entity1Identity.getKnownTransaction(transaction)
 	console.log('The transaction bytes data is: ', getKnownTx)

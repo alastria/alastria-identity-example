@@ -39,7 +39,7 @@ let entity2KeyStore = keystoreDataEntity2;
 async function main() {
     unlockAccount()
     console.log('\n ------ Example of asking for isIdentityServiceProvider ------ \n')
-    let isServiceProvider = await transactionFactory.identityManager.isIdentityServiceProvider(web3, `0x${entity2KeyStore.address}`)
+    let isServiceProvider = await transactionFactory.identityManager.isIdentityServiceProvider(web3, configData.didEntity2)
     console.log("isServiceProviderTransaction", isServiceProvider)
     web3.eth.call(isServiceProvider)
     .then(isServiceProviderStatus => {

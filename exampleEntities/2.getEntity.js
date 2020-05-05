@@ -33,7 +33,7 @@ console.log('\n ------ Getting entity info ------ \n')
 	}
 
 	//let entityData = transactionFactory.identityManager.getEntity(web3, entity1Identity.address)
-	let entityData = transactionFactory.identityManager.getEntity(web3, entity1Identity.address)
+	let entityData = transactionFactory.identityManager.getEntity(web3, configData.didEntity1)
 	console.log('(entityData) Transaction ------>', entityData)
 	web3.eth.call(entityData)
 	.then(entityInfo => {
