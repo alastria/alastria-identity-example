@@ -105,3 +105,14 @@ console.log("\tAIC:", aic);
 
 const signedJWTAIC = tokensFactory.tokens.signJWT(aic, adminPrivateKey)
 console.log("AIC Signed:", signedJWTAIC)
+
+// Data
+let procUrl = config.procUrl
+let procHash = config.procHash
+let data = config.data
+// End data
+
+console.log("\n---- createPresentationRequest ----")
+
+const presentationRequest = tokensFactory.tokens.createPresentationRequest(kidCredential, didIsssuer, context, procUrl, procHash, data, callbackURL, tokenExpTime, tokenActivationDate, jti)
+console.log('\nThe presentationRequest is: ', presentationRequest)
