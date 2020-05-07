@@ -14,7 +14,7 @@ if(configData.entity3 == undefined) {
 }
 
 console.log("We retrive the current public key for entity3")
-let getPubKTx = transactionFactory.publicKeyRegistry.getCurrentPublicKey(web3, configData.entity3)
+let getPubKTx = transactionFactory.publicKeyRegistry.getCurrentPublicKey(web3, configData.didEntity3)
 web3.eth.call(getPubKTx)
     .then(data => {
         let publicKeyAsString = web3.eth.abi.decodeParameters(["string"], data)[0]
@@ -25,7 +25,7 @@ web3.eth.call(getPubKTx)
         let date = 1588612481
 
         console.log("Check if it is valid for a date")
-        transactionFactory.publicKeyRegistry.isPublicKeyValidForDate(web3, configData.entity3, publicKeyAsByte32, date)
+        transactionFactory.publicKeyRegistry.isPublicKeyValidForDate(web3, configData.didEntity3, publicKeyAsByte32, date)
             .then(isValid => {
                 if (isValid)
                     console.log("The public key is valid for the date " + date);
