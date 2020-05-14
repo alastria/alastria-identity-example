@@ -2,9 +2,7 @@ const { transactionFactory, UserIdentity, config, tokensFactory } = require('ala
 const fs = require('fs')
 const Web3 = require('web3')
 const keythereum = require('keythereum')
-const Wallet = require('ethereumjs-wallet')
 const hdkey = require('ethereumjs-wallet/hdkey')
-const privateKey = hdkey.fromMasterSeed('random')._hdkey._privateKey
 
 let rawdata = fs.readFileSync('../configuration.json')
 let configData = JSON.parse(rawdata)
@@ -17,16 +15,6 @@ let keystoreDataSubject1 = JSON.parse(keyDataSubject1)
 // Init your blockchain provider
 let myBlockchainServiceIp = configData.nodeURL
 const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
-
-// Data
-let context = configData.context
-let providerURL = configData.providerURL
-let callbackURL = configData.callbackURL
-let alastriaNetId = configData.alastriaNetId
-let tokenExpTime = configData.tokenExpTime
-let tokenActivationDate = configData.tokenActivationDate
-let jsonTokenId = configData.jsonTokenId
-
 
 let entity1KeyStore = keystoreDataEntity1
 
@@ -50,32 +38,22 @@ try {
 
 console.log('\n ------ Example of Authentication ------ \n')
 
-const alastriaToken = tokensFactory.tokens.createAlastriaToken(configData.didEntity1, providerURL, callbackURL, alastriaNetId, tokenExpTime, tokenActivationDate, jsonTokenId)
+const alastriaToken = tokensFactory.tokens.createAlastriaToken(configData.didEntity1, configData.providerURL, configData.callbackURL, configData.alastriaNetId, configData.tokenExpTime, configData.tokenActivationDate, configData.jsonTokenId)
 console.log('\tThe Alastria token is: \n', alastriaToken)
 
 // Signing the AlastriaToken
 let signedAT = tokensFactory.tokens.signJWT(alastriaToken, entity1PrivateKey)
 
-const entity1Puk = Wallet.fromPrivateKey(entity1PrivateKey)
 // '04' means uncompressed key (more info at https://github.com/indutny/elliptic/issues/138)
-console.log("entity1Puk pubk:", '04'+entity1Puk.getPublicKeyString().substr(2))
+let verifyAT = tokensFactory.tokens.verifyJWT(signedAT, "04"+configData.entity1Pubk.substr(2))
+console.log('\tIs the signedJWT verified?', verifyAT)
 
-// '04' means uncompressed key (more info at https://github.com/indutny/elliptic/issues/138)
-  let verifyAT = tokensFactory.tokens.verifyJWT(signedAT, "04"+entity1Puk.getPublicKeyString().substr(2))
-  console.log('\tIs the signedJWT verified?', verifyAT)
-
-  const subject1Puk = Wallet.fromPrivateKey(subject1PrivateKey)
-  // '04' means uncompressed key (more info at https://github.com/indutny/elliptic/issues/138)
-  console.log("entity1Puk pubk:", '04'+subject1Puk.getPublicKeyString().substr(2))
-
-const alastriaSession = tokensFactory.tokens.createAlastriaSession(context, configData.didSubject1, subject1Puk.getPublicKeyString(), signedAT, tokenExpTime, tokenActivationDate, jsonTokenId)
+const alastriaSession = tokensFactory.tokens.createAlastriaSession(configData.context, configData.didSubject1, configData.subject1Pubk, signedAT, configData.tokenExpTime, configData.tokenActivationDate, configData.jsonTokenId)
 console.log('\tThe Alastria session is:\n', alastriaSession)
 
 let signedAS = tokensFactory.tokens.signJWT(alastriaSession, subject1PrivateKey)
 console.log("\tThe signedAS is:\n", signedAS)
 
-
-
 // '04' means uncompressed key (more info at https://github.com/indutny/elliptic/issues/138)
-let verifyAS = tokensFactory.tokens.verifyJWT(signedAS, "04"+subject1Puk.getPublicKeyString().substr(2))
+let verifyAS = tokensFactory.tokens.verifyJWT(signedAS, "04"+configData.subject1Pubk.substr(2))
 console.log('\tIs the signedJWT verified?', verifyAS)
