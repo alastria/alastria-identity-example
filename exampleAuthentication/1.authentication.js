@@ -2,7 +2,6 @@ const { transactionFactory, UserIdentity, config, tokensFactory } = require('ala
 const fs = require('fs')
 const Web3 = require('web3')
 const keythereum = require('keythereum')
-const hdkey = require('ethereumjs-wallet/hdkey')
 
 let rawdata = fs.readFileSync('../configuration.json')
 let configData = JSON.parse(rawdata)
