@@ -57,7 +57,8 @@ let credentialSubject = {};
 let credentialKey =configData.credentialKey
 let credentialValue = configData.credentialValue
 credentialSubject[credentialKey]=credentialValue;
-credentialSubject["levelOfAssurance"]="basic";
+let levelOfAssuranceBasic = 1;
+credentialSubject["levelOfAssurance"]=levelOfAssuranceBasic;
 const uri = configData.uri
 
 //End fake data to test
