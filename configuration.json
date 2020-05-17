@@ -10,7 +10,7 @@
     "subject1Pubk": "0x2e507af01167c98a6accc0cd46ab2a256dd6b6c69ec1c0c28f80fb62e1f7d70233768b0c58dbbdac1fc358b8141c075a520483cf9779e4ea98d13df2833f3767",
     "subject2Pubk": "0xaca7aa42e831f41b6f246d089fbcabe73e1c6ce01a1bb5d944fda4e148e1d6930f6ebb5138b1d103e3e384c893962a238e4088a549bfe84867da96942931f69a",
     "rawPrivateKey": "278a5de700e29faae8e40e366ec5012b5ec63d36ec77e8a2417154cc1d25383f",
-    "context": "https://w3id.org/did/v1",
+    "context": ["https://w3id.org/did/v1", "JWT"],
     "userPublicKey": "AE2309349218937HASKHIUE9287432",
     "providerURL": "https://regular.telsius.blockchainbyeveris.io:2000",
     "callbackURL": "https://serviceprovider.alastria.blockchainbyeveris.io/api/login/",
