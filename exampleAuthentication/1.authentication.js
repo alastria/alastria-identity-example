@@ -37,7 +37,7 @@ try {
 
 console.log('\n ------ Example of Authentication ------ \n')
 
-const alastriaToken = tokensFactory.tokens.createAlastriaToken(configData.didEntity1, configData.providerURL, configData.callbackURL, configData.alastriaNetId, configData.tokenExpTime, configData.tokenActivationDate, configData.jsonTokenId)
+const alastriaToken = tokensFactory.tokens.createAlastriaToken(configData.didEntity1, configData.providerURL, configData.callbackURL, configData.networkId, configData.tokenExpTime, configData.tokenActivationDate, configData.jsonTokenId)
 console.log('\tThe Alastria token is: \n', alastriaToken)
 
 // Signing the AlastriaToken

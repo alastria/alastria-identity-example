@@ -53,7 +53,7 @@ console.log('\n ------ A promise all where prepareAlastriaID and createAlsatriaI
 async function main() {
 
 	//At the beggining, the Entity1 should create an AT, sign it and send it to the wallet
-	let at = tokensFactory.tokens.createAlastriaToken(config.didEntity1, config.providerURL, config.callbackURL, config.alastriaNetId, config.tokenExpTime, config.tokenActivationDate, config.jsonTokenId)
+	let at = tokensFactory.tokens.createAlastriaToken(config.didEntity1, config.providerURL, config.callbackURL, config.networkId, config.tokenExpTime, config.tokenActivationDate, config.jsonTokenId)
 	let signedAT = tokensFactory.tokens.signJWT(at, entity1PrivateKey)
 	console.log('\tsignedAT: \n', signedAT)
 
