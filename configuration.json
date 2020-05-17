@@ -36,13 +36,13 @@
     "data": [
         {
             "@context": "JWT",
-            "levelOfAssurance": "High",
+            "levelOfAssurance": 3,
             "required": true,
             "field_name": "name"
         },
         {
             "@context": "JWT",
-            "levelOfAssurance": "High",
+            "levelOfAssurance": 3,
             "required": true,
             "field_name": "email"
         }
