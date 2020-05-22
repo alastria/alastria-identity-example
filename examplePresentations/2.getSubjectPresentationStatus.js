@@ -11,12 +11,12 @@ let Web3 = require('web3')
 let myBlockchainServiceIp = configData.nodeURL
 const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 
-  if(configData.subject1 == undefined) {
+  if(configData.didSubject1 == undefined) {
     console.log('You must create an Alastria ID')
     process.exit()
   }
 
-let presentationStatus = transactionFactory.presentationRegistry.getSubjectPresentationStatus(web3, configData.subject1, presentationHash.psmhash)
+let presentationStatus = transactionFactory.presentationRegistry.getSubjectPresentationStatus(web3, configData.didSubject1, presentationHash.psmhash)
 
 web3.eth.call(presentationStatus)
 .then(result => {

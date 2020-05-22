@@ -28,7 +28,7 @@ let entity2Identity = new UserIdentity(web3, `0x${entity2Keystore.address}`, ent
 
 let updateEntity2Presentation = transactionFactory.presentationRegistry.updateReceiverPresentation(web3, presentationHash.psmhash, configData.updateEntity2PresentationTo)
 
-  if(configData.entity2 == undefined) {
+  if(configData.didEntity2 == undefined) {
     console.log('You must create an Alastria ID')
     process.exit()
   }
@@ -38,7 +38,7 @@ async function main() {
   console.log('(updateEntity2Presentation)The transaction bytes data is: ', updateReceivP)
   web3.eth.sendSignedTransaction(updateReceivP)
     .then(() => {
-      let presentationStatus = transactionFactory.presentationRegistry.getReceiverPresentationStatus(web3, configData.entity2, presentationHash.psmhash)
+      let presentationStatus = transactionFactory.presentationRegistry.getReceiverPresentationStatus(web3, configData.didEntity2, presentationHash.psmhash)
 
       web3.eth.call(presentationStatus)
         .then(result => {

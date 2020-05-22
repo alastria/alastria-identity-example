@@ -21,9 +21,9 @@ console.log('\n ------ Getting Credential List os Subject1 ------ \n')
 	console.log('(entitiesList) Transaction ------>', entitiesList)
 	web3.eth.call(entitiesList)
 	.then(listEntities => {
-		console.log('(subjectCredentialList) Transaction ------->', listEntities)
+		console.log('(entitiesList) Transaction ------->', listEntities)
 		let resultList = web3.eth.abi.decodeParameter("address[]", listEntities)
-		console.log('(subjectCredentialList) TransactionList: ', resultList)
+		console.log('(entitiesList) TransactionList: ', resultList)
 	})
 	.catch(errorList => {
 		console.log('Error List -----> ', errorList)

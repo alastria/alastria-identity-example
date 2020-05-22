@@ -39,7 +39,7 @@ let entity2KeyStore = keystoreDataEntity2;
 async function mainAddEntity(){
 	unlockAccount()
 	console.log('\n ------ Example of adding the entity1 like a Entity ------ \n')
-	let transactionAddEntity = await transactionFactory.identityManager.addEntity(web3, `0x${entity2KeyStore.address}`, configData.entityData2.name,
+	let transactionAddEntity = await transactionFactory.identityManager.addEntity(web3, configData.didEntity2, configData.entityData2.name,
 	configData.entityData2.cif, configData.entityData2.urlLogo, configData.entityData2.urlCreateAID, configData.entityData2.urlAOA, 
 	configData.entityData2.status)
 	let getKnownTxAddEntity = await entity1Identity.getKnownTransaction(transactionAddEntity)

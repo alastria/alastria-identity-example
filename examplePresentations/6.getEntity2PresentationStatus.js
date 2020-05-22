@@ -13,12 +13,12 @@ const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 let presentationHashData = fs.readFileSync(`./PSMHashEntity2.json`)
 let presentationHash = JSON.parse(presentationHashData)
 
-  if(configData.entity2 == undefined) {
+  if(configData.didEntity2 == undefined) {
     console.log('You must create an Alastria ID')
     process.exit()
   }
 
-let presentationStatus = transactionFactory.presentationRegistry.getReceiverPresentationStatus(web3, configData.entity2, presentationHash.psmhash)
+let presentationStatus = transactionFactory.presentationRegistry.getReceiverPresentationStatus(web3, configData.didEntity2, presentationHash.psmhash)
 
 web3.eth.call(presentationStatus)
 .then(result => {

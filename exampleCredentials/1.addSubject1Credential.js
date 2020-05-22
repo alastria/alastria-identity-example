@@ -57,7 +57,8 @@ let credentialSubject = {};
 let credentialKey =configData.credentialKey
 let credentialValue = configData.credentialValue
 credentialSubject[credentialKey]=credentialValue;
-credentialSubject["levelOfAssurance"]="basic";
+let levelOfAssuranceBasic = 1;
+credentialSubject["levelOfAssurance"]=levelOfAssuranceBasic;
 const uri = configData.uri
 
 //End fake data to test
@@ -107,8 +108,7 @@ fs.writeFileSync(`./PSMHashSubject1.json`, JSON.stringify({psmhash: subjectCrede
 		sendSigned(subjectCredentialSigned)
 		.then(receipt => {
 			console.log('RECEIPT:', receipt)
-			let subject1 = configData.subject1  //by the moment, change it manually from alastriaProxyAddress result in script exampleCreateAlastriaID.js 
-			let subjectCredentialTransaction = transactionFactory.credentialRegistry.getSubjectCredentialStatus(web3, subject1, subjectCredentialHash)
+			let subjectCredentialTransaction = transactionFactory.credentialRegistry.getSubjectCredentialStatus(web3, configData.didSubject1, subjectCredentialHash)
 				web3.eth.call(subjectCredentialTransaction)
 				.then(SubjectCredentialStatus => {
 					let result = web3.eth.abi.decodeParameters(["bool","uint8"],SubjectCredentialStatus)
