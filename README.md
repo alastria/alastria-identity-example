@@ -17,17 +17,17 @@ tsc
 
 ### Folders of example
 
-|**Folder**|**What it does**|
-|:--|:--|
-|exampleCreateAlastriaID| Contains an example of how to create an Alastria ID
-|exampleTokens| Contains an example of how to interact with [tokenFactory.ts](https://github.com/alastria/alastria-identity-lib/blob/develop/src/tokenFactory/tokensFactory.ts) functions|
-|exampleCredentials| Contains examples of how to add and get Credentials in AlastriaID |
-|examplePresentations| Contains examples of how to create, add and get Presentations in AlastriaID |
-|exampleIdentityServiceProvider| Contains an example of how to add and remove a Identity Service Provider|
-|exampleIdentityIssuer| Contains an example of how to add and remove a Identity Issuer|
-|exampleFirstEntity| Contains an example of how to create the first identity with the admin account|
-|exampleEntities| Contains an example of get list of entities and get entity information  |
-|exampleAuthentication| It contains an example of how authentication is done  |
+|**Folder**|**What it does**|**Wiki page**|
+|:--|:--|:--|
+|exampleCreateAlastriaID| Contains an example of how to create an Alastria ID| [Wiki](https://github.com/alastria/alastria-identity-example/wiki/Create-Alastria-ID-examples) |
+|exampleTokens| Contains an example of how to interact with [tokenFactory.ts](https://github.com/alastria/alastria-identity-lib/blob/develop/src/tokenFactory/tokensFactory.ts) functions | [Wiki](https://github.com/alastria/alastria-identity-example/wiki/Tokens-example)|
+|exampleCredentials| Contains examples of how to add and get Credentials in AlastriaID | [Wiki](https://github.com/alastria/alastria-identity-example/wiki/Credentials-examples)
+|examplePresentations| Contains examples of how to create, add and get Presentations in AlastriaID |[Wiki](https://github.com/alastria/alastria-identity-example/wiki/Presentations-examples)
+|exampleIdentityServiceProvider| Contains an example of how to add and remove a Identity Service Provider|[Wiki](https://github.com/alastria/alastria-identity-example/wiki/Service-Provider-examples)
+|exampleIdentityIssuer| Contains an example of how to add and remove a Identity Issuer|[Wiki](https://github.com/alastria/alastria-identity-example/wiki/Issuer-examples)
+|exampleFirstEntity| Contains an example of how to create the first identity with the admin account|[Wiki](https://github.com/alastria/alastria-identity-example/wiki/First-Entity-examples)
+|exampleEntities| Contains an example of get list of entities and get entity information  |[Wiki](https://github.com/alastria/alastria-identity-example/wiki/Entities-examples)
+|exampleAuthentication| It contains an example of how authentication is done  |[Wiki](https://github.com/alastria/alastria-identity-example/wiki/Authentication-example)
 |keystores| Contains the mocked keystores that we used to create the identities with different roles. These roles are explained [here](/keystores/README.md)  |
 
 
