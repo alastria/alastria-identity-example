@@ -1,4 +1,4 @@
-const {transactionFactory} = require('alastria-identity-lib')
+const { transactionFactory } = require('alastria-identity-lib')
 const Web3 = require('web3')
 const fs = require('fs')
 
@@ -12,23 +12,36 @@ const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 // ------------------------------------------------------------------------------
 console.log('\n ------ Getting Presentation List ------ \n')
 
-	if(configData.didSubject1 === undefined) {
-		console.log('You must create an Alastria ID')
-		process.exit()
-	}
+if (configData.didSubject1 === undefined) {
+  console.log('You must create an Alastria ID')
+  process.exit()
+}
 
-	const presentationList = transactionFactory.presentationRegistry.getSubjectPresentationList(web3, configData.didSubject1)
-	console.log('(presentationList) Transaction ------>', presentationList)
-	web3.eth.call(presentationList)
-	.then(subject1PresentationList => {
-		console.log('(subjectPresentationList) Transaction ------->', subject1PresentationList)
-		const resultList = web3.eth.abi.decodeParameters(["uint256", "bytes32[]"], subject1PresentationList)
-		const presentationListresult = {
-			"uint": resultList[0],
-			"bytes32[]": resultList[1]
-		}
-		console.log('(presentationListresult) TransactionList: ', presentationListresult)
-	})
-	.catch(errorList => {
-		console.log('Error List -----> ', errorList)
-	})
+const presentationList = transactionFactory.presentationRegistry.getSubjectPresentationList(
+  web3,
+  configData.didSubject1
+)
+console.log('(presentationList) Transaction ------>', presentationList)
+web3.eth
+  .call(presentationList)
+  .then((subject1PresentationList) => {
+    console.log(
+      '(subjectPresentationList) Transaction ------->',
+      subject1PresentationList
+    )
+    const resultList = web3.eth.abi.decodeParameters(
+      ['uint256', 'bytes32[]'],
+      subject1PresentationList
+    )
+    const presentationListresult = {
+      uint: resultList[0],
+      'bytes32[]': resultList[1]
+    }
+    console.log(
+      '(presentationListresult) TransactionList: ',
+      presentationListresult
+    )
+  })
+  .catch((errorList) => {
+    console.log('Error List -----> ', errorList)
+  })

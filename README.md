@@ -4,8 +4,8 @@
 
 This is an example of how to interact with the libraries from [alastria-identity-lib](https://github.com/alastria/alastria-identity-lib). The library alastria-identity-lib recovers the Smart Contracts from [alastria-identity](https://github.com/alastria/alastria-identity).
 
-
 **Important**: You need to clone again this repository or update `alastria-identity` **whenever a deploy of new smart contracts is made**. You easily update your repo with:
+
 ```sh
 # Being in the alastria-identity-example directory
 cd node_modules/alastria-identity-lib/alastria-identity
@@ -39,6 +39,7 @@ Then you can consume this library by running:
 ```sh
 npm install
 ```
+
 Now, you can use it from any JavaScript file in your working directory.
 
 You can execute some of our examples by running:
