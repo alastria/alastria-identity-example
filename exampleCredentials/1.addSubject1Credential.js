@@ -28,7 +28,6 @@ try{
 	console.log("ERROR: ", error)
 }
 
-const entity1Identity = new UserIdentity(web3, `0x${entity1KeyStore.address}`, entity1PrivateKey)
 
 const subject1KeyStore = keystoreDataSubject1
 
@@ -40,7 +39,7 @@ try{
 }
 
 const subject1Identity = new UserIdentity(web3, `0x${subject1KeyStore.address}`, subject1PrivateKey)
- 
+
 console.log('\n ------ Creating credential ------ \n')
 
 const jti = configData.jti
@@ -94,7 +93,7 @@ fs.writeFileSync(`./PSMHashSubject1.json`, JSON.stringify({psmhash: subjectCrede
 			.on('error', error => {
 				console.log('Error------>', error)
 				reject(error)
-			}); 
+			});
 
 		})
 	}
@@ -112,7 +111,7 @@ fs.writeFileSync(`./PSMHashSubject1.json`, JSON.stringify({psmhash: subjectCrede
 				web3.eth.call(subjectCredentialTransaction)
 				.then(SubjectCredentialStatus => {
 					const result = web3.eth.abi.decodeParameters(["bool","uint8"],SubjectCredentialStatus)
-					const credentialStatus = { 
+					const credentialStatus = {
 						"exists": result[0],
 						"status":result[1]
 					}

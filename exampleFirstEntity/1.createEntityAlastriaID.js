@@ -17,7 +17,6 @@ const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 
 console.log('\n ------ Example of prepare Alastria ID, addKey and createAlastrisID necessary to have an Alastria ID ------ \n')
 // Data
-const rawPublicKey = configData.rawPublicKeySubject
 
 const adminKeyStore = keystoreDataAdmin
 

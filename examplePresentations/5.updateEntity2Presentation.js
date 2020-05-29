@@ -28,7 +28,7 @@ const entity2Identity = new UserIdentity(web3, `0x${entity2Keystore.address}`, e
 
 const updateEntity2Presentation = transactionFactory.presentationRegistry.updateReceiverPresentation(web3, presentationHash.psmhash, configData.updateEntity2PresentationTo)
 
-  if(configData.didEntity2 == undefined) {
+  if(configData.didEntity2 === undefined) {
     console.log('You must create an Alastria ID')
     process.exit()
   }

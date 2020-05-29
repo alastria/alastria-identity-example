@@ -8,8 +8,6 @@ const configData = JSON.parse(rawdata)
 
 const keyDataEntity1 = fs.readFileSync('../keystores/entity1-a9728125c573924b2b1ad6a8a8cd9bf6858ced49.json')
 const keystoreDataEntity1 = JSON.parse(keyDataEntity1)
-const keyDataEntity2 = fs.readFileSync('../keystores/entity2-ad88f1a89cf02a32010b971d8c8af3a2c7b3bd94.json')
-const keystoreDataEntity2 = JSON.parse(keyDataEntity2)
 
 // Init your blockchain provider
 const myBlockchainServiceIp = configData.nodeURL
@@ -34,13 +32,11 @@ async function unlockAccount() {
 	return unlockedAccount
 }
 
-const entity2KeyStore = keystoreDataEntity2;
-
 async function mainAddEntity(){
 	unlockAccount()
 	console.log('\n ------ Example of adding the entity1 like a Entity ------ \n')
 	const transactionAddEntity = await transactionFactory.identityManager.addEntity(web3, configData.didEntity2, configData.entityData2.name,
-	configData.entityData2.cif, configData.entityData2.urlLogo, configData.entityData2.urlCreateAID, configData.entityData2.urlAOA, 
+	configData.entityData2.cif, configData.entityData2.urlLogo, configData.entityData2.urlCreateAID, configData.entityData2.urlAOA,
 	configData.entityData2.status)
 	const getKnownTxAddEntity = await entity1Identity.getKnownTransaction(transactionAddEntity)
 	console.log('The transaction bytes data is: ', getKnownTxAddEntity)

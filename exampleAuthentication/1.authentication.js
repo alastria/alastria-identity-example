@@ -1,6 +1,5 @@
-const { transactionFactory, UserIdentity, config, tokensFactory } = require('alastria-identity-lib')
+const { tokensFactory } = require('alastria-identity-lib')
 const fs = require('fs')
-const Web3 = require('web3')
 const keythereum = require('keythereum')
 
 const rawdata = fs.readFileSync('../configuration.json')
@@ -12,8 +11,6 @@ const keyDataSubject1 = fs.readFileSync('../keystores/subject1-806bc0d7a47b89038
 const keystoreDataSubject1 = JSON.parse(keyDataSubject1)
 
 // Init your blockchain provider
-const myBlockchainServiceIp = configData.nodeURL
-const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 
 const entity1KeyStore = keystoreDataEntity1
 

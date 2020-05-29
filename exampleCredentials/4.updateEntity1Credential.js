@@ -27,7 +27,7 @@ try{
 
 const entity1Identity = new UserIdentity(web3, `0x${entity1Keystore.address}`, entity1PrivateKey)
 
-  if(configData.didEntity1 == undefined) {
+  if(configData.didEntity1 === undefined) {
     console.log('You must create an Alastria ID')
     process.exit()
   }
@@ -41,7 +41,7 @@ async function main() {
 				web3.eth.call(issuerCredentialTransaction)
 				.then(IssuerCredentialStatus => {
 					const result = web3.eth.abi.decodeParameters(["bool","uint8"],IssuerCredentialStatus)
-					const credentialStatus = { 
+					const credentialStatus = {
 						"exists": result[0],
 						"status":result[1]
 					}

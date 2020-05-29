@@ -6,8 +6,6 @@ const keythereum = require('keythereum')
 const rawdata = fs.readFileSync('../configuration.json')
 const configData = JSON.parse(rawdata)
 
-const keyDataEntity1 = fs.readFileSync('../keystores/entity1-a9728125c573924b2b1ad6a8a8cd9bf6858ced49.json')
-const keystoreDataEntity1 = JSON.parse(keyDataEntity1)
 const keyDataAdmin = fs.readFileSync('../keystores/admin-6e3976aeaa3a59e4af51783cc46ee0ffabc5dc11.json')
 const keystoreDataAdmin = JSON.parse(keyDataAdmin)
 
@@ -33,8 +31,6 @@ async function unlockAccount() {
 	console.log('Account unlocked:', unlockedAccount)
 	return unlockedAccount
 }
-
-const entity1KeyStore = keystoreDataEntity1;
 
 async function main() {
     unlockAccount()

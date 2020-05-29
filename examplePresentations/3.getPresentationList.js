@@ -12,7 +12,7 @@ const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 // ------------------------------------------------------------------------------
 console.log('\n ------ Getting Presentation List ------ \n')
 
-	if(configData.didSubject1 == undefined) {
+	if(configData.didSubject1 === undefined) {
 		console.log('You must create an Alastria ID')
 		process.exit()
 	}

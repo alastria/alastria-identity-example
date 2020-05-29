@@ -13,7 +13,7 @@ const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 const presentationHashData = fs.readFileSync(`./PSMHashEntity2.json`)
 const presentationHash = JSON.parse(presentationHashData)
 
-  if(configData.didEntity2 == undefined) {
+  if(configData.didEntity2 === undefined) {
     console.log('You must create an Alastria ID')
     process.exit()
   }

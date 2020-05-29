@@ -1,7 +1,6 @@
-const {transactionFactory, UserIdentity} = require('alastria-identity-lib')
+const {transactionFactory} = require('alastria-identity-lib')
 const Web3 = require('web3')
 const fs = require('fs')
-const keythereum = require('keythereum')
 
 const rawdata = fs.readFileSync('../configuration.json')
 const configData = JSON.parse(rawdata)
@@ -10,24 +9,12 @@ const configData = JSON.parse(rawdata)
 const myBlockchainServiceIp = configData.nodeURL
 const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 
-const keyDataEntity1 = fs.readFileSync('../keystores/entity1-a9728125c573924b2b1ad6a8a8cd9bf6858ced49.json')
-const keystoreDataEntity1 = JSON.parse(keyDataEntity1)
 
-const entity1KeyStore = keystoreDataEntity1
-
-let entity1PrivateKey
-try{
-	entity1PrivateKey = keythereum.recover(configData.addressPassword, entity1KeyStore)
-}catch(error){
-	console.log("ERROR: ", error)
-}
-
-const entity1Identity = new UserIdentity(web3, `0x${entity1KeyStore.address}`, entity1PrivateKey)
 
 // ------------------------------------------------------------------------------
 console.log('\n ------ Getting entity info ------ \n')
 
-	if(configData.subject1 == undefined) {
+	if(configData.subject1 === undefined) {
 		console.log('You must create an Alastria ID')
 		process.exit()
 	}

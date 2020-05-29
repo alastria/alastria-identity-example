@@ -6,8 +6,6 @@ const keythereum = require('keythereum')
 const rawdata = fs.readFileSync('../configuration.json')
 const configData = JSON.parse(rawdata)
 
-const keyDataEntity1 = fs.readFileSync('../keystores/entity1-a9728125c573924b2b1ad6a8a8cd9bf6858ced49.json')
-const keystoreDataEntity1 = JSON.parse(keyDataEntity1)
 const keyDataAdmin = fs.readFileSync('../keystores/admin-6e3976aeaa3a59e4af51783cc46ee0ffabc5dc11.json')
 const keystoreDataAdmin = JSON.parse(keyDataAdmin)
 
@@ -34,13 +32,12 @@ async function unlockAccount() {
 	return unlockedAccount
 }
 
-const entity1KeyStore = keystoreDataEntity1;
 
 async function mainAddEntity(){
 	unlockAccount()
 	console.log('\n ------ Example of adding the entity1 like a Entity ------ \n')
 	const transactionAddEntity = await transactionFactory.identityManager.addEntity(web3, configData.didEntity1, configData.entityData1.name,
-		configData.entityData1.cif, configData.entityData1.urlLogo, configData.entityData1.urlCreateAID, configData.entityData1.urlAOA, 
+		configData.entityData1.cif, configData.entityData1.urlLogo, configData.entityData1.urlCreateAID, configData.entityData1.urlAOA,
 		configData.entityData1.status)
 	const getKnownTxAddEntity = await adminIdentity.getKnownTransaction(transactionAddEntity)
 	console.log('The transaction bytes data is: ', getKnownTxAddEntity)

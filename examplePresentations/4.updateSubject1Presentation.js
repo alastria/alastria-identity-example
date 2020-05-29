@@ -27,7 +27,7 @@ try{
 
 const subject1Identity = new UserIdentity(web3, `0x${subject1Keystore.address}`, subject1PrivateKey)
 
-  if(configData.didSubject1 == undefined) {
+  if(configData.didSubject1 === undefined) {
     console.log('You must create an Alastria ID')
     process.exit()
   }

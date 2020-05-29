@@ -8,8 +8,6 @@ const configData = JSON.parse(rawdata)
 
 const keyDataEntity1 = fs.readFileSync('../keystores/entity1-a9728125c573924b2b1ad6a8a8cd9bf6858ced49.json')
 const keystoreDataEntity1 = JSON.parse(keyDataEntity1)
-const keyDataEntity2 = fs.readFileSync('../keystores/entity2-ad88f1a89cf02a32010b971d8c8af3a2c7b3bd94.json')
-const keystoreDataEntity2 = JSON.parse(keyDataEntity2)
 
 // Init your blockchain provider
 const myBlockchainServiceIp = configData.nodeURL
@@ -33,8 +31,6 @@ async function unlockAccount() {
     console.log('Account unlocked:', unlockedAccount)
     return unlockedAccount
 }
-
-const entity2KeyStore = keystoreDataEntity2;
 
 async function main() {
     unlockAccount()
