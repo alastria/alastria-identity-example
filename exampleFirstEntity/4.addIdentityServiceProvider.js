@@ -1,21 +1,21 @@
 const { transactionFactory, UserIdentity } = require('alastria-identity-lib')
-let Web3 = require('web3')
-let fs = require('fs')
-let keythereum = require('keythereum')
+const Web3 = require('web3')
+const fs = require('fs')
+const keythereum = require('keythereum')
 
-let rawdata = fs.readFileSync('../configuration.json')
-let configData = JSON.parse(rawdata)
+const rawdata = fs.readFileSync('../configuration.json')
+const configData = JSON.parse(rawdata)
 
-let keyDataEntity1 = fs.readFileSync('../keystores/entity1-a9728125c573924b2b1ad6a8a8cd9bf6858ced49.json')
-let keystoreDataEntity1 = JSON.parse(keyDataEntity1)
-let keyDataAdmin = fs.readFileSync('../keystores/admin-6e3976aeaa3a59e4af51783cc46ee0ffabc5dc11.json')
-let keystoreDataAdmin = JSON.parse(keyDataAdmin)
+const keyDataEntity1 = fs.readFileSync('../keystores/entity1-a9728125c573924b2b1ad6a8a8cd9bf6858ced49.json')
+const keystoreDataEntity1 = JSON.parse(keyDataEntity1)
+const keyDataAdmin = fs.readFileSync('../keystores/admin-6e3976aeaa3a59e4af51783cc46ee0ffabc5dc11.json')
+const keystoreDataAdmin = JSON.parse(keyDataAdmin)
 
 // Init your blockchain provider
-let myBlockchainServiceIp = configData.nodeURL
+const myBlockchainServiceIp = configData.nodeURL
 const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 
-let adminKeyStore = keystoreDataAdmin
+const adminKeyStore = keystoreDataAdmin
 
 let adminPrivateKey
 try {
@@ -25,22 +25,22 @@ try {
 	process.exit(1);
 }
 
-let adminIdentity = new UserIdentity(web3, `0x${adminKeyStore.address}`, adminPrivateKey)
+const adminIdentity = new UserIdentity(web3, `0x${adminKeyStore.address}`, adminPrivateKey)
 
 // Im not sure if this is needed
 async function unlockAccount() {
-	let unlockedAccount = await web3.eth.personal.unlockAccount(adminIdentity.address, configData.addressPassword, 500)
+	const unlockedAccount = await web3.eth.personal.unlockAccount(adminIdentity.address, configData.addressPassword, 500)
 	console.log('Account unlocked:', unlockedAccount)
 	return unlockedAccount
 }
 
-let entity1KeyStore = keystoreDataEntity1;
+const entity1KeyStore = keystoreDataEntity1;
 
 async function mainAdd() {
 	unlockAccount()
 	console.log('\n ------ Example of adding the entity1 like a Service Provider ------ \n')
-	let transaction = await transactionFactory.identityManager.addIdentityServiceProvider(web3, configData.didEntity1)
-	let getKnownTx = await adminIdentity.getKnownTransaction(transaction)
+	const transaction = await transactionFactory.identityManager.addIdentityServiceProvider(web3, configData.didEntity1)
+	const getKnownTx = await adminIdentity.getKnownTransaction(transaction)
 	console.log('The transaction bytes data is: ', getKnownTx)
 	web3.eth.sendSignedTransaction(getKnownTx)
 		.on('transactionHash', function (hash) {

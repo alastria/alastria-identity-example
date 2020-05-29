@@ -1,15 +1,15 @@
 const {transactionFactory} = require('alastria-identity-lib')
-let Web3 = require('web3')
-let fs = require('fs')
+const Web3 = require('web3')
+const fs = require('fs')
 
-let rawdata = fs.readFileSync('../configuration.json')
-let configData = JSON.parse(rawdata)
+const rawdata = fs.readFileSync('../configuration.json')
+const configData = JSON.parse(rawdata)
 
 // Init your blockchain provider
-let myBlockchainServiceIp = configData.nodeURL
+const myBlockchainServiceIp = configData.nodeURL
 const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 
-//------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------
 console.log('\n ------ Getting Credential List os Subject1 ------ \n')
 
 	if(configData.subject1 == undefined) {
@@ -17,12 +17,12 @@ console.log('\n ------ Getting Credential List os Subject1 ------ \n')
 		process.exit()
 	}
 
-	let entitiesList = transactionFactory.identityManager.entitiesList(web3)
+	const entitiesList = transactionFactory.identityManager.entitiesList(web3)
 	console.log('(entitiesList) Transaction ------>', entitiesList)
 	web3.eth.call(entitiesList)
 	.then(listEntities => {
 		console.log('(entitiesList) Transaction ------->', listEntities)
-		let resultList = web3.eth.abi.decodeParameter("address[]", listEntities)
+		const resultList = web3.eth.abi.decodeParameter("address[]", listEntities)
 		console.log('(entitiesList) TransactionList: ', resultList)
 	})
 	.catch(errorList => {

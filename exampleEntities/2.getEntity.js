@@ -1,19 +1,19 @@
 const {transactionFactory, UserIdentity} = require('alastria-identity-lib')
-let Web3 = require('web3')
-let fs = require('fs')
-let keythereum = require('keythereum')
+const Web3 = require('web3')
+const fs = require('fs')
+const keythereum = require('keythereum')
 
-let rawdata = fs.readFileSync('../configuration.json')
-let configData = JSON.parse(rawdata)
+const rawdata = fs.readFileSync('../configuration.json')
+const configData = JSON.parse(rawdata)
 
 // Init your blockchain provider
-let myBlockchainServiceIp = configData.nodeURL
+const myBlockchainServiceIp = configData.nodeURL
 const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 
-let keyDataEntity1 = fs.readFileSync('../keystores/entity1-a9728125c573924b2b1ad6a8a8cd9bf6858ced49.json')
-let keystoreDataEntity1 = JSON.parse(keyDataEntity1)
+const keyDataEntity1 = fs.readFileSync('../keystores/entity1-a9728125c573924b2b1ad6a8a8cd9bf6858ced49.json')
+const keystoreDataEntity1 = JSON.parse(keyDataEntity1)
 
-let entity1KeyStore = keystoreDataEntity1
+const entity1KeyStore = keystoreDataEntity1
 
 let entity1PrivateKey
 try{
@@ -22,9 +22,9 @@ try{
 	console.log("ERROR: ", error)
 }
 
-let entity1Identity = new UserIdentity(web3, `0x${entity1KeyStore.address}`, entity1PrivateKey)
+const entity1Identity = new UserIdentity(web3, `0x${entity1KeyStore.address}`, entity1PrivateKey)
 
-//------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------
 console.log('\n ------ Getting entity info ------ \n')
 
 	if(configData.subject1 == undefined) {
@@ -32,14 +32,14 @@ console.log('\n ------ Getting entity info ------ \n')
 		process.exit()
 	}
 
-	//let entityData = transactionFactory.identityManager.getEntity(web3, entity1Identity.address)
-	let entityData = transactionFactory.identityManager.getEntity(web3, configData.didEntity1)
+	// let entityData = transactionFactory.identityManager.getEntity(web3, entity1Identity.address)
+	const entityData = transactionFactory.identityManager.getEntity(web3, configData.didEntity1)
 	console.log('(entityData) Transaction ------>', entityData)
 	web3.eth.call(entityData)
 	.then(entityInfo => {
 		console.log('(entityInfo) Transaction ------->', entityInfo)
-		let resultList = web3.eth.abi.decodeParameters(["string", "string", "string", "string", "string", "bool"], entityInfo)
-        let data = {
+		const resultList = web3.eth.abi.decodeParameters(["string", "string", "string", "string", "string", "bool"], entityInfo)
+        const data = {
             "name": resultList[0],
             "cif":resultList[1],
             "urlLogo":resultList[2],

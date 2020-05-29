@@ -1,11 +1,11 @@
 const { transactionFactory } = require('alastria-identity-lib')
-let fs = require('fs')
+const fs = require('fs')
 
-let rawdata = fs.readFileSync('../configuration.json')
-let configData = JSON.parse(rawdata)
+const rawdata = fs.readFileSync('../configuration.json')
+const configData = JSON.parse(rawdata)
 
-let Web3 = require('web3')
-let myBlockchainServiceIp = configData.nodeURL
+const Web3 = require('web3')
+const myBlockchainServiceIp = configData.nodeURL
 const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 
   if(configData.entity2PresentationStatus == undefined || configData.subject1PresentationStatus == undefined){
@@ -13,10 +13,10 @@ const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
     process.exit()
   }
 
-let globalStatus = transactionFactory.presentationRegistry.getPresentationStatus(web3, configData.subject1PresentationStatus.status, configData.entity2PresentationStatus.status)
+const globalStatus = transactionFactory.presentationRegistry.getPresentationStatus(web3, configData.subject1PresentationStatus.status, configData.entity2PresentationStatus.status)
 web3.eth.call(globalStatus)
 .then(result => {
-    let resultStatus = web3.utils.hexToNumber(result);
+    const resultStatus = web3.utils.hexToNumber(result);
     switch (resultStatus) {
       case 0:
           console.log('Valid =>', resultStatus)
