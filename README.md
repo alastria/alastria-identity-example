@@ -53,3 +53,34 @@ Then you can run the scripts in the correct order marked in each of the scripts
 ```sh
 node x.<script>
 ```
+
+## Code linter and formatter
+
+The project uses ESLint as Javascript linter and Prettier as code formatter
+
+We strongly recommend using VSCode as code editor due to the plugins available to install, witch will make us work better and easier
+
+The recommended plugins to use these tools are
+
+- ESLint: https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
+- Prettier: https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
+
+The repository already has configuration files for both, so you won't have to configure anything after the plugins installation
+
+### How to use them?
+
+- ESLint: running `npm run lint` will show any linter errors. Some errors may be automatically fixed if the flag `--fix` is added to the script execution. Also, thanks to the ESLint plugin, VSCode will mark linter errors with red color and warnings with yellow color
+- Prettier: with a file open, `cmd+shift+p` (macOS) to open VSCode execution menu, write `Format document with...` and choose Prettier or configure your VSCode workspace to automatically use Prettier if you choose `Format document`: in your VSCode `settings.json` add
+
+```json
+"[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+"[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+```
+
+To automatically format Javascript and Typescript code
+
+If you have installed some plugin that add keyboard shortcuts, like IntelliJ IDEA Keybindings (https://marketplace.visualstudio.com/items?itemName=k--kato.intellij-idea-keybindings) you will be able to format documents with Prettier with shortcuts like `cmd+alt+l`
