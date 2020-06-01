@@ -1,31 +1,34 @@
 const { transactionFactory } = require('alastria-identity-lib')
-let fs = require('fs')
+const fs = require('fs')
 
-let rawdata = fs.readFileSync('../configuration.json')
-let configData = JSON.parse(rawdata)
+const rawdata = fs.readFileSync('../configuration.json')
+const configData = JSON.parse(rawdata)
 
-let presentationHashData = fs.readFileSync(`./PSMHashSubject1.json`)
-let presentationHash = JSON.parse(presentationHashData)
+const presentationHashData = fs.readFileSync(`./PSMHashSubject1.json`)
+const presentationHash = JSON.parse(presentationHashData)
 
-let Web3 = require('web3')
-let myBlockchainServiceIp = configData.nodeURL
+const Web3 = require('web3')
+const myBlockchainServiceIp = configData.nodeURL
 const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 
-  if(configData.didSubject1 == undefined) {
-    console.log('You must create an Alastria ID')
-    process.exit()
-  }
+if (configData.didSubject1 === undefined) {
+  console.log('You must create an Alastria ID')
+  process.exit()
+}
 
-let presentationStatus = transactionFactory.presentationRegistry.getSubjectPresentationStatus(web3, configData.didSubject1, presentationHash.psmhash)
+const presentationStatus = transactionFactory.presentationRegistry.getSubjectPresentationStatus(
+  web3,
+  configData.didSubject1,
+  presentationHash.psmhash
+)
 
-web3.eth.call(presentationStatus)
-.then(result => {
-  let resultStatus = web3.eth.abi.decodeParameters(["bool", "uint8"], result)
-  let presentationStatus = {
+web3.eth.call(presentationStatus).then((result) => {
+  const resultStatus = web3.eth.abi.decodeParameters(['bool', 'uint8'], result)
+  const presentationStatus = {
     exist: resultStatus[0],
     status: resultStatus[1]
   }
-  configData.subject1PresentationStatus = presentationStatus;
+  configData.subject1PresentationStatus = presentationStatus
   fs.writeFileSync('../configuration.json', JSON.stringify(configData))
   console.log('presentationStatus ------>', presentationStatus)
 })

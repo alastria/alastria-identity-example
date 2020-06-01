@@ -4,8 +4,8 @@
 
 This is an example of how to interact with the libraries from [alastria-identity-lib](https://github.com/alastria/alastria-identity-lib). The library alastria-identity-lib recovers the Smart Contracts from [alastria-identity](https://github.com/alastria/alastria-identity).
 
-
 **Important**: You need to clone again this repository or update `alastria-identity` **whenever a deploy of new smart contracts is made**. You easily update your repo with:
+
 ```sh
 # Being in the alastria-identity-example directory
 cd node_modules/alastria-identity-lib/alastria-identity
@@ -39,6 +39,7 @@ Then you can consume this library by running:
 ```sh
 npm install
 ```
+
 Now, you can use it from any JavaScript file in your working directory.
 
 You can execute some of our examples by running:
@@ -52,3 +53,34 @@ Then you can run the scripts in the correct order marked in each of the scripts
 ```sh
 node x.<script>
 ```
+
+## Code linter and formatter
+
+The project uses ESLint as Javascript linter and Prettier as code formatter
+
+We strongly recommend using VSCode as code editor due to the plugins available to install, witch will make us work better and easier
+
+The recommended plugins to use these tools are
+
+- ESLint: https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
+- Prettier: https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
+
+The repository already has configuration files for both, so you won't have to configure anything after the plugins installation
+
+### How to use them?
+
+- ESLint: running `npm run lint` will show any linter errors. Some errors may be automatically fixed if the flag `--fix` is added to the script execution. Also, thanks to the ESLint plugin, VSCode will mark linter errors with red color and warnings with yellow color
+- Prettier: with a file open, `cmd+shift+p` (macOS) to open VSCode execution menu, write `Format document with...` and choose Prettier or configure your VSCode workspace to automatically use Prettier if you choose `Format document`: in your VSCode `settings.json` add
+
+```json
+"[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+"[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+```
+
+To automatically format Javascript and Typescript code
+
+If you have installed some plugin that add keyboard shortcuts, like IntelliJ IDEA Keybindings (https://marketplace.visualstudio.com/items?itemName=k--kato.intellij-idea-keybindings) you will be able to format documents with Prettier with shortcuts like `cmd+alt+l`
