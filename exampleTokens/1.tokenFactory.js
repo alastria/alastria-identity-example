@@ -179,3 +179,18 @@ const presentationRequest = tokensFactory.tokens.createPresentationRequest(
   jti
 )
 console.log('\nThe presentationRequest is: ', presentationRequest)
+
+const presentation = tokensFactory.tokens.createPresentation(
+  kidCredential,
+  didIsssuer,
+  didIsssuer,
+  context,
+  tokensFactory.tokens.signJWT(presentationRequest, adminPrivateKey),
+  procUrl,
+  procHash,
+  tokenExpTime,
+  tokenActivationDate,
+  jti
+)
+
+console.log('\nThe presentation is: ', presentation)
