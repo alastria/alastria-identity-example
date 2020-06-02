@@ -1,4 +1,5 @@
 const { transactionFactory, tokensFactory } = require('alastria-identity-lib')
+const { tests } = require('alastria-identity-JSON-objects/tests')
 const Web3 = require('web3')
 const fs = require('fs')
 const keythereum = require('keythereum')
@@ -29,11 +30,13 @@ console.log('---- signJWT ----')
 
 const signedJWT = tokensFactory.tokens.signJWT(tokenPayload, adminPrivateKey)
 console.log('\tThe signed JWT is: ', signedJWT)
+tests.tokens.validateToken(signedJWT);
 
 console.log('\n---- decodeJWT ----')
 
 const decodedJWT = tokensFactory.tokens.decodeJWT(signedJWT)
 console.log('\tThe decoded token is: \n', decodedJWT)
+
 
 console.log('\n---- verifyJWT ----')
 
@@ -70,6 +73,7 @@ console.log('\tThe Alastria token is: \n', alastriaToken)
 
 // Signing the AlastriaToken
 const signedAT = tokensFactory.tokens.signJWT(alastriaToken, adminPrivateKey)
+tests.tokens.validateToken(signedAT);
 
 console.log('\n---- createAlastriaSesion ----')
 
@@ -152,6 +156,7 @@ console.log('\tAIC:', aic)
 
 const signedJWTAIC = tokensFactory.tokens.signJWT(aic, adminPrivateKey)
 console.log('AIC Signed:', signedJWTAIC)
+tests.alastriaIdCreations.validateAlastriaIdCreation(signedJWTAIC);
 
 // Data
 const procUrl = config.procUrl
