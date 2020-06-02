@@ -20,7 +20,8 @@
   },
   "homepage": "https://github.com/alastria/alastria-identity-example#readme",
   "dependencies": {
-    "alastria-identity-lib": "github:alastria/alastria-identity-lib#develop"
+    "alastria-identity-lib": "github:alastria/alastria-identity-lib#develop",
+    "alastria-identity-JSON-objects": "github:alastria/alastria-identity-JSON-objects#feature/59-export-validators"
   },
   "devDependencies": {
     "eslint": "^7.1.0",
