@@ -24,9 +24,12 @@
     "network": "quor",
     "networkId": "redT",
     "tokenPayload": {
-        "iss": "joe",
-        "exp": 1300819380,
-        "http://example.com/is_root": true
+        "iss": "did:ala:quor:redT:e53d78c1c6fc694a0f29b3f24bee439338acbe3e",
+        "gwu": "http://34.91.56.109:8097/alastria/presentation",
+        "cbu": "http://34.91.56.109:8097/alastria/presentation",
+        "ani": "redT",
+        "iat": 1590569132,
+        "exp": 1563783392
     },
     "jti": "https://www.empresa.com/alastria/credentials/3734",
     "kidCredential": "did:ala:quor:redt:0x12eeaCCA9eEbB78eB97d7cac6b#keys-1",
