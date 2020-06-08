@@ -46,6 +46,7 @@ console.log('\tIs the signedJWT verified?', verifyJWT)
 
 // Data
 const context = config.context
+const type = config.type
 const didIsssuer = config.didEntity3
 const providerURL = config.providerURL
 const callbackURL = config.callbackURL
@@ -76,9 +77,11 @@ console.log('\n---- createAlastriaSesion ----')
 const alastriaSession = tokensFactory.tokens.createAlastriaSession(
   context,
   didIsssuer,
-  config.adminPubk,
+  config.kidCredential,
+  type,
   signedAT,
   tokenExpTime,
+  config.adminPubk,
   tokenActivationDate,
   jsonTokenId
 )
