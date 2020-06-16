@@ -1,34 +1,34 @@
 {
-  "didIssuer": "did:alastria:quorum:redt:QmeeasCZ9jLbXueBJ7d7csxhb",
-  "didSubject": "did:alastria:quorum:redt:QmeeasCZ9jLbXueBJ7d7csxhb",
-  "credentials": [
-    {
-      "header": {
-        "typ": "JWT",
-        "alg": "ES256K",
-        "kid": "did:ala:quor:redt:QmeeasCZ9jLbXueBJ7d7csxhb#keys-1"
-      },
-      "payload": {
-        "jti": "https://www.empresa.com/alastria/credentials/3732",
-        "iss": "did:alastria:quorum:redt:QmeeasCZ9jLbX...ueBJ7d7csxhb",
-        "aud": "did:alastria:quorum:redt:QmeeasCZ9jLbX...ueBJ7d7csxhb",
-        "exp": 1530735444,
-        "nbf": 1525465044,
-        "vp": {
-          "@context": [
-            "https://www.w3.org/2018/credentials/v1",
-            "JWT"
-          ],
-          "type": [
-            "VerifiablePresentation"
-          ],
-          "procHash": "H398sjHd...kldjUYn475n",
-          "procUrl": "https://www.empresa.com/alastria/businessprocess/4583",
-          "verifiableCredential": [
-            {}
-          ]
+    "didIssuer": "did:alastria:quorum:redt:QmeeasCZ9jLbXueBJ7d7csxhb",
+    "didSubject": "did:alastria:quorum:redt:QmeeasCZ9jLbXueBJ7d7csxhb",
+    "credentials": [{
+        "header": {
+            "typ": "JWT",
+            "alg": "ES256K",
+            "kid": "did:ala:quor:redt:QmeeasCZ9jLbXueBJ7d7csxhb#keys-1",
+            "jwk": "0x2e507af01167c98a6accc0cd46ab2a256dd6b6c69ec1c0c28f80fb62e1f7d70233768b0c58dbbdac1fc358b8141c075a520483cf9779e4ea98d13df2833f3767"
         }
-      }
-    }
-  ]
+        "payload": {
+            "jti": "https://www.empresa.com/alastria/credentials/3732",
+            "iss": "did:alastria:quorum:redt:QmeeasCZ9jLbX...ueBJ7d7csxhb",
+            "aud": "did:alastria:quorum:redt:QmeeasCZ9jLbX...ueBJ7d7csxhb",
+            "iat": 1588160378,
+            "exp": 1563783392,
+            "nbf": 1563782792,
+            "vp": {
+                "@context": [
+                    "https://www.w3.org/2018/credentials/v1",
+                    "https://alastria.github.io/identity/credentials/v1"
+                ],
+                "type": [
+                    "VerifiablePresentation", "AlastriaVerifiablePresentation"
+                ],
+                "procHash": "H398sjHd...kldjUYn475n",
+                "procUrl": "https://www.empresa.com/alastria/businessprocess/4583",
+                "verifiableCredential": [
+                    {}
+                ]
+            }
+        }
+    }]
 }
