@@ -153,8 +153,8 @@ const aic = tokensFactory.tokens.createAIC(
   kidCredential,
   context,
   type,
-  txCreateAlastriaIDSigned,
-  alastriaToken,
+  web3.utils.toHex(txCreateAlastriaIDSigned),
+  signedAT,
   config.adminPubk
 )
 console.log('\tAIC:', aic)
