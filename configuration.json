@@ -14,6 +14,7 @@
         "https://w3id.org/did/v1",
         "JWT"
     ],
+    "type": ["CustomType"],
     "userPublicKey": "AE2309349218937HASKHIUE9287432",
     "providerURL": "https://regular.telsius.blockchainbyeveris.io:2000",
     "callbackURL": "https://serviceprovider.alastria.blockchainbyeveris.io/api/login/",
@@ -24,12 +25,20 @@
     "network": "quor",
     "networkId": "redT",
     "tokenPayload": {
-        "iss": "did:ala:quor:redT:e53d78c1c6fc694a0f29b3f24bee439338acbe3e",
-        "gwu": "http://34.91.56.109:8097/alastria/presentation",
-        "cbu": "http://34.91.56.109:8097/alastria/presentation",
-        "ani": "redT",
-        "iat": 1590569132,
-        "exp": 1563783392
+        "header": {
+            "alg": "ES256K",
+            "typ": "JWT",
+            "kid": "did:ala:quor:redt:0x12eeaCCA9eEbB78eB97d7cac6b#keys-1",
+            "jwk": "0x12345"
+        },
+        "payload": {
+            "iss": "did:ala:quor:redT:e53d78c1c6fc694a0f29b3f24bee439338acbe3e",
+            "gwu": "http://34.91.56.109:8097/alastria/presentation",
+            "cbu": "http://34.91.56.109:8097/alastria/presentation",
+            "iat": 1590569132,
+            "ani": "redT",
+            "exp": 1563783392
+        }
     },
     "jti": "https://www.empresa.com/alastria/credentials/3734",
     "kidCredential": "did:ala:quor:redt:0x12eeaCCA9eEbB78eB97d7cac6b#keys-1",

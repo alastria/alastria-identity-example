@@ -30,13 +30,12 @@ console.log('---- signJWT ----')
 
 const signedJWT = tokensFactory.tokens.signJWT(tokenPayload, adminPrivateKey)
 console.log('\tThe signed JWT is: ', signedJWT)
-tests.tokens.validateToken(signedJWT);
+tests.tokens.validateToken(signedJWT)
 
 console.log('\n---- decodeJWT ----')
 
 const decodedJWT = tokensFactory.tokens.decodeJWT(signedJWT)
 console.log('\tThe decoded token is: \n', decodedJWT)
-
 
 console.log('\n---- verifyJWT ----')
 
@@ -49,6 +48,7 @@ console.log('\tIs the signedJWT verified?', verifyJWT)
 
 // Data
 const context = config.context
+const type = config.type
 const didIsssuer = config.didEntity3
 const providerURL = config.providerURL
 const callbackURL = config.callbackURL
@@ -56,6 +56,7 @@ const alastriaNetId = config.networkId
 const tokenExpTime = config.tokenExpTime
 const tokenActivationDate = config.tokenActivationDate
 const jsonTokenId = config.jsonTokenId
+const kidCredential = config.kidCredential
 // End data
 
 console.log('\n---- createAlastriaToken ----')
@@ -66,6 +67,8 @@ const alastriaToken = tokensFactory.tokens.createAlastriaToken(
   callbackURL,
   alastriaNetId,
   tokenExpTime,
+  kidCredential,
+  config.adminPubk,
   tokenActivationDate,
   jsonTokenId
 )
@@ -73,7 +76,7 @@ console.log('\tThe Alastria token is: \n', alastriaToken)
 
 // Signing the AlastriaToken
 const signedAT = tokensFactory.tokens.signJWT(alastriaToken, adminPrivateKey)
-tests.tokens.validateToken(signedAT);
+tests.tokens.validateToken(signedAT)
 
 console.log('\n---- createAlastriaSesion ----')
 
@@ -90,7 +93,6 @@ console.log('\tThe Alastria session is:\n', alastriaSession)
 
 // Data
 const jti = config.jti
-const kidCredential = config.kidCredential
 const subjectAlastriaID = config.subjectAlastriaID
 const credentialSubject = {}
 const credentialKey = config.credentialKey
@@ -148,6 +150,9 @@ const txCreateAlastriaIDSigned = tokensFactory.tokens.signJWT(
 
 // Only the createAlastriaID transaction must be signed inside of AIC object
 const aic = tokensFactory.tokens.createAIC(
+  kidCredential,
+  context,
+  type,
   txCreateAlastriaIDSigned,
   alastriaToken,
   config.adminPubk
@@ -156,7 +161,7 @@ console.log('\tAIC:', aic)
 
 const signedJWTAIC = tokensFactory.tokens.signJWT(aic, adminPrivateKey)
 console.log('AIC Signed:', signedJWTAIC)
-tests.alastriaIdCreations.validateAlastriaIdCreation(signedJWTAIC);
+tests.alastriaIdCreations.validateAlastriaIdCreation(signedJWTAIC)
 
 // Data
 const procUrl = config.procUrl
