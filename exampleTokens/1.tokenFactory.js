@@ -179,11 +179,21 @@ const presentationRequest = tokensFactory.tokens.createPresentationRequest(
   procHash,
   data,
   callbackURL,
+  config.adminPubk,
+  type,
   tokenExpTime,
   tokenActivationDate,
   jti
 )
-console.log('\nThe presentationRequest is: ', presentationRequest)
+
+const signedPresentationRequest = tokensFactory.tokens.signJWT(
+  presentationRequest,
+  adminPrivateKey
+)
+console.log('\nThe presentationRequest is: ', signedPresentationRequest)
+tests.presentationRequests.validatePresentationRequest(
+  signedPresentationRequest
+)
 
 const presentation = tokensFactory.tokens.createPresentation(
   kidCredential,
@@ -193,9 +203,15 @@ const presentation = tokensFactory.tokens.createPresentation(
   tokensFactory.tokens.signJWT(presentationRequest, adminPrivateKey),
   procUrl,
   procHash,
+  config.adminPubk,
+  type,
   tokenExpTime,
   tokenActivationDate,
   jti
 )
-
-console.log('\nThe presentation is: ', presentation)
+const signedPresentation = tokensFactory.tokens.signJWT(
+  presentation,
+  adminPrivateKey
+)
+console.log('\nThe presentation is: ', signedPresentation)
+tests.presentations.validatePresentation(signedPresentation)
