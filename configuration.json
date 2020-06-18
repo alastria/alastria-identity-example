@@ -35,8 +35,8 @@
         },
         "payload": {
             "iss": "did:ala:quor:redT:e53d78c1c6fc694a0f29b3f24bee439338acbe3e",
-            "gwu": "http://34.91.56.109:8097/alastria/presentation",
-            "cbu": "http://34.91.56.109:8097/alastria/presentation",
+            "gwu": "http://1.2.3.4:8097/alastria/presentation",
+            "cbu": "http://1.2.3.4:8097/alastria/presentation",
             "iat": 1590569132,
             "ani": "redT",
             "exp": 1563783392
