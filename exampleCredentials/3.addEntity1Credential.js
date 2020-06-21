@@ -64,9 +64,9 @@ credentialSubject.levelOfAssurance = 'basic'
 const credential = tokensFactory.tokens.createCredential(
   kidCredential,
   didEntity1,
-  subjectAlastriaID,
   context,
   credentialSubject,
+  subjectAlastriaID,
   tokenExpTime,
   tokenActivationDate,
   jti
