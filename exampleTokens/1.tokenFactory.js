@@ -137,12 +137,12 @@ console.log('\n---- Create AIC ----')
 
 // Only the createAlastriaID transaction must be signed inside of AIC object
 const aic = tokensFactory.tokens.createAIC(
-  kidCredential,
   context,
   type,
   config.signedTxCreateAlastriaID,
   signedAT,
   config.adminPubk,
+  kidCredential,
   config.adminPubk,
   jti,
   tokenActivationDate,

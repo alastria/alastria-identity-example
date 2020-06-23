@@ -108,9 +108,11 @@ async function main() {
     subject1PrivateKey
   )
   const aic = tokensFactory.tokens.createAIC(
+    [],
+    [],
     signedCreateTransaction,
     subjectSignedAT,
-    configData.subject1Pubk.substr(2)
+    configData.subject1Pubk
   )
   const signedAIC = tokensFactory.tokens.signJWT(aic, subject1PrivateKey)
   console.log('\tsignedAIC: \n', signedAIC)

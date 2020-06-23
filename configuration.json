@@ -35,7 +35,7 @@
         "http://example.com/is_root": true
     },
     "jti": "https://www.empresa.com/alastria/credentials/3734",
-    "kidCredential": "did:ala:quor:redt:0x12eeaCCA9eEbB78eB97d7cac6b#keys-1",
+    "kidCredential": "did:ala:quor:redt:12eeaCCA9eEbB78eB97d7cac6b#keys-1",
     "subjectAlastriaID": "did:ala:quor:redt:0x12eeaCCA9eEbB78eB97d7cac6b",
     "credentialKey": "StudentID",
     "credentialValue": "11235813",
