@@ -15,8 +15,7 @@
         "JWT"
     ],
     "type": [
-        "type1",
-        "type2"
+        "CustomType"
     ],
     "userPublicKey": "AE2309349218937HASKHIUE9287432",
     "providerURL": "https://regular.telsius.blockchainbyeveris.io:2000",
@@ -28,9 +27,20 @@
     "network": "quor",
     "networkId": "redT",
     "tokenPayload": {
-        "iss": "joe",
-        "exp": 1300819380,
-        "http://example.com/is_root": true
+        "header": {
+            "alg": "ES256K",
+            "typ": "JWT",
+            "kid": "did:ala:quor:redt:0x12eeaCCA9eEbB78eB97d7cac6b#keys-1",
+            "jwk": "0x12345"
+        },
+        "payload": {
+            "iss": "did:ala:quor:redT:e53d78c1c6fc694a0f29b3f24bee439338acbe3e",
+            "gwu": "http://1.2.3.4:8097/alastria/presentation",
+            "cbu": "http://1.2.3.4:8097/alastria/presentation",
+            "iat": 1590569132,
+            "ani": "redT",
+            "exp": 1563783392
+        }
     },
     "jti": "https://www.empresa.com/alastria/credentials/3734",
     "kidCredential": "did:ala:quor:redt:0x12eeaCCA9eEbB78eB97d7cac6b#keys-1",
@@ -54,8 +64,8 @@
             "field_name": "email"
         }
     ],
-    "entity1": "0x05c5e87b79022b0b85280efb332f7506d9294fe0",
-    "didEntity1": "did:ala:quor:redT:0x05c5e87b79022b0b85280efb332f7506d9294fe0",
+    "entity1": "0xd2f868f056ef3a48bbc8d446dfed411e9bf93ab0",
+    "didEntity1": "did:ala:quor:redT:d2f868f056ef3a48bbc8d446dfed411e9bf93ab0",
     "entity2": "0xf86484b4ae0148de488f4b66d0bf578bb3779fcd",
     "didEntity2": "did:ala:quor:redT:0xf86484b4ae0148de488f4b66d0bf578bb3779fcd",
     "entity3": "0xb0462601a17581ed1b5dda86272aee5e49e2f5f7",
