@@ -83,9 +83,11 @@ console.log('\n---- createAlastriaSesion ----')
 const alastriaSession = tokensFactory.tokens.createAlastriaSession(
   context,
   didIsssuer,
-  config.adminPubk,
+  config.kidCredential,
+  type,
   signedAT,
   tokenExpTime,
+  config.adminPubk,
   tokenActivationDate,
   jsonTokenId
 )
