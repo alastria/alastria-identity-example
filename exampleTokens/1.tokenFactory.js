@@ -55,6 +55,7 @@ const callbackURL = config.callbackURL
 const alastriaNetId = config.networkId
 const tokenExpTime = config.tokenExpTime
 const tokenActivationDate = config.tokenActivationDate
+const tokenNotBefore = config.tokenNotBefore
 const jsonTokenId = config.jsonTokenId
 const kidCredential = config.kidCredential
 // End data
@@ -78,7 +79,7 @@ console.log('\tThe Alastria token is: \n', alastriaToken)
 const signedAT = tokensFactory.tokens.signJWT(alastriaToken, adminPrivateKey)
 tests.tokens.validateToken(signedAT)
 
-console.log('\n---- createAlastriaSesion ----')
+console.log('\n---- createAlastriaSession ----')
 
 const alastriaSession = tokensFactory.tokens.createAlastriaSession(
   context,
@@ -141,23 +142,19 @@ console.log('\tThe PSMHashReciever is:', psmHashReciever)
 console.log('\n---- Create AIC ----')
 // create AIC
 
-const txCreateAlastriaID = transactionFactory.identityManager.createAlastriaIdentity(
-  web3,
-  config.adminPubk
-)
-const txCreateAlastriaIDSigned = tokensFactory.tokens.signJWT(
-  txCreateAlastriaID,
-  adminPrivateKey
-)
-
 // Only the createAlastriaID transaction must be signed inside of AIC object
 const aic = tokensFactory.tokens.createAIC(
-  kidCredential,
   context,
   type,
-  web3.utils.toHex(txCreateAlastriaIDSigned),
+  config.signedTxCreateAlastriaID,
   signedAT,
-  config.adminPubk
+  config.adminPubk,
+  kidCredential,
+  config.adminPubk,
+  jti,
+  tokenActivationDate,
+  tokenExpTime,
+  tokenNotBefore
 )
 console.log('\tAIC:', aic)
 

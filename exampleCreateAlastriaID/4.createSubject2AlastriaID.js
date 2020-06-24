@@ -108,6 +108,8 @@ async function main() {
     subject2PrivateKey
   )
   const aic = tokensFactory.tokens.createAIC(
+    [],
+    [],
     signedCreateTransaction,
     subjectSignedAT,
     configData.subject2Pubk

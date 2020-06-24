@@ -104,9 +104,11 @@ async function main() {
     entity3PrivateKey
   )
   const aic = tokensFactory.tokens.createAIC(
+    [],
+    [],
     signedCreateTransaction,
     entitySignedAT,
-    configData.entity3Pubk.substr(2)
+    configData.entity3Pubk
   )
   const signedAIC = tokensFactory.tokens.signJWT(aic, entity3PrivateKey)
   console.log('\tsignedAIC: \n', signedAIC)
