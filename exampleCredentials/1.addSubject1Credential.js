@@ -82,9 +82,9 @@ const uri = configData.uri
 const credential = tokensFactory.tokens.createCredential(
   kidCredential,
   didEntity1,
-  subjectAlastriaID,
   context,
   credentialSubject,
+  subjectAlastriaID,
   tokenExpTime,
   tokenActivationDate,
   jti
