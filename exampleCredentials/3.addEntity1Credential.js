@@ -62,10 +62,10 @@ credentialSubject.levelOfAssurance = 'basic'
 // End fake data to test
 
 const credential = tokensFactory.tokens.createCredential(
-  kidCredential,
   didEntity1,
   context,
   credentialSubject,
+  kidCredential,
   subjectAlastriaID,
   tokenExpTime,
   tokenActivationDate,
