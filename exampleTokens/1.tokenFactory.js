@@ -171,15 +171,15 @@ const data = config.data
 console.log('\n---- createPresentationRequest ----')
 
 const presentationRequest = tokensFactory.tokens.createPresentationRequest(
-  kidCredential,
   didIsssuer,
   context,
   procUrl,
   procHash,
   data,
   callbackURL,
-  config.adminPubk,
   type,
+  kidCredential,
+  config.adminPubk,
   tokenExpTime,
   tokenActivationDate,
   jti
