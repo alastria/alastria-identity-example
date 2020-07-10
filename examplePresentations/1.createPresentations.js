@@ -42,13 +42,15 @@ const subject1Identity = new UserIdentity(
 )
 
 const createPresentation = tokensFactory.tokens.createPresentation(
-    presentationData.credentials[0].header.kid,
     presentationData.credentials[0].payload.iss,
     presentationData.credentials[0].payload.aud,
     presentationData.credentials[0].payload.vp['@context'],
     presentationData.credentials[0].payload.vp.verifiableCredential,
     presentationData.credentials[0].payload.vp.procUrl,
     presentationData.credentials[0].payload.vp.procHash,
+    presentationData.credentials[0].payload.vp.type,
+    presentationData.credentials[0].header.kid,
+    presentationData.credentials[0].header.jwk,
     presentationData.credentials[0].payload.exp,
     presentationData.credentials[0].payload.nbf,
     presentationData.credentials[0].payload.jti
