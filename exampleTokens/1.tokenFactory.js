@@ -195,15 +195,15 @@ tests.presentationRequests.validatePresentationRequest(
 )
 
 const presentation = tokensFactory.tokens.createPresentation(
-  kidCredential,
   didIsssuer,
   didIsssuer,
   context,
   tokensFactory.tokens.signJWT(presentationRequest, adminPrivateKey),
   procUrl,
   procHash,
-  config.adminPubk,
   type,
+  kidCredential,
+  config.adminPubk,
   tokenExpTime,
   tokenActivationDate,
   jti
