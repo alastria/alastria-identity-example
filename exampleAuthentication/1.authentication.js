@@ -50,6 +50,8 @@ const alastriaToken = tokensFactory.tokens.createAlastriaToken(
   configData.callbackURL,
   configData.networkId,
   configData.tokenExpTime,
+  configData.kidCredential,
+  configData.entity1Pubk,
   configData.tokenActivationDate,
   configData.jsonTokenId
 )

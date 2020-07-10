@@ -82,13 +82,15 @@ console.log(
 async function main() {
   // At the beggining, the Entity1 should create an AT, sign it and send it to the wallet
   const at = tokensFactory.tokens.createAlastriaToken(
-    config.didEntity1,
-    config.providerURL,
-    config.callbackURL,
-    config.networkId,
-    config.tokenExpTime,
-    config.tokenActivationDate,
-    config.jsonTokenId
+    configData.didEntity1,
+    configData.providerURL,
+    configData.callbackURL,
+    configData.networkId,
+    configData.tokenExpTime,
+    configData.kidCredential,
+    configData.entity1Pubk,
+    configData.tokenActivationDate,
+    configData.jsonTokenId
   )
   const signedAT = tokensFactory.tokens.signJWT(at, entity1PrivateKey)
   console.log('\tsignedAT: \n', signedAT)
