@@ -28,7 +28,5 @@ web3.eth.call(presentationStatus).then((result) => {
     exist: resultStatus[0],
     status: resultStatus[1]
   }
-  configData.entity2PresentationStatus = presentationStatus
-  fs.writeFileSync('../configuration.json', JSON.stringify(configData))
   console.log('presentationStatus ------>', presentationStatus)
 })

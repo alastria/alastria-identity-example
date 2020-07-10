@@ -69,11 +69,9 @@ async function main() {
         exist: resultStatus[0],
         status: resultStatus[1]
       }
-      configData.entity2PresentationStatus = presentationStatus
-      fs.writeFileSync('../configuration.json', JSON.stringify(configData))
       console.log(
         'presentationStatus of the entity2------>',
-        configData.entity2PresentationStatus
+        presentationStatus
       )
     })
   })
