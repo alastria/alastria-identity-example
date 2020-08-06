@@ -44,7 +44,7 @@ if (configData.didSubject1 === undefined) {
     process.exit()
 }
 
-sync function main() {
+async function main() {
   const deleteCredStat = await subject1Identity.getKnownTransaction(
     deleteCredentialStatus
   )
