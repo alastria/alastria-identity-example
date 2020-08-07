@@ -12,7 +12,14 @@
     "type": "git",
     "url": "git+https://github.com/alastria/alastria-identity-example.git"
   },
-  "keywords": [],
+  "keywords": [
+    "alastria",
+    "identity",
+    "self-sovereign-identity",
+    "ssi",
+    "blockchain",
+    "quorum"
+  ],
   "author": "Alastria",
   "license": "MIT",
   "bugs": {
@@ -20,7 +27,7 @@
   },
   "homepage": "https://github.com/alastria/alastria-identity-example#readme",
   "dependencies": {
-    "alastria-identity-lib": "github:alastria/alastria-identity-lib#develop",
+    "alastria-identity-lib": "github:alastria/alastria-identity-lib#release/1.5",
     "alastria-identity-JSON-objects": "github:alastria/alastria-identity-JSON-objects#master"
   },
   "devDependencies": {
