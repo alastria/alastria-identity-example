@@ -1,23 +1,42 @@
 {
   "name": "alastria-identity-example",
-  "version": "1.0.0",
+  "version": "1.5.0",
   "description": "This is an example of how to interact with the libraries from [alastria-identity-lib](https://github.com/alastria/alastria-identity-lib). The library alastria-identity-lib re-covers the Smart Contracts from [alastria-identity](https://github.com/alastria/alastria-identity).",
-  "main": "exampleCreateAlastriaID.js",
+  "main": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint './**/*.{js,ts,tsx}'",
+    "lint-fix": "eslint './**/*.{js,ts,tsx}' --fix"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/alastria/alastria-identity-example.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "alastria",
+    "identity",
+    "self-sovereign-identity",
+    "ssi",
+    "blockchain",
+    "quorum"
+  ],
+  "author": "Alastria",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/alastria/alastria-identity-example/issues"
   },
   "homepage": "https://github.com/alastria/alastria-identity-example#readme",
   "dependencies": {
-    "alastria-identity-lib": "github:alastria/alastria-identity-lib#develop"
+    "alastria-identity-lib": "github:alastria/alastria-identity-lib#master",
+    "alastria-identity-JSON-objects": "github:alastria/alastria-identity-JSON-objects#master"
+  },
+  "devDependencies": {
+    "eslint": "^7.1.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1"
   }
 }
