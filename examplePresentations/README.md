@@ -1,0 +1,15 @@
+# Important
+
+First of all, when you run examples _**2.getSubjectPresentationStatus.js**_, _**5.getEntity2PresentationStatus.js**_ and _**7.getPresentationStatus.js**_ and the result is `{exist:false, status: '0'}` means that the example did not work properly. Probably because the DID of the subject or entity has been overwritten and therefore it is necessary to run the examples located in the folder _exampleCreateAlastriaID_ again.
+
+On the other hand, when the example _**1.createPresentations.js**_ is executed, the PSMHash of the entity is also created, but there is no traceability in the blockchain, for that you have to execute example _**4.updateEntity2Presentation.js**_.
+
+The last thing that is important to know is the order of execution of the examples, for this, each one of the examples has been ordered in the "proper" order of execution, which is the following.
+
+1. ([`1.createPresentations.js`](./1.createPresentations.js)). This example creates the presentation with the help of the token library, the PSMHashes of both the subject and the entity are created and finally the addSubjectPresentation transaction is created and then sent to the blockchain by the subject.
+2. ([`2.getSubjectPresentationStatus.js`](./2.getSubjectPresentationStatus.js)). What this example does is ask the blockchain what the status of a certain presentation is for the subject in this case. It will check the presentation created in the previous example. If everything went well should have the following result `{exist: true, status: '0'}`.
+3. ([`3.getPresentationList.js`](./3.getPresentationList.js)).This example returns all the presentations issued by a certain subject.
+4. ([`4.updateEntity2Presentation.js`](./4.updateEntity2Presentation.js)). In this case, this example is executed when the receiver receives the presentation. The entity updates the status of this presentation to _1_, which means the presentation was received. If everything went well should have the following result `{exist: true, status: '1'}`.
+5. ([`5.getEntity2PresentationStatus.js`](./5.getEntity2PresentationStatus.js)). What this example does is ask the blockchain what the status of a certain presentation is for the entity in this case. 
+6. ([`6.updateSubject1Presentation.js`](./6.updateSubject1Presentation.js)). This example is executed by the subject when they want the data contained in the presentation to no longer be used by that entity. To do this, the subject updates the status that is saved in the blockchain to 2, that means _AskDeletion_, so then, the entity should update the status of the presentation to 3, _DeletionConfirmation_. It can be done with the example number 4 ([`4.updateEntity2Presentation.js`](./4.updateEntity2Presentation.js)), but changing the status to _3_ instead of _1_.
+7. ([`7.getPresentationStatus.js`](./7.getPresentationStatus.js)). This example returns the general status of the presentation, i.e. if the subject has issued the presentation (status _0_), while the entity has marked the presentation as received (status _1_), then, this example will return the most advanced state, in this case, the value _1_, _Received_.
