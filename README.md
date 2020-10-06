@@ -56,7 +56,7 @@ node x.<script>
 
 **WARNING**
 
-This is valid only for the Alastria environment. If we work with an internal implementation for testing purposes, we will have to change some parameters in the configuration files:
+This is valid only for the Alastria testnet environment. If you are working on another environment, you will need change some parameters in the configuration files:
 
 - Smart Contracts deployed addresses: found in `node_modules/alastria-identity-lib/dist/config.js`
 - NodeURL in `configuration.json`
