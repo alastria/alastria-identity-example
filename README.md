@@ -60,8 +60,7 @@ This is valid only for the Alastria testnet environment. If you are working on a
 
 - Smart Contracts deployed addresses: found in `node_modules/alastria-identity-lib/dist/config.js`
 - NodeURL in `configuration.json`
-- Have in mind that entities have to be created beforehand, so make sure the different variables for "entity" in configuration.json should probably be changed too.
-- Also, have in mind that the only entity that can execute the issuer scripts is the account that deployed the contracts, so use its address in case it is asked for somewhere else.
+- Have in mind that the only entity that can execute the issuer scripts in the first run is the account that deployed the contracts (i.e. the Admin account). It has to be initialized, though, so you have to execute at least the three first scripts in the folder (exampleFirstEntity)[https://github.com/alastria/alastria-identity-example/tree/master/exampleFirstEntity] before doing anything else. The "Entity1" shoud be the Admin.
 
 This is not an extensive list, but a hint of what to look for in case there are errors related to account management in test environments.
 
