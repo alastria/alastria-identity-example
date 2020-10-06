@@ -58,7 +58,7 @@ node x.<script>
 
 This is valid only for the Alastria environment. If we work with an internal implementation for testing purposes, we will have to change some parameters in the configuration files:
 
-- Smartcontracts deployed addresses: found in `node_modules/alastria-identity-lib/dist/config.js`
+- Smart Contracts deployed addresses: found in `node_modules/alastria-identity-lib/dist/config.js`
 - NodeURL in `configuration.json`
 - Have in mind that entities have to be created beforehand, so make sure the different variables for "entity" in configuration.json should probably be changed too.
 - Also, have in mind that the only entity that can execute the issuer scripts is the account that deployed the contracts, so use its address in case it is asked for somewhere else.
