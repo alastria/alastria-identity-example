@@ -63,7 +63,7 @@ This is valid only for the Alastria testnet environment. If you are working on a
 - Have in mind that entities have to be created beforehand, so make sure the different variables for "entity" in configuration.json should probably be changed too.
 - Also, have in mind that the only entity that can execute the issuer scripts is the account that deployed the contracts, so use its address in case it is asked for somewhere else.
 
-This is not an extensive list, but a hint for what to look for in case there are errors related to account management in test environments.
+This is not an extensive list, but a hint of what to look for in case there are errors related to account management in test environments.
 
 ## Code linter and formatter
 
