@@ -3,6 +3,11 @@ const {
   UserIdentity,
   tokensFactory
 } = require('alastria-identity-lib')
+const {
+  PSMHash,
+  createCredential,
+  signJWT
+} = require('alastria-identity-lib/dist/tokenFactory/jwt')
 const Web3 = require('web3')
 const fs = require('fs')
 const keythereum = require('keythereum')
@@ -61,7 +66,7 @@ credentialSubject.levelOfAssurance = 'basic'
 
 // End fake data to test
 
-const credential = tokensFactory.tokens.createCredential(
+const credential = createCredential(
   didEntity1,
   context,
   credentialSubject,
@@ -73,17 +78,10 @@ const credential = tokensFactory.tokens.createCredential(
 )
 console.log('The credential1 is: ', credential)
 
-const signedJWTCredential = tokensFactory.tokens.signJWT(
-  credential,
-  entity1PrivateKey
-)
+const signedJWTCredential = signJWT(credential, entity1PrivateKey)
 console.log('The signed token is: ', signedJWTCredential)
 
-const credentialHash = tokensFactory.tokens.PSMHash(
-  web3,
-  signedJWTCredential,
-  didEntity1
-)
+const credentialHash = PSMHash(web3, signedJWTCredential, didEntity1)
 console.log('The Entity1 PSMHash is:', credentialHash)
 fs.writeFileSync(
   `./PSMHashEntity1.json`,

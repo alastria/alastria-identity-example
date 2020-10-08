@@ -1,9 +1,9 @@
 const {
   transactionFactory,
   UserIdentity,
-  config,
-  tokensFactory
+  config
 } = require('alastria-identity-lib')
+const { createDID } = require('alastria-identity-lib/dist/tokenFactory/jwt')
 const fs = require('fs')
 const Web3 = require('web3')
 const keythereum = require('keythereum')
@@ -128,7 +128,7 @@ async function main() {
                 '../configuration.json',
                 JSON.stringify(configData)
               )
-              const alastriaDID = tokensFactory.tokens.createDID(
+              const alastriaDID = createDID(
                 configData.network,
                 AlastriaIdentity.slice(26),
                 configData.networkId
