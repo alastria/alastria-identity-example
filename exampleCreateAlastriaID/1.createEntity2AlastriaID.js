@@ -102,15 +102,11 @@ async function main() {
   )
 
   // Then, the entity2, also from the wallet should build an AIC wich contains the signed AT, the signedTx and the entity2 Public Key
-  const entitySignedAT = tokensFactory.tokens.signJWT(
-    signedAT,
-    entity2PrivateKey
-  )
   const aic = tokensFactory.tokens.createAIC(
     [],
     [],
     signedCreateTransaction,
-    entitySignedAT,
+    signedAT,
     configData.entity2Pubk
   )
   const signedAIC = tokensFactory.tokens.signJWT(aic, entity2PrivateKey)
