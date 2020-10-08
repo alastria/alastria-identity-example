@@ -105,15 +105,11 @@ async function main() {
   )
 
   // Then, the subject, also from the wallet should build an AIC wich contains the signed AT, the signedTx and the Subject Public Key
-  const subjectSignedAT = tokensFactory.tokens.signJWT(
-    signedAT,
-    subject2PrivateKey
-  )
   const aic = tokensFactory.tokens.createAIC(
     [],
     [],
     signedCreateTransaction,
-    subjectSignedAT,
+    signedAT,
     configData.subject2Pubk
   )
   const signedAIC = tokensFactory.tokens.signJWT(aic, subject2PrivateKey)
