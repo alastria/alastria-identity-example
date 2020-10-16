@@ -1,9 +1,14 @@
 const {
   transactionFactory,
   UserIdentity,
-  config,
-  tokensFactory
+  config
 } = require('alastria-identity-lib')
+const {
+  createAIC,
+  createAlastriaToken,
+  signJWT,
+  createDID
+} = require('alastria-identity-lib/dist/tokenFactory/jwt')
 const fs = require('fs')
 const Web3 = require('web3')
 const keythereum = require('keythereum')
@@ -81,7 +86,7 @@ console.log(
 )
 async function main() {
   // At the beggining, the Entity1 should create an AT, sign it and send it to the wallet
-  const at = tokensFactory.tokens.createAlastriaToken(
+  const at = createAlastriaToken(
     configData.didEntity1,
     configData.providerURL,
     configData.callbackURL,
@@ -92,7 +97,7 @@ async function main() {
     configData.tokenActivationDate,
     configData.jsonTokenId
   )
-  const signedAT = tokensFactory.tokens.signJWT(at, entity1PrivateKey)
+  const signedAT = signJWT(at, entity1PrivateKey)
   console.log('\tsignedAT: \n', signedAT)
 
   const createResult = await createAlastriaId()
@@ -101,14 +106,14 @@ async function main() {
   )
 
   // Then, the entity3, also from the wallet should build an AIC wich contains the signed AT, the signedTx and the entity3 Public Key
-  const aic = tokensFactory.tokens.createAIC(
+  const aic = createAIC(
     [],
     [],
     signedCreateTransaction,
     signedAT,
     configData.entity3Pubk
   )
-  const signedAIC = tokensFactory.tokens.signJWT(aic, entity3PrivateKey)
+  const signedAIC = signJWT(aic, entity3PrivateKey)
   console.log('\tsignedAIC: \n', signedAIC)
 
   // Then, Entity1 receive the AIC. It should decode it and verify the signature with the public key.
@@ -154,7 +159,7 @@ async function main() {
                 '../configuration.json',
                 JSON.stringify(configData, null, 4)
               )
-              const alastriaDID = tokensFactory.tokens.createDID(
+              const alastriaDID = createDID(
                 configData.network,
                 AlastriaIdentity.slice(26),
                 configData.networkId

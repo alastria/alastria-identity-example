@@ -1,4 +1,9 @@
-const { tokensFactory } = require('alastria-identity-lib')
+const {
+  createAlastriaSession,
+  createAlastriaToken,
+  signJWT,
+  verifyJWT
+} = require('alastria-identity-lib/dist/tokenFactory/jwt')
 const fs = require('fs')
 const keythereum = require('keythereum')
 
@@ -44,7 +49,7 @@ try {
 
 console.log('\n ------ Example of Authentication ------ \n')
 
-const alastriaToken = tokensFactory.tokens.createAlastriaToken(
+const alastriaToken = createAlastriaToken(
   configData.didEntity1,
   configData.providerURL,
   configData.callbackURL,
@@ -58,16 +63,13 @@ const alastriaToken = tokensFactory.tokens.createAlastriaToken(
 console.log('\tThe Alastria token is: \n', alastriaToken)
 
 // Signing the AlastriaToken
-const signedAT = tokensFactory.tokens.signJWT(alastriaToken, entity1PrivateKey)
+const signedAT = signJWT(alastriaToken, entity1PrivateKey)
 
 // '04' means uncompressed key (more info at https://github.com/indutny/elliptic/issues/138)
-const verifyAT = tokensFactory.tokens.verifyJWT(
-  signedAT,
-  '04' + configData.entity1Pubk.substr(2)
-)
+const verifyAT = verifyJWT(signedAT, '04' + configData.entity1Pubk.substr(2))
 console.log('\tIs the signedJWT verified?', verifyAT)
 
-const alastriaSession = tokensFactory.tokens.createAlastriaSession(
+const alastriaSession = createAlastriaSession(
   configData.context,
   configData.didSubject1,
   configData.subject1Pubk,
@@ -78,15 +80,9 @@ const alastriaSession = tokensFactory.tokens.createAlastriaSession(
 )
 console.log('\tThe Alastria session is:\n', alastriaSession)
 
-const signedAS = tokensFactory.tokens.signJWT(
-  alastriaSession,
-  subject1PrivateKey
-)
+const signedAS = signJWT(alastriaSession, subject1PrivateKey)
 console.log('\tThe signedAS is:\n', signedAS)
 
 // '04' means uncompressed key (more info at https://github.com/indutny/elliptic/issues/138)
-const verifyAS = tokensFactory.tokens.verifyJWT(
-  signedAS,
-  '04' + configData.subject1Pubk.substr(2)
-)
+const verifyAS = verifyJWT(signedAS, '04' + configData.subject1Pubk.substr(2))
 console.log('\tIs the signedJWT verified?', verifyAS)
