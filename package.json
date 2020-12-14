@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/alastria/alastria-identity-example#readme",
   "dependencies": {
-    "alastria-identity-lib": "github:alastria/alastria-identity-lib#master",
+    "alastria-identity-lib": "github:alastria/alastria-identity-lib#feature/support-upgradeable-contracts",
     "alastria-identity-JSON-objects": "github:alastria/alastria-identity-JSON-objects#master"
   },
   "devDependencies": {
