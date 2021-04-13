@@ -40,7 +40,7 @@ const entity1Identity = new UserIdentity(
 // We have Subject2 which is a person with an identity wallet. You get its private key and instantiate its UserIdentity
 // This step should be done in the private Wallet.
 const keyDataSubject2 = fs.readFileSync(
-  '../keystores/subject2-643266eb3105f4bf8b4f4fec50886e453f0da9ad.json'
+  '../keystores/subject2-6e3976aeaa3a59e4af51783cc46ee0ffabc5dc11.json'
 )
 const subject2Keystore = JSON.parse(keyDataSubject2)
 let subject2PrivateKey

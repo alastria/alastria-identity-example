@@ -12,13 +12,13 @@ const rawdata = fs.readFileSync('../configuration.json')
 const configData = JSON.parse(rawdata)
 
 const keyDataEntity1 = fs.readFileSync(
-  '../keystores/identity1-a9728125c573924b2b1ad6a8a8cd9bf6858ced49.json'
+  '../keystores/entity1-a9728125c573924b2b1ad6a8a8cd9bf6858ced49.json'
 )
-const entity1Keystore = JSON.parse(keyDataEntity1)
-const keyDataServiceProvider = fs.readFileSync(
-  '../keystores/serviceProvider-643266eb3105f4bf8b4f4fec50886e453f0da9ad.json'
+const keystoreDataEntity1 = JSON.parse(keyDataEntity1)
+const keyDataAdmin = fs.readFileSync(
+  '../keystores/admin-643266eb3105f4bf8b4f4fec50886e453f0da9ad.json'
 )
-const serviceProviderKeyStore = JSON.parse(keyDataServiceProvider)
+const keystoreDataAdmin = JSON.parse(keyDataAdmin)
 
 // Init your blockchain provider
 const myBlockchainServiceIp = configData.nodeURL
@@ -29,22 +29,26 @@ console.log(
 )
 // Data
 
-let serviceProviderPrivateKey
+const adminKeyStore = keystoreDataAdmin
+
+let adminPrivateKey
 try {
-  serviceProviderPrivateKey = keythereum.recover(
+  adminPrivateKey = keythereum.recover(
     configData.addressPassword,
-    serviceProviderKeyStore
+    adminKeyStore
   )
 } catch (error) {
   console.log('ERROR: ', error)
   process.exit(1)
 }
 
-const serviceProviderIdentity = new UserIdentity(
+const adminIdentity = new UserIdentity(
   web3,
-  `0x${serviceProviderKeyStore.address}`,
-  serviceProviderPrivateKey
+  `0x${adminKeyStore.address}`,
+  adminPrivateKey
 )
+
+const entity1Keystore = keystoreDataEntity1
 
 let entity1PrivateKey
 try {
@@ -87,7 +91,7 @@ async function main() {
   const prepareResult = await preparedAlastriaId()
   const createResult = await createAlastriaId()
 
-  const signedPreparedTransaction = await serviceProviderIdentity.getKnownTransaction(
+  const signedPreparedTransaction = await adminIdentity.getKnownTransaction(
     prepareResult
   )
   const signedCreateTransaction = await entity1Identity.getKnownTransaction(

@@ -7,7 +7,7 @@ const rawdata = fs.readFileSync('../configuration.json')
 const configData = JSON.parse(rawdata)
 
 const keyDataAdmin = fs.readFileSync(
-  '../keystores/admin-6e3976aeaa3a59e4af51783cc46ee0ffabc5dc11.json'
+  '../keystores/admin-643266eb3105f4bf8b4f4fec50886e453f0da9ad.json'
 )
 const keystoreDataAdmin = JSON.parse(keyDataAdmin)
 
