@@ -10,7 +10,7 @@ const configData = JSON.parse(rawdata)
 const myBlockchainServiceIp = configData.nodeURL
 const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 
-const keyDataAdmin = fs.readFileSync('../keystores/admin-643266eb3105f4bf8b4f4fec50886e453f0da9ad.json')
+const keyDataAdmin = fs.readFileSync('../keystores/firstIdentity-643266eb3105f4bf8b4f4fec50886e453f0da9ad.json')
 const keystoreDataAdmin = JSON.parse(keyDataAdmin)
 
 const adminKeyStore = keystoreDataAdmin
