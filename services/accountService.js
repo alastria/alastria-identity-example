@@ -25,4 +25,4 @@ class AccountService {
   }
 }
 
-module.exports = AccountService
+export default AccountService

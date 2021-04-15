@@ -37,4 +37,4 @@ class AdminService {
   }
 }
 
-module.exports = AdminService
+export default adminService
