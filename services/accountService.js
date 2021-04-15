@@ -12,6 +12,10 @@ class AccountService {
     return this.connection
   }
 
+  hasValidKeys(configuration, requiredKeys) {
+      return requiredKeys.every(item => configuration.hasOwnProperty(item))
+  }
+
   async unlock(userAddress, userPassword) {
     return await this.connection.eth.personal.unlockAccount(
         userAddress,
