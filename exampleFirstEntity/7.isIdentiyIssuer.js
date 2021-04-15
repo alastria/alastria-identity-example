@@ -2,8 +2,17 @@ const { transactionFactory } = require('alastria-identity-lib')
 const Web3 = require('web3')
 const fs = require('fs')
 
+const CONFIG_NEEDED_KEYS = ['nodeURL', 'didEntity1']
+
 const rawdata = fs.readFileSync(process.env.CONFIGURATION_PATH || '../configuration.json')
 const configData = JSON.parse(rawdata)
+
+const CONFIG_HAS_ALL_KEYS = CONFIG_NEEDED_KEYS.every(item => configData.hasOwnProperty(item))
+
+if (!CONFIG_HAS_ALL_KEYS) {
+  console.log(`You need the following keys in your config to run this example: ${CONFIG_NEEDED_KEYS.join(', ')}`)
+  process.exit(1)
+}
 
 // Init your blockchain provider
 const myBlockchainServiceIp = configData.nodeURL
