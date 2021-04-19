@@ -11,16 +11,16 @@ const config = JSON.parse(rawdata)
 const tokenPayload = config.tokenPayload
 // End data
 
-const keyDataAdmin = fs.readFileSync(
+const keyDataFirstIdentity = fs.readFileSync(
   '../keystores/firstIdentity-643266eb3105f4bf8b4f4fec50886e453f0da9ad.json'
 )
-const keystoreDataAdmin = JSON.parse(keyDataAdmin)
+const keystoreDataFirstIdentity = JSON.parse(keyDataFirstIdentity)
 
-const adminKeyStore = keystoreDataAdmin
+const firstIdentityKeyStore = keystoreDataFirstIdentity
 
-let adminPrivateKey
+let firstIdentityPrivateKey
 try {
-  adminPrivateKey = keythereum.recover(config.addressPassword, adminKeyStore)
+  firstIdentityPrivateKey = keythereum.recover(config.addressPassword, firstIdentityKeyStore)
 } catch (error) {
   console.log('ERROR: ', error)
   process.exit(1)
@@ -28,7 +28,7 @@ try {
 
 console.log('---- signJWT ----')
 
-const signedJWT = tokensFactory.tokens.signJWT(tokenPayload, adminPrivateKey)
+const signedJWT = tokensFactory.tokens.signJWT(tokenPayload, firstIdentityPrivateKey)
 console.log('\tThe signed JWT is: ', signedJWT)
 tests.tokens.validateToken(signedJWT)
 
@@ -42,7 +42,7 @@ console.log('\n---- verifyJWT ----')
 // '04' means uncompressed key (more info at https://github.com/indutny/elliptic/issues/138)
 const verifyJWT = tokensFactory.tokens.verifyJWT(
   signedJWT,
-  '04' + config.adminPubk.substr(2)
+  '04' + config.firstIdentityPubk.substr(2)
 )
 console.log('\tIs the signedJWT verified?', verifyJWT)
 
@@ -69,14 +69,14 @@ const alastriaToken = tokensFactory.tokens.createAlastriaToken(
   alastriaNetId,
   tokenExpTime,
   kidCredential,
-  config.adminPubk,
+  config.firstIdentityPubk,
   tokenActivationDate,
   jsonTokenId
 )
 console.log('\tThe Alastria token is: \n', alastriaToken)
 
 // Signing the AlastriaToken
-const signedAT = tokensFactory.tokens.signJWT(alastriaToken, adminPrivateKey)
+const signedAT = tokensFactory.tokens.signJWT(alastriaToken, firstIdentityPrivateKey)
 tests.tokens.validateToken(signedAT)
 
 console.log('\n---- createAlastriaSession ----')
@@ -88,7 +88,7 @@ const alastriaSession = tokensFactory.tokens.createAlastriaSession(
   type,
   signedAT,
   tokenExpTime,
-  config.adminPubk,
+  config.firstIdentityPubk,
   tokenActivationDate,
   jsonTokenId
 )
@@ -148,9 +148,9 @@ const aic = tokensFactory.tokens.createAIC(
   type,
   config.signedTxCreateAlastriaID,
   signedAT,
-  config.adminPubk,
+  config.firstIdentityPubk,
   kidCredential,
-  config.adminPubk,
+  config.firstIdentityPubk,
   jti,
   tokenActivationDate,
   tokenExpTime,
@@ -158,7 +158,7 @@ const aic = tokensFactory.tokens.createAIC(
 )
 console.log('\tAIC:', aic)
 
-const signedJWTAIC = tokensFactory.tokens.signJWT(aic, adminPrivateKey)
+const signedJWTAIC = tokensFactory.tokens.signJWT(aic, firstIdentityPrivateKey)
 console.log('AIC Signed:', signedJWTAIC)
 tests.alastriaIdCreations.validateAlastriaIdCreation(signedJWTAIC)
 
@@ -179,7 +179,7 @@ const presentationRequest = tokensFactory.tokens.createPresentationRequest(
   callbackURL,
   type,
   kidCredential,
-  config.adminPubk,
+  config.firstIdentityPubk,
   tokenExpTime,
   tokenActivationDate,
   jti
@@ -187,7 +187,7 @@ const presentationRequest = tokensFactory.tokens.createPresentationRequest(
 
 const signedPresentationRequest = tokensFactory.tokens.signJWT(
   presentationRequest,
-  adminPrivateKey
+  firstIdentityPrivateKey
 )
 console.log('\nThe presentationRequest is: ', signedPresentationRequest)
 tests.presentationRequests.validatePresentationRequest(
@@ -198,19 +198,19 @@ const presentation = tokensFactory.tokens.createPresentation(
   didIsssuer,
   didIsssuer,
   context,
-  tokensFactory.tokens.signJWT(presentationRequest, adminPrivateKey),
+  tokensFactory.tokens.signJWT(presentationRequest, firstIdentityPrivateKey),
   procUrl,
   procHash,
   type,
   kidCredential,
-  config.adminPubk,
+  config.firstIdentityPubk,
   tokenExpTime,
   tokenActivationDate,
   jti
 )
 const signedPresentation = tokensFactory.tokens.signJWT(
   presentation,
-  adminPrivateKey
+  firstIdentityPrivateKey
 )
 console.log('\nThe presentation is: ', signedPresentation)
 tests.presentations.validatePresentation(signedPresentation)
