@@ -25,7 +25,7 @@ tsc
 |examplePresentations| Contains examples of how to create, add and get Presentations in AlastriaID |[Wiki](https://github.com/alastria/alastria-identity-example/wiki/Presentations-examples)
 |exampleIdentityServiceProvider| Contains an example of how to add and remove a Identity Service Provider|[Wiki](https://github.com/alastria/alastria-identity-example/wiki/Service-Provider-examples)
 |exampleIdentityIssuer| Contains an example of how to add and remove a Identity Issuer|[Wiki](https://github.com/alastria/alastria-identity-example/wiki/Issuer-examples)
-|exampleFirstEntity| Contains an example of how to create the first identity with the admin account|[Wiki](https://github.com/alastria/alastria-identity-example/wiki/First-Entity-examples)
+|exampleFirstEntity| Contains an example of how to create the first entity with the firstIdentity account|[Wiki](https://github.com/alastria/alastria-identity-example/wiki/First-Entity-examples)
 |exampleEntities| Contains an example of get list of entities and get entity information  |[Wiki](https://github.com/alastria/alastria-identity-example/wiki/Entities-examples)
 |exampleAuthentication| It contains an example of how authentication is done  |[Wiki](https://github.com/alastria/alastria-identity-example/wiki/Authentication-example)
 |keystores| Contains the mocked keystores that we used to create the identities with different roles. These roles are explained [here](/keystores/README.md)  |
@@ -60,7 +60,7 @@ This is valid only for the Alastria testnet environment. If you are working on a
 
 - Smart Contracts deployed addresses: found in `node_modules/alastria-identity-lib/dist/config.js`
 - NodeURL in `configuration.json`
-- Have in mind that the only entity that can execute the issuer scripts in the first run is the account that deployed the contracts (i.e. the Admin account). It has to be initialized, though, so you have to execute at least the three first scripts in the folder (exampleFirstEntity)[https://github.com/alastria/alastria-identity-example/tree/master/exampleFirstEntity] before doing anything else. The "Entity1" shoud be the Admin.
+- Have in mind that the only entity that can execute the issuer scripts in the first run is the firstIdentity account. It has to be initialized, though, so you have to execute at least the three first scripts in the folder (exampleFirstEntity)[https://github.com/alastria/alastria-identity-example/tree/master/exampleFirstEntity] before doing anything else.
 
 This is not an extensive list, but a hint of what to look for in case there are errors related to account management in test environments.
 

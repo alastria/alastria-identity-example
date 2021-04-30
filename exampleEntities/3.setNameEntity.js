@@ -10,23 +10,23 @@ const configData = JSON.parse(rawdata)
 const myBlockchainServiceIp = configData.nodeURL
 const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 
-const keyDataAdmin = fs.readFileSync('../keystores/admin-6e3976aeaa3a59e4af51783cc46ee0ffabc5dc11.json')
-const keystoreDataAdmin = JSON.parse(keyDataAdmin)
+const keyDataFirstIdentity = fs.readFileSync('../keystores/firstIdentity-643266eb3105f4bf8b4f4fec50886e453f0da9ad.json')
+const keystoreDataFirstIdentity = JSON.parse(keyDataFirstIdentity)
 
-const adminKeyStore = keystoreDataAdmin
+const firstIdentityKeyStore = keystoreDataFirstIdentity
 
-let adminPrivateKey
+let firstIdentityPrivateKey
 try {
-  adminPrivateKey = keythereum.recover(
+  firstIdentityPrivateKey = keythereum.recover(
     configData.addressPassword,
-    adminKeyStore
+    firstIdentityKeyStore
   )
 } catch (error) {
   console.log('ERROR: ', error)
   process.exit(1)
 }
 
-const adminIdentity = new UserIdentity(web3, `0x${adminKeyStore.address}`, adminPrivateKey)
+const firstIdentityIdentity = new UserIdentity(web3, `0x${firstIdentityKeyStore.address}`, firstIdentityPrivateKey)
 
 // ------------------------------------------------------------------------------
 console.log('\n ------ Setting entity name ------ \n')
@@ -42,7 +42,7 @@ console.log('\n ------ Setting entity name ------ \n')
             configData.didEntity1, 
             "NombreEntidad"
         )
-        const getKnownTxEntityName = await adminIdentity.getKnownTransaction(
+        const getKnownTxEntityName = await firstIdentityIdentity.getKnownTransaction(
             transactionEntityName
         )
         web3.eth
