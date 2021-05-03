@@ -142,7 +142,7 @@ async function main() {
               to: config.alastriaIdentityManager,
               data: web3.eth.abi.encodeFunctionCall(
                 config.contractsAbi.AlastriaIdentityManager.identityKeys,
-                [entity2Keystore.address]
+                [`0x${entity2Keystore.address}`]
               )
             })
             .then((AlastriaIdentity) => {
