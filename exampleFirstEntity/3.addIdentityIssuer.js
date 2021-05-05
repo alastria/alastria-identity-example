@@ -37,7 +37,7 @@ const firstIdentityIdentity = new UserIdentity(
 // Im not sure if this is needed
 async function unlockAccount() {
   const unlockedAccount = await web3.eth.personal.unlockAccount(
-    firstIdentityIdentity.address,
+    `0x${firstIdentityKeyStore.address}`,
     configData.addressPassword,
     500
   )

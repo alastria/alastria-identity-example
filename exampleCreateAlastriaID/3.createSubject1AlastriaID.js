@@ -66,7 +66,7 @@ const subject1Identity = new UserIdentity(
 function prepareAlastriaId() {
   const preparedId = transactionFactory.identityManager.prepareAlastriaID(
     web3,
-    subject1Keystore.address
+    `0x${subject1Keystore.address}`
   )
   return preparedId
 }
@@ -145,7 +145,7 @@ async function main() {
               to: config.alastriaIdentityManager,
               data: web3.eth.abi.encodeFunctionCall(
                 config.contractsAbi.AlastriaIdentityManager.identityKeys,
-                [subject1Keystore.address]
+                [`0x${subject1Keystore.address}`]
               )
             })
             .then((AlastriaIdentity) => {
