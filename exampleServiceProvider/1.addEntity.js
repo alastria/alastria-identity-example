@@ -48,15 +48,14 @@ async function unlockAccount() {
 async function mainAddEntity() {
   unlockAccount()
   console.log('\n ------ Example of adding the entity1 like a Entity ------ \n')
-  const transactionAddEntity = await transactionFactory.identityManager.addEntity(
+  const transactionAddEntity = await transactionFactory.alastriaNameService.addEntity(
     web3,
     configData.didEntity2,
     configData.entityData2.name,
     configData.entityData2.cif,
     configData.entityData2.urlLogo,
     configData.entityData2.urlCreateAID,
-    configData.entityData2.urlAOA,
-    configData.entityData2.status
+    configData.entityData2.urlAOA
   )
   const getKnownTxAddEntity = await entity1Identity.getKnownTransaction(
     transactionAddEntity

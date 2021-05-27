@@ -38,7 +38,7 @@ console.log('\n ------ Setting entity Aid ------ \n')
     
     async function mainSetAidEntity(){
         console.log('\n ------ Example of setting AID of entity1 like a Entity ------ \n')
-        const transactionEntityAid = await transactionFactory.identityManager.setUrlCreateAID(
+        const transactionEntityAid = await transactionFactory.alastriaNameService.setUrlCreateAID(
             web3, 
             configData.didEntity1, 
             "www.NombreEntidad.com/AID"

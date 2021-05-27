@@ -17,8 +17,7 @@ if (configData.subject1 === undefined) {
   process.exit()
 }
 
-// let entityData = transactionFactory.identityManager.getEntity(web3, entity1Identity.address)
-const entityData = transactionFactory.identityManager.getEntity(
+const entityData = transactionFactory.alastriaNameService.getEntity(
   web3,
   configData.didEntity1
 )

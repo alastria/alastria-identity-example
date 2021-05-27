@@ -17,7 +17,7 @@ if (configData.subject1 === undefined) {
   process.exit()
 }
 
-const entitiesList = transactionFactory.identityManager.entitiesList(web3)
+const entitiesList = transactionFactory.alastriaNameService.entitiesList(web3)
 console.log('(entitiesList) Transaction ------>', entitiesList)
 web3.eth
   .call(entitiesList)

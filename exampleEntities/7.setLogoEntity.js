@@ -38,7 +38,7 @@ console.log('\n ------ Setting entity Logo ------ \n')
 
     async function mainSetLogoEntity(){
         console.log('\n ------ Example of setting Logo of entity1 like a Entity ------ \n')
-        const transactionEntityLogo = await transactionFactory.identityManager.setUrlLogo(
+        const transactionEntityLogo = await transactionFactory.alastriaNameService.setUrlLogo(
             web3, 
             configData.didEntity1, 
             "www.NombreEntidad.com/logo"
