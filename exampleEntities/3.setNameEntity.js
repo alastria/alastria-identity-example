@@ -37,7 +37,7 @@ console.log('\n ------ Setting entity name ------ \n')
 	}
     async function mainSetNameEntity(){
         console.log('\n ------ Example of setting name of entity1 like a Entity ------ \n')
-        const transactionEntityName = await transactionFactory.identityManager.setNameEntity(
+        const transactionEntityName = await transactionFactory.alastriaNameService.setNameEntity(
             web3, 
             configData.didEntity1, 
             "NombreEntidad"

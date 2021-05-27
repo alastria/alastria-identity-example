@@ -37,7 +37,7 @@ console.log('\n ------ Setting entity Cif ------ \n')
     
     async function mainSetCifEntity(){
         console.log('\n ------ Example of setting Cif of entity1 like a Entity ------ \n')
-        const transactionEntityCif = await transactionFactory.identityManager.setCifEntity(
+        const transactionEntityCif = await transactionFactory.alastriaNameService.setCifEntity(
             web3, 
             configData.didEntity1, 
             "A-2866354"

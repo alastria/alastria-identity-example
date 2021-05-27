@@ -38,7 +38,7 @@ console.log('\n ------ Setting entity Aoa ------ \n')
     
     async function mainSetAoaEntity(){
         console.log('\n ------ Example of setting AOA of entity1 like a Entity ------ \n')
-        const transactionEntityAoa = await transactionFactory.identityManager.setUrlAOA(
+        const transactionEntityAoa = await transactionFactory.alastriaNameService.setUrlAOA(
             web3, 
             configData.didEntity1, 
             "www.NombreEntidad.com/AOA"
