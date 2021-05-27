@@ -66,16 +66,16 @@
             "field_name": "email"
         }
     ],
-    "entity1": "0x30073e70c08689193adc853882ccc68217386963",
-    "didEntity1": "did:ala:quor:redT:30073e70c08689193adc853882ccc68217386963",
-    "entity2": "0x2576d56e83e8a9701ab9171ca51e895461b8bbe9",
-    "didEntity2": "did:ala:quor:redT:2576d56e83e8a9701ab9171ca51e895461b8bbe9",
-    "entity3": "0x9a25789a2e27810cebfef419399e7f10aeb235ea",
-    "didEntity3": "did:ala:quor:redT:9a25789a2e27810cebfef419399e7f10aeb235ea",
-    "subject1": "0x0c08ebd4137af92584a6cfe8470039d5ca3a9aa8",
-    "didSubject1": "did:ala:quor:redT:0c08ebd4137af92584a6cfe8470039d5ca3a9aa8",
-    "subject2": "0xcff77db510086e90a9f142778cd2bdb124dc4219",
-    "didSubject2": "did:ala:quor:redT:cff77db510086e90a9f142778cd2bdb124dc4219",
+    "entity1": "0x4b83432035d1477d3a99b23baa82bd9db61a2d68",
+    "didEntity1": "did:ala:quor:redT:4b83432035d1477d3a99b23baa82bd9db61a2d68",
+    "entity2": "0x3eff8efba40fb7c84a339d0be74a11b3b068ba90",
+    "didEntity2": "did:ala:quor:redT:3eff8efba40fb7c84a339d0be74a11b3b068ba90",
+    "entity3": "0x87076e4969c946cbe1ebd4ab68af2f23c807780b",
+    "didEntity3": "did:ala:quor:redT:87076e4969c946cbe1ebd4ab68af2f23c807780b",
+    "subject1": "0x7fe5f08f485686b58d5ac0cb7f066166a3f2a28f",
+    "didSubject1": "did:ala:quor:redT:7fe5f08f485686b58d5ac0cb7f066166a3f2a28f",
+    "subject2": "0xa1fdf18af12e8123bb9d2f78110f12c9d958bd79",
+    "didSubject2": "did:ala:quor:redT:a1fdf18af12e8123bb9d2f78110f12c9d958bd79",
     "issuerLevel": 2,
     "updateSubject1PresentationTo": 2,
     "updateEntity2PresentationTo": 1,
@@ -93,23 +93,20 @@
         "cif": "A-28964782",
         "urlLogo": "www.entidad1.com/logo",
         "urlCreateAID": "www.entidad1.com/AID",
-        "urlAOA": "www.entidad1.com/AOA",
-        "status": true
+        "urlAOA": "www.entidad1.com/AOA"
     },
     "entityData2": {
         "name": "Entidad2",
         "cif": "A-95974786",
         "urlLogo": "www.entidad2.com/logo",
         "urlCreateAID": "www.entidad2.com/AID",
-        "urlAOA": "www.entidad2.com/AOA",
-        "status": true
+        "urlAOA": "www.entidad2.com/AOA"
     },
     "entityData3": {
         "name": "Entidad3",
         "cif": "A-49934581",
         "urlLogo": "www.entidad3.com/logo",
         "urlCreateAID": "www.entidad3.com/AID",
-        "urlAOA": "www.entidad3.com/AOA",
-        "status": true
+        "urlAOA": "www.entidad3.com/AOA"
     }
 }
