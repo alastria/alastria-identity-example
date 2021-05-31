@@ -1,5 +1,19 @@
 #!/bin/bash
 
+# Script Name: executeAllExamples.sh
+#
+# Author: Ángel Heredia (Anthares101)
+# Date : 31/05/2021
+#
+# Description:	The following script executes all the examples to check
+#               if they work properly
+#
+# Run Information: To execute this script use ./dev-tools/executeAllExamples.sh in the
+#                  project index
+#
+# Errors and Issues: If you find any bug, error or issue, create a new Issue in the GitHub
+#		     page: https://github.com/alastria/alastria-identity-example/issues
+
 # Some colors
 GREEN='\033[0;32m'
 RED='\033[0;31m'
