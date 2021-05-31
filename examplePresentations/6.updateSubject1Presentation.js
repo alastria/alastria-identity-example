@@ -11,11 +11,12 @@ const Web3 = require('web3')
 const myBlockchainServiceIp = configData.nodeURL
 const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 
-const updateSubjectPresentation = transactionFactory.presentationRegistry.updateSubjectPresentation(
-  web3,
-  presentationHash.psmhash,
-  configData.updateSubject1PresentationTo
-)
+const updateSubjectPresentation =
+  transactionFactory.presentationRegistry.updateSubjectPresentation(
+    web3,
+    presentationHash.psmhash,
+    configData.updateSubject1PresentationTo
+  )
 
 const keyDataSubject1 = fs.readFileSync(
   '../keystores/subject1-806bc0d7a47b890383a831634bcb92dd4030b092.json'
@@ -31,7 +32,8 @@ try {
     subject1Keystore
   )
 } catch (error) {
-  console.log('ERROR: ', error)
+  console.error('ERROR: ', error)
+  process.exit(1)
 }
 
 const subject1Identity = new UserIdentity(
@@ -41,8 +43,8 @@ const subject1Identity = new UserIdentity(
 )
 
 if (configData.didSubject1 === undefined) {
-  console.log('You must create an Alastria ID')
-  process.exit()
+  console.error('You must create an Alastria ID')
+  process.exit(1)
 }
 
 async function main() {
@@ -54,11 +56,12 @@ async function main() {
     updateSubjP
   )
   web3.eth.sendSignedTransaction(updateSubjP).then(() => {
-    const presentationStatus = transactionFactory.presentationRegistry.getSubjectPresentationStatus(
-      web3,
-      configData.didSubject1,
-      presentationHash.psmhash
-    )
+    const presentationStatus =
+      transactionFactory.presentationRegistry.getSubjectPresentationStatus(
+        web3,
+        configData.didSubject1,
+        presentationHash.psmhash
+      )
 
     web3.eth.call(presentationStatus).then((result) => {
       const resultStatus = web3.eth.abi.decodeParameters(

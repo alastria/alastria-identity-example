@@ -24,7 +24,7 @@ try {
     entity1Keystore
   )
 } catch (error) {
-  console.log('ERROR: ', error)
+  console.error('ERROR: ', error)
   process.exit(1)
 }
 
@@ -50,10 +50,11 @@ async function main() {
   console.log(
     '\n ------ Example of asking for isIdentityServiceProvider ------ \n'
   )
-  const isServiceProvider = await transactionFactory.identityManager.isIdentityServiceProvider(
-    web3,
-    configData.didEntity2
-  )
+  const isServiceProvider =
+    await transactionFactory.identityManager.isIdentityServiceProvider(
+      web3,
+      configData.didEntity2
+    )
   console.log('isServiceProviderTransaction', isServiceProvider)
   web3.eth.call(isServiceProvider).then((isServiceProviderStatus) => {
     const result = web3.eth.abi.decodeParameter('bool', isServiceProviderStatus)

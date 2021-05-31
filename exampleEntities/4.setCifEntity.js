@@ -22,7 +22,7 @@ try {
     firstIdentityKeyStore
   )
 } catch (error) {
-  console.log('ERROR: ', error)
+  console.error('ERROR: ', error)
   process.exit(1)
 }
 
@@ -32,7 +32,7 @@ console.log('\n ------ Setting entity Cif ------ \n')
 
 	if(configData.subject1 === undefined) {
 		console.log('You must create an Alastria ID')
-		process.exit()
+		process.error(1)
     }
     
     async function mainSetCifEntity(){

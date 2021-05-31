@@ -32,7 +32,7 @@ try {
         subject1Keystore
     )
 } catch (error) {
-    console.log('ERROR: ', error)
+    console.error('ERROR: ', error)
 }
 
 const subject1Identity = new UserIdentity(
@@ -114,7 +114,8 @@ async function main() {
             console.log('Receipt --------->', receipt)
         })
         .on('error', (error) => {
-            console.log('ERROR ---------->', error)
+            console.error('ERROR ---------->', error)
+            process.exit(1)
         })
 }
 

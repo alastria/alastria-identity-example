@@ -9,8 +9,8 @@ const myBlockchainServiceIp = configData.nodeURL
 const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 
 if (configData.didEntity3 === undefined) {
-  console.log('You must create an Alastria ID')
-  process.exit()
+  console.error('You must create an Alastria ID')
+  process.exit(1)
 }
 
 const currentPubKey = transactionFactory.publicKeyRegistry.getCurrentPublicKey(
@@ -26,5 +26,6 @@ web3.eth
     console.log('RESULT ----->', publicKey)
   })
   .catch((error) => {
-    console.log('Error -------->', error)
+    console.error('Error -------->', error)
+    process.exit(1)
   })

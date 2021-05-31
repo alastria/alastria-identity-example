@@ -13,8 +13,8 @@ const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 console.log('\n ------ Getting entity info ------ \n')
 
 if (configData.subject1 === undefined) {
-  console.log('You must create an Alastria ID')
-  process.exit()
+  console.error('You must create an Alastria ID')
+  process.exit(1)
 }
 
 const entityData = transactionFactory.alastriaNameService.getEntity(
@@ -41,5 +41,6 @@ web3.eth
     console.log('(Entity) TransactionList: ', data)
   })
   .catch((errorList) => {
-    console.log('Error List -----> ', errorList)
+    console.error('Error List -----> ', errorList)
+    process.exit(1)
   })

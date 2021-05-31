@@ -16,11 +16,12 @@ const getPresentationStatusExample = async () => {
   const subject1PresentationStatus = await getSubject1PresentationStatus()
   const entity2PresentationStatus = await getEntity2PresentationStatus()
 
-  const globalStatus = transactionFactory.presentationRegistry.getPresentationStatus(
-    web3,
-    subject1PresentationStatus.status,
-    entity2PresentationStatus.status
-  )
+  const globalStatus =
+    transactionFactory.presentationRegistry.getPresentationStatus(
+      web3,
+      subject1PresentationStatus.status,
+      entity2PresentationStatus.status
+    )
 
   web3.eth
     .call(globalStatus)
@@ -42,17 +43,19 @@ const getPresentationStatusExample = async () => {
       }
     })
     .catch((error) => {
-      console.log(`Error ${error}`)
+      console.error(`Error ${error}`)
+      process.exit(1)
     })
 }
 
 const getSubject1PresentationStatus = async () => {
   return new Promise((resolve, reject) => {
-    const subject1PresentationStatusCall = transactionFactory.presentationRegistry.getSubjectPresentationStatus(
-      web3,
-      configData.didSubject1,
-      subjectPresentationHash.psmhash
-    )
+    const subject1PresentationStatusCall =
+      transactionFactory.presentationRegistry.getSubjectPresentationStatus(
+        web3,
+        configData.didSubject1,
+        subjectPresentationHash.psmhash
+      )
     web3.eth.call(subject1PresentationStatusCall).then((subjectResult) => {
       const subjectResultStatus = web3.eth.abi.decodeParameters(
         ['bool', 'uint8'],
@@ -69,11 +72,12 @@ const getSubject1PresentationStatus = async () => {
 
 const getEntity2PresentationStatus = async () => {
   return new Promise((resolve, reject) => {
-    const entity2PresentationStatusCall = transactionFactory.presentationRegistry.getReceiverPresentationStatus(
-      web3,
-      configData.didEntity2,
-      entityPresentationHash.psmhash
-    )
+    const entity2PresentationStatusCall =
+      transactionFactory.presentationRegistry.getReceiverPresentationStatus(
+        web3,
+        configData.didEntity2,
+        entityPresentationHash.psmhash
+      )
 
     web3.eth.call(entity2PresentationStatusCall).then((entityResult) => {
       const entityResultStatus = web3.eth.abi.decodeParameters(

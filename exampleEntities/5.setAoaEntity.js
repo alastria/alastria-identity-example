@@ -22,7 +22,7 @@ try {
     firstIdentityKeyStore
   )
 } catch (error) {
-  console.log('ERROR: ', error)
+  console.error('ERROR: ', error)
   process.exit(1)
 }
 
@@ -32,8 +32,8 @@ const firstIdentityIdentity = new UserIdentity(web3, `0x${firstIdentityKeyStore.
 console.log('\n ------ Setting entity Aoa ------ \n')
 
 	if(configData.subject1 === undefined) {
-		console.log('You must create an Alastria ID')
-		process.exit()
+		console.error('You must create an Alastria ID')
+		process.exit(1)
     }
     
     async function mainSetAoaEntity(){

@@ -25,7 +25,7 @@ try {
     entity2Keystore
   )
 } catch (error) {
-  console.log('ERROR: ', error)
+  console.error('ERROR: ', error)
 }
 
 const entity2Identity = new UserIdentity(
@@ -34,15 +34,16 @@ const entity2Identity = new UserIdentity(
   entity2PrivateKey
 )
 
-const updateEntity2Presentation = transactionFactory.presentationRegistry.updateReceiverPresentation(
-  web3,
-  presentationHash.psmhash,
-  configData.updateEntity2PresentationTo
-)
+const updateEntity2Presentation =
+  transactionFactory.presentationRegistry.updateReceiverPresentation(
+    web3,
+    presentationHash.psmhash,
+    configData.updateEntity2PresentationTo
+  )
 
 if (configData.didEntity2 === undefined) {
-  console.log('You must create an Alastria ID')
-  process.exit()
+  console.error('You must create an Alastria ID')
+  process.exit(1)
 }
 
 async function main() {
@@ -54,11 +55,12 @@ async function main() {
     updateReceivP
   )
   web3.eth.sendSignedTransaction(updateReceivP).then(() => {
-    const presentationStatus = transactionFactory.presentationRegistry.getReceiverPresentationStatus(
-      web3,
-      configData.didEntity2,
-      presentationHash.psmhash
-    )
+    const presentationStatus =
+      transactionFactory.presentationRegistry.getReceiverPresentationStatus(
+        web3,
+        configData.didEntity2,
+        presentationHash.psmhash
+      )
 
     web3.eth.call(presentationStatus).then((result) => {
       const resultStatus = web3.eth.abi.decodeParameters(

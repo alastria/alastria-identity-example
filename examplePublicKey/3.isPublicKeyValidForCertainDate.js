@@ -9,8 +9,8 @@ const myBlockchainServiceIp = configData.nodeURL
 const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 
 if (configData.entity3 === undefined) {
-  console.log('You must create an Alastria ID')
-  process.exit()
+  console.error('You must create an Alastria ID')
+  process.exit(1)
 }
 
 console.log('We retrive the current public key for entity3')
@@ -27,7 +27,7 @@ web3.eth
     console.log(
       'Convert the publicKey to byte32 as the input parameter requires this type'
     )
-    const publicKeyAsByte32 = web3.utils.sha3(publicKeyAsString)
+    const publicKeyAsByte32 = `0x${web3.utils.sha3(publicKeyAsString)}`
     const date = 1588612481
 
     console.log('Check if it is valid for a date')
@@ -44,5 +44,6 @@ web3.eth
       })
   })
   .catch(function (error) {
-    console.log('Something fails', error)
+    console.error('Something fails', error)
+    process.exit(1)
   })

@@ -36,7 +36,7 @@ try {
     entity1KeyStore
   )
 } catch (error) {
-  console.log('ERROR: ', error)
+  console.error('ERROR: ', error)
 }
 
 const subject1KeyStore = keystoreDataSubject1
@@ -48,7 +48,7 @@ try {
     subject1KeyStore
   )
 } catch (error) {
-  console.log('ERROR: ', error)
+  console.error('ERROR: ', error)
 }
 
 const subject1Identity = new UserIdentity(
@@ -109,11 +109,12 @@ fs.writeFileSync(
 )
 
 function addSubjectCredential() {
-  const subjectCredential = transactionFactory.credentialRegistry.addSubjectCredential(
-    web3,
-    subjectCredentialHash,
-    uri
-  )
+  const subjectCredential =
+    transactionFactory.credentialRegistry.addSubjectCredential(
+      web3,
+      subjectCredentialHash,
+      uri
+    )
   console.log('(addSubjectCredential)The transaction is: ', subjectCredential)
   return subjectCredential
 }
@@ -130,8 +131,9 @@ function sendSigned(subjectCredentialSigned) {
         resolve(receipt)
       })
       .on('error', (error) => {
-        console.log('Error------>', error)
+        console.error('Error------>', error)
         reject(error)
+        process.exit(1)
       })
   })
 }
@@ -148,11 +150,12 @@ async function main() {
   )
   sendSigned(subjectCredentialSigned).then((receipt) => {
     console.log('RECEIPT:', receipt)
-    const subjectCredentialTransaction = transactionFactory.credentialRegistry.getSubjectCredentialStatus(
-      web3,
-      configData.didSubject1,
-      subjectCredentialHash
-    )
+    const subjectCredentialTransaction =
+      transactionFactory.credentialRegistry.getSubjectCredentialStatus(
+        web3,
+        configData.didSubject1,
+        subjectCredentialHash
+      )
     web3.eth
       .call(subjectCredentialTransaction)
       .then((SubjectCredentialStatus) => {
