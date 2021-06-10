@@ -2,7 +2,7 @@
 
 # Script Name: createMockIdentities.sh
 #
-# Author: Víctor Nieves Sánchez (IECISA)
+# Author: Víctor Nieves Sánchez (VictorNS69)
 # Date : 17/01/2020
 #
 # Description:	The following script executes all the examples needed to create the mock

@@ -31,7 +31,7 @@ try {
     entity1Keystore
   )
 } catch (error) {
-  console.log('ERROR: ', error)
+  console.error('ERROR: ', error)
 }
 
 const entity1Identity = new UserIdentity(
@@ -41,8 +41,8 @@ const entity1Identity = new UserIdentity(
 )
 
 if (configData.didEntity1 === undefined) {
-  console.log('You must create an Alastria ID')
-  process.exit()
+  console.error('You must create an Alastria ID')
+  process.exit(1)
 }
 
 async function main() {

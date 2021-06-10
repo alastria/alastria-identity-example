@@ -38,7 +38,7 @@ try {
     firstIdentityKeyStore
   )
 } catch (error) {
-  console.log('ERROR: ', error)
+  console.error('ERROR: ', error)
   process.exit(1)
 }
 
@@ -57,7 +57,7 @@ try {
     entity1Keystore
   )
 } catch (error) {
-  console.log('ERROR: ', error)
+  console.error('ERROR: ', error)
   process.exit(1)
 }
 

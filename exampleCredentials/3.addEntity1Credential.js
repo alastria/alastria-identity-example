@@ -33,7 +33,7 @@ try {
     entity1Keystore
   )
 } catch (error) {
-  console.log('ERROR: ', error)
+  console.error('ERROR: ', error)
 }
 
 const entity1Identity = new UserIdentity(
@@ -91,10 +91,11 @@ fs.writeFileSync(
 )
 
 function addIssuerCredential() {
-  const issuerCredential = transactionFactory.credentialRegistry.addIssuerCredential(
-    web3,
-    credentialHash
-  )
+  const issuerCredential =
+    transactionFactory.credentialRegistry.addIssuerCredential(
+      web3,
+      credentialHash
+    )
   console.log('(addIssuerCredential)The transaction is: ', issuerCredential)
   return issuerCredential
 }
@@ -110,8 +111,9 @@ function sendSigned(issuerCredentialSigned) {
         resolve(receipt)
       })
       .on('error', (error) => {
-        console.log('Error------>', error)
+        console.error('Error------>', error)
         reject(error)
+        process.exit(1)
       })
   })
 }
@@ -128,11 +130,12 @@ async function main() {
   )
   sendSigned(issuerCredentialSigned).then((receipt) => {
     console.log('RECEIPT:', receipt)
-    const issuerCredentialTransaction = transactionFactory.credentialRegistry.getIssuerCredentialStatus(
-      web3,
-      configData.didEntity1,
-      credentialHash
-    )
+    const issuerCredentialTransaction =
+      transactionFactory.credentialRegistry.getIssuerCredentialStatus(
+        web3,
+        configData.didEntity1,
+        credentialHash
+      )
     web3.eth
       .call(issuerCredentialTransaction)
       .then((IssuerCredentialStatus) => {

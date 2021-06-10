@@ -12,15 +12,16 @@ const presentationHashData = fs.readFileSync(`./PSMHashEntity2.json`)
 const presentationHash = JSON.parse(presentationHashData)
 
 if (configData.didEntity2 === undefined) {
-  console.log('You must create an Alastria ID')
-  process.exit()
+  console.error('You must create an Alastria ID')
+  process.exit(1)
 }
 
-const presentationStatus = transactionFactory.presentationRegistry.getReceiverPresentationStatus(
-  web3,
-  configData.didEntity2,
-  presentationHash.psmhash
-)
+const presentationStatus =
+  transactionFactory.presentationRegistry.getReceiverPresentationStatus(
+    web3,
+    configData.didEntity2,
+    presentationHash.psmhash
+  )
 
 web3.eth.call(presentationStatus).then((result) => {
   const resultStatus = web3.eth.abi.decodeParameters(['bool', 'uint8'], result)

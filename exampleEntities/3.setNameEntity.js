@@ -22,7 +22,7 @@ try {
     firstIdentityKeyStore
   )
 } catch (error) {
-  console.log('ERROR: ', error)
+  console.error('ERROR: ', error)
   process.exit(1)
 }
 
@@ -33,7 +33,7 @@ console.log('\n ------ Setting entity name ------ \n')
 
 	if(configData.subject1 === undefined) {
 		console.log('You must create an Alastria ID')
-		process.exit()
+		process.exit(1)
 	}
     async function mainSetNameEntity(){
         console.log('\n ------ Example of setting name of entity1 like a Entity ------ \n')

@@ -26,7 +26,7 @@ try {
     entity1KeyStore
   )
 } catch (error) {
-  console.log('ERROR: ', error)
+  console.error('ERROR: ', error)
   process.exit(1)
 }
 const entity1Identity = new UserIdentity(
@@ -46,7 +46,7 @@ try {
     entity2Keystore
   )
 } catch (error) {
-  console.log('ERROR: ', error)
+  console.error('ERROR: ', error)
   process.exit(1)
 }
 

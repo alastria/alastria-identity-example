@@ -22,7 +22,7 @@ let firstIdentityPrivateKey
 try {
   firstIdentityPrivateKey = keythereum.recover(config.addressPassword, firstIdentityKeyStore)
 } catch (error) {
-  console.log('ERROR: ', error)
+  console.error('ERROR: ', error)
   process.exit(1)
 }
 

@@ -11,13 +11,14 @@ const Web3 = require('web3')
 const myBlockchainServiceIp = configData.nodeURL
 const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 
-const deleteCredentialStatus = transactionFactory.credentialRegistry.deleteSubjectCredential(
-  web3,
-  credentialHash.psmhash
-)
+const deleteCredentialStatus =
+  transactionFactory.credentialRegistry.deleteSubjectCredential(
+    web3,
+    credentialHash.psmhash
+  )
 
 const keyDataSubject1 = fs.readFileSync(
-    '../keystores/subject1-806bc0d7a47b890383a831634bcb92dd4030b092.json'
+  '../keystores/subject1-806bc0d7a47b890383a831634bcb92dd4030b092.json'
 )
 const keystoreDataSubject1 = JSON.parse(keyDataSubject1)
 
@@ -30,18 +31,18 @@ try {
     subject1Keystore
   )
 } catch (error) {
-  console.log('ERROR: ', error)
+  console.error('ERROR: ', error)
 }
 
 const subject1Identity = new UserIdentity(
-    web3,
-    `0x${subject1Keystore.address}`,
-    subject1PrivateKey
+  web3,
+  `0x${subject1Keystore.address}`,
+  subject1PrivateKey
 )
 
 if (configData.didSubject1 === undefined) {
-    console.log('You must create an Alastria ID')
-    process.exit()
+  console.error('You must create an Alastria ID')
+  process.exit(1)
 }
 
 async function main() {
@@ -53,11 +54,12 @@ async function main() {
     deleteCredStat
   )
   web3.eth.sendSignedTransaction(deleteCredStat).then(() => {
-    const subjectCredentialTransaction = transactionFactory.credentialRegistry.getSubjectCredentialStatus(
-      web3,
-      configData.didSubject1,
-      credentialHash.psmhash
-    )
+    const subjectCredentialTransaction =
+      transactionFactory.credentialRegistry.getSubjectCredentialStatus(
+        web3,
+        configData.didSubject1,
+        credentialHash.psmhash
+      )
     web3.eth
       .call(subjectCredentialTransaction)
       .then((SubjectCredentialStatus) => {
@@ -75,4 +77,3 @@ async function main() {
 }
 
 main()
-
