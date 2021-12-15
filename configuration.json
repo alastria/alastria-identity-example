@@ -1,1 +1,112 @@
-{"nodeURL":"http://63.33.206.111:8545","addressPassword":"Passw0rd","rawPublicKeySubject":"03fdd57adec3d438ea237fe46b33ee1e016eda6b585c3e27ea66686c2ea5358479","rawPublicKeyReceiver":"8b82bb2b1b5b4c1d56beeb88c98fcf894c23e8dee598d94c1c77099d3a80367f46","firstIdentityPubk":"0x0ce5edc204ae977d6d69fcc6b339a57b544ef4d094929f3eb918a77dfba26998e77ec5b29a379dd59bbe962e2b22745143aa2b52c4a875b7492c137eeebf4055","entity1Pubk":"0x356e3fce435d8729062e52d263c0c705b3c5e201a9a9608cdb070764e6b8df30ae8423b439a7af2bcc3529778341ab06c1e44411352f217b68ce44a673a1df63","entity2Pubk":"0xa33e56a80b9dc83a4456265d877c0765cea76146e625572fc679804f8867222ca3c816433a9b6e6690b0b8e919ffa874982706e812314aae09d85fc62fc4fa3c","entity3Pubk":"0xf6aa52924a7280241bd84d098d7c03b4e3a7e08f206b68868f439b65a6c3b26b1bd30b960325be8670339a66258b851ae170691429248149b601da5798f42d28","subject1Pubk":"0x2e507af01167c98a6accc0cd46ab2a256dd6b6c69ec1c0c28f80fb62e1f7d70233768b0c58dbbdac1fc358b8141c075a520483cf9779e4ea98d13df2833f3767","subject2Pubk":"0xaca7aa42e831f41b6f246d089fbcabe73e1c6ce01a1bb5d944fda4e148e1d6930f6ebb5138b1d103e3e384c893962a238e4088a549bfe84867da96942931f69a","rawPrivateKey":"278a5de700e29faae8e40e366ec5012b5ec63d36ec77e8a2417154cc1d25383f","context":["https://w3id.org/did/v1","JWT"],"type":["CustomType"],"signedTxCreateAlastriaID":"0xf901888203f180830927c094bd4a2c84edb97be5beff7cd341bd63567e73f8c980b901246d69d99a000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000c450382c1a000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000803265353037616630313136376339386136616363633063643436616232613235366464366236633639656331633063323866383066623632653166376437303233333736386230633538646262646163316663333538623831343163303735613532303438336366393737396534656139386431336466323833336633373637000000000000000000000000000000000000000000000000000000001ca0e3e05abb1592bd15dc72e57d8930c24efdd0e286437a34ca2f118372ad428b25a0480ac816c93a5c1e8eff1dfd96f850dc664c5daa1ff94a88bdf789b0652ebfd3","userPublicKey":"AE2309349218937HASKHIUE9287432","providerURL":"https://regular.telsius.blockchainbyeveris.io:2000","callbackURL":"https://serviceprovider.alastria.blockchainbyeveris.io/api/login/","alastriaNetId":"Alastria network","tokenExpTime":1563783392,"tokenActivationDate":1563782792,"tokenNotBefore":123456789,"jsonTokenId":"ze298y42sba","network":"quor","networkId":"redT","tokenPayload":{"header":{"alg":"ES256K","typ":"JWT","kid":"did:ala:quor:redq:0x12eeaCCA9eEbB78eB97d7cac6b#keys-1","jwk":"0x12345"},"payload":{"iss":"did:ala:quor:redQ:e53d78c1c6fc694a0f29b3f24bee439338acbe3e","gwu":"http://1.2.3.4:8097/alastria/presentation","cbu":"http://1.2.3.4:8097/alastria/presentation","iat":1590569132,"ani":"redT","exp":1563783392}},"jti":"https://www.empresa.com/alastria/credentials/3734","kidCredential":"did:ala:quor:redt:12eeaCCA9eEbB78eB97d7cac6b#keys-1","subjectAlastriaID":"did:ala:quor:redt:0x12eeaCCA9eEbB78eB97d7cac6b","credentialKey":"StudentID","credentialValue":"11235813","uri":"www.google.com","procUrl":"https://www.empresa.com/alastria/businessprocess/4583","procHash":"H398sjHd...kldjUYn475n","data":[{"@context":"JWT","levelOfAssurance":3,"required":true,"field_name":"name"},{"@context":"JWT","levelOfAssurance":3,"required":true,"field_name":"email"}],"entity1":"0xed81e3578f908b0371dcada750d08a25dd01549b","didEntity1":"did:ala:quor:redT:ed81e3578f908b0371dcada750d08a25dd01549b","entity2":"0x3eff8efba40fb7c84a339d0be74a11b3b068ba90","didEntity2":"did:ala:quor:redT:3eff8efba40fb7c84a339d0be74a11b3b068ba90","entity3":"0x87076e4969c946cbe1ebd4ab68af2f23c807780b","didEntity3":"did:ala:quor:redT:87076e4969c946cbe1ebd4ab68af2f23c807780b","subject1":"0x7fe5f08f485686b58d5ac0cb7f066166a3f2a28f","didSubject1":"did:ala:quor:redT:7fe5f08f485686b58d5ac0cb7f066166a3f2a28f","subject2":"0xa1fdf18af12e8123bb9d2f78110f12c9d958bd79","didSubject2":"did:ala:quor:redT:a1fdf18af12e8123bb9d2f78110f12c9d958bd79","issuerLevel":2,"updateSubject1PresentationTo":2,"updateEntity2PresentationTo":1,"updateIssuerCredentialTo":2,"subject1PresentationStatus":{"exist":true,"status":"2"},"entity2PresentationStatus":{"exist":true,"status":"1"},"entityData1":{"name":"Entidad1","cif":"A-28964782","urlLogo":"www.entidad1.com/logo","urlCreateAID":"www.entidad1.com/AID","urlAOA":"www.entidad1.com/AOA"},"entityData2":{"name":"Entidad2","cif":"A-95974786","urlLogo":"www.entidad2.com/logo","urlCreateAID":"www.entidad2.com/AID","urlAOA":"www.entidad2.com/AOA"},"entityData3":{"name":"Entidad3","cif":"A-49934581","urlLogo":"www.entidad3.com/logo","urlCreateAID":"www.entidad3.com/AID","urlAOA":"www.entidad3.com/AOA"}}
+{
+    "nodeURL": "http://63.33.206.111:8545",
+    "addressPassword": "Passw0rd",
+    "rawPublicKeySubject": "03fdd57adec3d438ea237fe46b33ee1e016eda6b585c3e27ea66686c2ea5358479",
+    "rawPublicKeyReceiver": "8b82bb2b1b5b4c1d56beeb88c98fcf894c23e8dee598d94c1c77099d3a80367f46",
+    "firstIdentityPubk": "0x0ce5edc204ae977d6d69fcc6b339a57b544ef4d094929f3eb918a77dfba26998e77ec5b29a379dd59bbe962e2b22745143aa2b52c4a875b7492c137eeebf4055",
+    "entity1Pubk": "0x356e3fce435d8729062e52d263c0c705b3c5e201a9a9608cdb070764e6b8df30ae8423b439a7af2bcc3529778341ab06c1e44411352f217b68ce44a673a1df63",
+    "entity2Pubk": "0xa33e56a80b9dc83a4456265d877c0765cea76146e625572fc679804f8867222ca3c816433a9b6e6690b0b8e919ffa874982706e812314aae09d85fc62fc4fa3c",
+    "entity3Pubk": "0xf6aa52924a7280241bd84d098d7c03b4e3a7e08f206b68868f439b65a6c3b26b1bd30b960325be8670339a66258b851ae170691429248149b601da5798f42d28",
+    "subject1Pubk": "0x2e507af01167c98a6accc0cd46ab2a256dd6b6c69ec1c0c28f80fb62e1f7d70233768b0c58dbbdac1fc358b8141c075a520483cf9779e4ea98d13df2833f3767",
+    "subject2Pubk": "0xaca7aa42e831f41b6f246d089fbcabe73e1c6ce01a1bb5d944fda4e148e1d6930f6ebb5138b1d103e3e384c893962a238e4088a549bfe84867da96942931f69a",
+    "rawPrivateKey": "278a5de700e29faae8e40e366ec5012b5ec63d36ec77e8a2417154cc1d25383f",
+    "context": [
+        "https://w3id.org/did/v1",
+        "JWT"
+    ],
+    "type": [
+        "CustomType"
+    ],
+    "signedTxCreateAlastriaID": "0xf901888203f180830927c094bd4a2c84edb97be5beff7cd341bd63567e73f8c980b901246d69d99a000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000c450382c1a000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000803265353037616630313136376339386136616363633063643436616232613235366464366236633639656331633063323866383066623632653166376437303233333736386230633538646262646163316663333538623831343163303735613532303438336366393737396534656139386431336466323833336633373637000000000000000000000000000000000000000000000000000000001ca0e3e05abb1592bd15dc72e57d8930c24efdd0e286437a34ca2f118372ad428b25a0480ac816c93a5c1e8eff1dfd96f850dc664c5daa1ff94a88bdf789b0652ebfd3",
+    "userPublicKey": "AE2309349218937HASKHIUE9287432",
+    "providerURL": "https://regular.telsius.blockchainbyeveris.io:2000",
+    "callbackURL": "https://serviceprovider.alastria.blockchainbyeveris.io/api/login/",
+    "alastriaNetId": "Alastria network",
+    "tokenExpTime": 1563783392,
+    "tokenActivationDate": 1563782792,
+    "tokenNotBefore": 123456789,
+    "jsonTokenId": "ze298y42sba",
+    "network": "besu",
+    "networkId": "redB",
+    "tokenPayload": {
+        "header": {
+            "alg": "ES256K",
+            "typ": "JWT",
+            "kid": "did:ala:besu:redq:0x12eeaCCA9eEbB78eB97d7cac6b#keys-1",
+            "jwk": "0x12345"
+        },
+        "payload": {
+            "iss": "did:ala:besu:redQ:e53d78c1c6fc694a0f29b3f24bee439338acbe3e",
+            "gwu": "http://1.2.3.4:8097/alastria/presentation",
+            "cbu": "http://1.2.3.4:8097/alastria/presentation",
+            "iat": 1590569132,
+            "ani": "redB",
+            "exp": 1563783392
+        }
+    },
+    "jti": "https://www.empresa.com/alastria/credentials/3734",
+    "kidCredential": "did:ala:besu:redt:12eeaCCA9eEbB78eB97d7cac6b#keys-1",
+    "subjectAlastriaID": "did:ala:besu:redt:0x12eeaCCA9eEbB78eB97d7cac6b",
+    "credentialKey": "StudentID",
+    "credentialValue": "11235813",
+    "uri": "www.google.com",
+    "procUrl": "https://www.empresa.com/alastria/businessprocess/4583",
+    "procHash": "H398sjHd...kldjUYn475n",
+    "data": [
+        {
+            "@context": "JWT",
+            "levelOfAssurance": 3,
+            "required": true,
+            "field_name": "name"
+        },
+        {
+            "@context": "JWT",
+            "levelOfAssurance": 3,
+            "required": true,
+            "field_name": "email"
+        }
+    ],
+    "entity1": "0x7fc266ca851a7629c3984cb07cf5ec084e855be0",
+    "didEntity1": "did:ala:besu:redB:7fc266ca851a7629c3984cb07cf5ec084e855be0",
+    "entity2": "0x937b19709c54218222e6a4675e93c0738bba4f5c",
+    "didEntity2": "did:ala:besu:redB:937b19709c54218222e6a4675e93c0738bba4f5c",
+    "entity3": "0x80b64f400639a33a2206e309cb3af4841801be68",
+    "didEntity3": "did:ala:besu:redB:80b64f400639a33a2206e309cb3af4841801be68",
+    "subject1": "0x456ab29dac78386f43388ea9c96a478856c41796",
+    "didSubject1": "did:ala:besu:redB:456ab29dac78386f43388ea9c96a478856c41796",
+    "subject2": "0x49a44761ff18a5c4cffe286a110f3a74accabf0d",
+    "didSubject2": "did:ala:besu:redB:49a44761ff18a5c4cffe286a110f3a74accabf0d",
+    "issuerLevel": 2,
+    "updateSubject1PresentationTo": 2,
+    "updateEntity2PresentationTo": 1,
+    "updateIssuerCredentialTo": 2,
+    "subject1PresentationStatus": {
+        "exist": true,
+        "status": "2"
+    },
+    "entity2PresentationStatus": {
+        "exist": true,
+        "status": "1"
+    },
+    "entityData1": {
+        "name": "Entidad1",
+        "cif": "A-28964782",
+        "urlLogo": "www.entidad1.com/logo",
+        "urlCreateAID": "www.entidad1.com/AID",
+        "urlAOA": "www.entidad1.com/AOA"
+    },
+    "entityData2": {
+        "name": "Entidad2",
+        "cif": "A-95974786",
+        "urlLogo": "www.entidad2.com/logo",
+        "urlCreateAID": "www.entidad2.com/AID",
+        "urlAOA": "www.entidad2.com/AOA"
+    },
+    "entityData3": {
+        "name": "Entidad3",
+        "cif": "A-49934581",
+        "urlLogo": "www.entidad3.com/logo",
+        "urlCreateAID": "www.entidad3.com/AID",
+        "urlAOA": "www.entidad3.com/AOA"
+    }
+}

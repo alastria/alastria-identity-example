@@ -15,6 +15,8 @@ node src/configFile.js
 tsc
 ```
 
+**Important**: Remember that it is necessary to configure alastriaID-truffle-contracts in `:./node_modules/alastria-identity-lib/dist/config.js` with the correct SmartContracts addresses in the case of redT and redB. Examples for that configuration in current directory.
+
 ### Folders of example
 
 |**Folder**|**What it does**|**Wiki page**|
