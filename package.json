@@ -1,6 +1,6 @@
 {
   "name": "alastria-identity-example",
-  "version": "1.5.0",
+  "version": "2.0.0",
   "description": "This is an example of how to interact with the libraries from [alastria-identity-lib](https://github.com/alastria/alastria-identity-lib). The library alastria-identity-lib re-covers the Smart Contracts from [alastria-identity](https://github.com/alastria/alastria-identity).",
   "main": "",
   "scripts": {
@@ -31,12 +31,12 @@
     "alastria-identity-lib": "git://github.com/alastria/alastria-identity-lib.git#develop"
   },
   "devDependencies": {
-    "eslint": "^7.1.0",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-config-standard": "^14.1.1",
-    "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1"
+    "eslint": "7.1.0",
+    "eslint-config-prettier": "6.11.0",
+    "eslint-config-standard": "14.1.1",
+    "eslint-plugin-import": "2.20.2",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-promise": "4.2.1",
+    "eslint-plugin-standard": "4.0.1"
   }
 }
