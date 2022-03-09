@@ -71,7 +71,7 @@ for exampleDirectory in example* ; do
     if [ -d $exampleDirectory ] && [ $exampleDirectory != "exampleFirstEntity" ]; then
         cd $exampleDirectory
         for example in *.js; do
-            if [ $example != "3.deleteIdentityServiceProvider.js" ] || [ $example != "3.deleteIdentityIssuer.js" ]; then
+            if [ $example != "3.deleteIdentityServiceProvider.js" ] && [ $example != "3.deleteIdentityIssuer.js" ]; then
                 node $example >/dev/null ; print_result_msg $? ${exampleDirectory}/${example}
             fi
         done
