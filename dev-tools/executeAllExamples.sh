@@ -2,8 +2,8 @@
 
 # Script Name: executeAllExamples.sh
 #
-# Author: Ángel Heredia (Anthares101)
-# Date : 31/05/2021
+# Author: Ángel Heredia (Anthares101) and Víctor Nieves (VictorNS69)
+# Date : 09/03/2022
 #
 # Description:	The following script executes all the examples to check
 #               if they work properly
@@ -71,13 +71,26 @@ for exampleDirectory in example* ; do
     if [ -d $exampleDirectory ] && [ $exampleDirectory != "exampleFirstEntity" ]; then
         cd $exampleDirectory
         for example in *.js; do
-            node $example >/dev/null ; print_result_msg $? ${exampleDirectory}/${example}
+            if [ $example != "3.deleteIdentityServiceProvider.js" ] || [ $example != "3.deleteIdentityIssuer.js" ]; then
+                node $example >/dev/null ; print_result_msg $? ${exampleDirectory}/${example}
+            fi
         done
         cd ..
     fi
 done
 
-# Execute the last first entity examples
+# when all examples have been successfully passed, we start role revocations.
+
+cd exampleIssuer
+node 3.deleteIdentityIssuer.js >/dev/null ; print_result_msg $? "exampleIssuer/3.deleteIdentityIssuer.js"
+node 4.isIdentiyIssuer.js >/dev/null ; print_result_msg $? "exampleIssuer/4.isIdentiyIssuer.js"
+cd ..
+
+cd exampleServiceProvider
+node 3.deleteServiceProvider.js >/dev/null ; print_result_msg $? "exampleServiceProvider/3.deleteIdentityServiceProvider.js"
+node 4.isIdentiyIssuer.js >/dev/null ; print_result_msg $? "exampleServiceProvider/4.isIdentiyServiceProvider.js"
+cd ..
+
 cd exampleFirstEntity
 node 5.deleteIdentityIssuer.js >/dev/null ; print_result_msg $? "exampleFirstEntity/5.deleteIdentityIssuer.js"
 node 6.deleteIdentityServiceProvider.js >/dev/null ; print_result_msg $? "exampleFirstEntity/6.deleteIdentityServiceProvider.js"
