@@ -34,19 +34,7 @@ const firstIdentityIdentity = new UserIdentity(
   firstIdentityPrivateKey
 )
 
-// Im not sure if this is needed
-async function unlockAccount() {
-  const unlockedAccount = await web3.eth.personal.unlockAccount(
-    `0x${firstIdentityKeyStore.address}`,
-    configData.addressPassword,
-    500
-  )
-  console.log('Account unlocked:', unlockedAccount)
-  return unlockedAccount
-}
-
 async function mainAdd() {
-  unlockAccount()
   console.log('\n ------ Example of adding the entity1 like a Issuer ------ \n')
   const transactionAddIssuer = await transactionFactory.identityManager.addIdentityIssuer(
     web3,

@@ -34,19 +34,7 @@ const firstIdentityIdentity = new UserIdentity(
   firstIdentityPrivateKey
 )
 
-// Im not sure if this is needed
-async function unlockAccount() {
-  const unlockedAccount = await web3.eth.personal.unlockAccount(
-    firstIdentityIdentity.address,
-    configData.addressPassword,
-    3600
-  )
-  console.log('Account unlocked:', unlockedAccount)
-  return unlockedAccount
-}
-
 async function mainDel() {
-  unlockAccount()
   console.log(
     '\n ------ Example of deleting the entity1 like Service Provider ------ \n'
   )
