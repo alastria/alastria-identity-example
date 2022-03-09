@@ -80,15 +80,16 @@ for exampleDirectory in example* ; do
 done
 
 # when all examples have been successfully passed, we start role revocations.
+# Order: 1) SP 2) Issuer 3) First entity
+
+cd exampleServiceProvider
+node 3.deleteIdentityServiceProvider.js >/dev/null ; print_result_msg $? "exampleServiceProvider/3.deleteIdentityServiceProvider.js"
+node 4.isIdentityServiceProvider.js >/dev/null ; print_result_msg $? "exampleServiceProvider/4.isIdentityServiceProvider.js"
+cd ..
 
 cd exampleIssuer
 node 3.deleteIdentityIssuer.js >/dev/null ; print_result_msg $? "exampleIssuer/3.deleteIdentityIssuer.js"
-node 4.isIdentiyIssuer.js >/dev/null ; print_result_msg $? "exampleIssuer/4.isIdentiyIssuer.js"
-cd ..
-
-cd exampleServiceProvider
-node 3.deleteServiceProvider.js >/dev/null ; print_result_msg $? "exampleServiceProvider/3.deleteIdentityServiceProvider.js"
-node 4.isIdentiyIssuer.js >/dev/null ; print_result_msg $? "exampleServiceProvider/4.isIdentiyServiceProvider.js"
+node 4.isIdentityIssuer.js >/dev/null ; print_result_msg $? "exampleIssuer/4.isIdentityIssuer.js"
 cd ..
 
 cd exampleFirstEntity
