@@ -28,10 +28,10 @@
   "homepage": "https://github.com/alastria/alastria-identity-example#readme",
   "dependencies": {
     "alastria-identity-JSON-objects": "github:alastria/alastria-identity-JSON-objects#master",
-    "alastria-identity-lib": "git://github.com/alastria/alastria-identity-lib.git#develop"
+    "alastria-identity-lib": "git://github.com/alastria/alastria-identity-lib.git#test/fixedContracts"
   },
   "devDependencies": {
-    "eslint": "7.1.0",
+    "eslint": "8.10.0",
     "eslint-config-prettier": "6.11.0",
     "eslint-config-standard": "14.1.1",
     "eslint-plugin-import": "2.20.2",
