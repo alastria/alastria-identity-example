@@ -28,7 +28,7 @@
   "homepage": "https://github.com/alastria/alastria-identity-example#readme",
   "dependencies": {
     "alastria-identity-JSON-objects": "github:alastria/alastria-identity-JSON-objects#master",
-    "alastria-identity-lib": "github:alastria/alastria-identity-lib.git#v2.0.0"
+    "alastria-identity-lib": "github:alastria/alastria-identity-lib.git#develop"
   },
   "devDependencies": {
     "eslint": "8.10.0",
