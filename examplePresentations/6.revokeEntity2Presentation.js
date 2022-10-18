@@ -4,7 +4,7 @@ const keythereum = require('keythereum')
 const rawdata = fs.readFileSync('../configuration.json')
 const configData = JSON.parse(rawdata)
 
-const presentationHashData = fs.readFileSync(`./PSMHashSubject1.json`)
+const presentationHashData = fs.readFileSync(`./PSMHashEntity2.json`)
 const presentationHash = JSON.parse(presentationHashData)
 
 const Web3 = require('web3')
@@ -34,26 +34,11 @@ const entity2Identity = new UserIdentity(
   entity2PrivateKey
 )
 
-const receiverPresentationHash = tokensFactory.tokens.PSMHash(
-  web3,
-  presentationHash.jwt,
-  configData.didEntity2
-)
-console.log('The PSMHashEntity2 is:', receiverPresentationHash)
-fs.writeFileSync(
-  `./PSMHashEntity2.json`,
-  JSON.stringify({
-      psmhash: receiverPresentationHash,
-      jwt: presentationHash.jwt
-  })
-)
-console.log('presentationHash ------>', receiverPresentationHash)
-
 const updateEntity2Presentation =
   transactionFactory.presentationRegistry.updateReceiverPresentation(
     web3,
-    receiverPresentationHash,
-    configData.updateEntity2PresentationTo
+    presentationHash.psmhash,
+    configData.revokeEntity2Presentation
   )
 
 if (configData.didEntity2 === undefined) {
