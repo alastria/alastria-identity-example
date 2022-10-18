@@ -1,10 +1,10 @@
-const { transactionFactory, UserIdentity } = require('alastria-identity-lib')
+const { transactionFactory, UserIdentity, tokensFactory } = require('alastria-identity-lib')
 const fs = require('fs')
 const keythereum = require('keythereum')
 const rawdata = fs.readFileSync('../configuration.json')
 const configData = JSON.parse(rawdata)
 
-const presentationHashData = fs.readFileSync(`./PSMHashEntity2.json`)
+const presentationHashData = fs.readFileSync(`./PSMHashSubject1.json`)
 const presentationHash = JSON.parse(presentationHashData)
 
 const Web3 = require('web3')
@@ -32,6 +32,20 @@ const entity2Identity = new UserIdentity(
   web3,
   `0x${entity2Keystore.address}`,
   entity2PrivateKey
+)
+
+const receiverPresentationHash = tokensFactory.tokens.PSMHash(
+  web3,
+  presentationHash.jwt,
+  configData.didEntity2
+)
+console.log('The PSMHashEntity2 is:', receiverPresentationHash)
+fs.writeFileSync(
+  `./PSMHashEntity2.json`,
+  JSON.stringify({
+      psmhash: receiverPresentationHash,
+      jwt: presentationHash.jwt
+  })
 )
 
 const updateEntity2Presentation =

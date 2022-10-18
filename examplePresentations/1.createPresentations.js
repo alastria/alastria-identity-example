@@ -77,20 +77,6 @@ fs.writeFileSync(
     })
 )
 
-const receiverPresentationHash = tokensFactory.tokens.PSMHash(
-    web3,
-    signedJWTPresentation,
-    configData.didEntity2
-)
-console.log('The PSMHashEntity2 is:', receiverPresentationHash)
-fs.writeFileSync(
-    `./PSMHashEntity2.json`,
-    JSON.stringify({
-        psmhash: receiverPresentationHash,
-        jwt: signedJWTPresentation
-    })
-)
-
 const addPresentationTransaction = transactionFactory.presentationRegistry.addSubjectPresentation(
     web3,
     subjectPresentationHash,
