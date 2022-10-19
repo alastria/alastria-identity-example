@@ -3,10 +3,6 @@ const fs = require('fs')
 const keythereum = require('keythereum')
 const rawdata = fs.readFileSync('../configuration.json')
 const configData = JSON.parse(rawdata)
-/*
-const issuerHashData = fs.readFileSync(`./PSMHashEntity1.json`)
-const credentialHash = JSON.parse(issuerHashData)
-*/
 
 const keyDataEntity1 = fs.readFileSync(
     '../keystores/entity1-a9728125c573924b2b1ad6a8a8cd9bf6858ced49.json'
@@ -24,6 +20,7 @@ const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 console.log('\n ------ Preparing Entity1 identity ------ \n')
 
 // Some fake data to test
+//PREPARING ENTITY1 IDENTITY
 const entity1Keystore = keystoreDataEntity1
   
 let entity1PrivateKey
@@ -42,11 +39,7 @@ const entity1Identity = new UserIdentity(
   entity1PrivateKey
 )
 
-if (configData.didEntity1 === undefined) {
-  console.error('You must create an Alastria ID')
-  process.exit(1)
-}
-
+//PREPARING SUBJECT1 IDENTITY
 const subject1KeyStore = keystoreDataSubject1
 
 let subject1PrivateKey
@@ -65,6 +58,16 @@ const subject1Identity = new UserIdentity(
   subject1PrivateKey
 )
 
+//IDENTITY CHECK FOR ENTITY1 AND FOR SUBJECT1
+if (configData.didEntity1 === undefined) {
+    console.error('You must create an Alastria ID for entity1')
+    process.exit(1)
+  }
+  if (configData.didSubject1 === undefined) {
+    console.error('You must create an Alastria ID for Subject1')
+    process.exit(1)
+  }
+
 //CREDENTIAL DATA
 console.log('\n ------ Creating credential ------ \n')
 
@@ -76,15 +79,12 @@ const didSubject1 = configData.didSubject1
 const context = configData.context
 const tokenExpTime = configData.tokenExpTime
 const tokenActivationDate = configData.tokenActivationDate
-
 // Credential Map (key-->value)
 const credentialSubject = {}
 const credentialKey = configData.credentialKey
 const credentialValue = configData.credentialValue
 credentialSubject[credentialKey] = credentialValue
 credentialSubject.levelOfAssurance = 'low'
-
-// End fake data to test
 
 //BUILD CREDENTIAL WITH tokensFactory LIBRARY 
 const credential = tokensFactory.tokens.createCredential(
