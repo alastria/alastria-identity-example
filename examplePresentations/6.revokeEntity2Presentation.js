@@ -1,4 +1,4 @@
-const { transactionFactory, UserIdentity } = require('alastria-identity-lib')
+const { transactionFactory, UserIdentity, tokensFactory } = require('alastria-identity-lib')
 const fs = require('fs')
 const keythereum = require('keythereum')
 const rawdata = fs.readFileSync('../configuration.json')
@@ -38,7 +38,7 @@ const updateEntity2Presentation =
   transactionFactory.presentationRegistry.updateReceiverPresentation(
     web3,
     presentationHash.psmhash,
-    configData.updateEntity2PresentationTo
+    configData.revokeEntity2Presentation
   )
 
 if (configData.didEntity2 === undefined) {
