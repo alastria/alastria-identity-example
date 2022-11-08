@@ -11,8 +11,7 @@ const {
   const configData = JSON.parse(rawdata)
   
   const keyDataEntity1 = fs.readFileSync(
-    //'../keystores/entity1-a9728125c573924b2b1ad6a8a8cd9bf6858ced49.json'
-    '../keystores/eu-issuer.json'
+    '../keystores/entity1-a9728125c573924b2b1ad6a8a8cd9bf6858ced49.json'
   )
   const keystoreDataEntity1 = JSON.parse(keyDataEntity1)
   
@@ -48,10 +47,8 @@ const {
   
   const jti = configData.jti
   const kidCredential = configData.kidCredential
-  //const subjectAlastriaID = configData.subjectAlastriaID
-  const subjectAlastriaID = configData.didEuSubject
-  //const didEntity1 = configData.didEntity1
-  const didEntity1 = configData.didEuIssuer
+  const subjectAlastriaID = configData.subjectAlastriaID
+  const didEntity1 = configData.didEntity1
   const context = configData.context
   const tokenExpTime = configData.tokenExpTime
   const tokenActivationDate = configData.tokenActivationDate
@@ -155,8 +152,7 @@ const {
       const issuerCredentialTransaction =
         transactionFactory.credentialRegistry.getIssuerCredentialStatus(
           web3,
-          //configData.didEntity1,
-          configData.didEuIssuer,
+          configData.didEntity1,
           credentialHash
         )
       web3.eth
