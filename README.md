@@ -32,7 +32,31 @@ tsc
 |exampleAuthentication| It contains an example of how authentication is done  |[Wiki](https://github.com/alastria/alastria-identity-example/wiki/Authentication-example)
 |keystores| Contains the mocked keystores that we used to create the identities with different roles. These roles are explained [here](/keystores/README.md)  |
 
+## Environment requirements
 
+**This section specifies the environment requirements for the successful execution of the examples.**
+
+First of all, to avoid possible errors with node and npm, it is recommended that the installation is done through **Nvm**.
+
+Once you have **Nvm installed**, all you need to do is install the required version of node with .
+```sh
+nvm install <version>
+```
+
+On the other hand, if any problem persists, it is recommended to **clean the npm cache** with the following command 
+```sh
+npm cache clean -f
+```
+
+The list of Npm and Node versions that have worked for the different members of the core identity team are listed below.
+|**Versions**|**Does it work?**|
+|:--|:--|
+|Node 14.19.0 && Npm 6.14.16|**OK**|
+|Node 14.20 && Npm 6.14.17|**OK**|
+|Node 14.20.1 && Npm 6.14.17|**OK**|
+|Node 16.13.0 && Npm 8.15.0|**OK**|
+|Node 16.13.2 && Npm 8.1.2|**OK**|
+|Node 16.14 && Npm 8.3.1|**OK**|
 
 ## How to use it
 
