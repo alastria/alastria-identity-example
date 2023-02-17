@@ -33,11 +33,8 @@ const jwk = configData.firstIdentityPubk //header.JWK
 let jti = "" 
 const jtiVariableLength = 20 //length of the variable part of the jti
 // IAT does not need to be passed, the library calculates it.
-
-//Neeed to added in the librery first to Alastria Token artifact
 const type = ["DrivingLicense"]
 const context = []
-const mfau = configData.mfau
 
 //Generating a random JTI
 for (let i = 0; i < jtiVariableLength; i++) {

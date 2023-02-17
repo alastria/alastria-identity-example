@@ -64,14 +64,14 @@
     "procHash": "dccf25f46542dfb668b931e7b7cef29731a1754f659c393eb801ca851bd15ffc",
     "data": [
         {
-            "@context": "JWT",
+            "@context": "https://www.w3.org/2018/identity/driving-license/v1",
             "levelOfAssurance": 3,
             "required": true,
-            "field_name": "name"
+            "field_name": "driving_license"
         },
         {
-            "@context": "JWT",
-            "levelOfAssurance": 3,
+            "@context": "https://www.w3.org/2018/identity/email/v1",
+            "levelOfAssurance": 0,
             "required": true,
             "field_name": "email"
         }
