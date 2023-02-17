@@ -7,6 +7,9 @@ const keythereum = require('keythereum')
 const rawdata = fs.readFileSync('../configuration.json')
 const configData = JSON.parse(rawdata)
 
+const rawDataSignedObjects = fs.readFileSync('./SignedObjects.json')
+const configDataSignedObjects = JSON.parse(rawDataSignedObjects)
+
 //FirstIdentity = Entity1
 const keyDataFirstIdentity = fs.readFileSync(
     '../keystores/firstIdentity-643266eb3105f4bf8b4f4fec50886e453f0da9ad.json'
@@ -21,6 +24,7 @@ const keyDataFirstIdentity = fs.readFileSync(
     process.exit(1)
   }
 
+// **************************************************************************************************
 // Starting reading/calculating DATA declared in configuration.json used to create the Alastria Token
 const randomCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
 const iss = configData.didEntity1
@@ -46,6 +50,7 @@ for (let i = 0; i < jtiVariableLength; i++) {
 }
 jti = "nameEntity/alastria/alastria-token/" + jti
 // Ending DATA reading/calculating
+// **************************************************************************************************
 
 //Creating Alastria Token
 console.log('\t 1 - Creating Alastria Token (AT)\n')
@@ -70,3 +75,9 @@ console.log('\nThe Alastria Token (AT) signed is: \n', signedAT)
 // Validating the AlastriaToken
 console.log('\t 3 - Validating the Alastria Token (AT)\n')
 tests.tokens.validateToken(signedAT)
+
+configDataSignedObjects.signedAT = signedAT
+fs.writeFileSync(
+    './SignedObjects.json',
+    JSON.stringify(configDataSignedObjects, null, 4)
+  )

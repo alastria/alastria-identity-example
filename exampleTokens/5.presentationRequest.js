@@ -21,6 +21,7 @@ const keyDataFirstIdentity = fs.readFileSync(
     process.exit(1)
   }
 
+// **************************************************************************************************
 // Starting reading/calculating DATA declared in configuration.json used to create the Alastria Token
 const randomCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
 const iss = configData.didEntity1
@@ -44,6 +45,7 @@ for (let i = 0; i < jtiVariableLength; i++) {
 }
 jti = "nameEntity/alastria/presentation-request/" + jti
 // Ending DATA reading/calculating
+// **************************************************************************************************
 
 //Creating Presentation Request
 console.log('\t 1 - Creating Presentation Request (PR)\n')

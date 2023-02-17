@@ -6,6 +6,7 @@ const fs = require('fs')
 const rawdata = fs.readFileSync('../configuration.json')
 const configData = JSON.parse(rawdata)
 
+// **************************************************************************************************
 // Starting reading/calculating DATA declared in configuration.json used to create the Alastria Token
 const network = configData.network
 const networkID = configData.networkID
@@ -14,6 +15,7 @@ const proxyAddress = configData.entity1
 const otherNetwork = "besu"
 const otherNetworkId = "redB"
 // Ending DATA reading/calculating
+// **************************************************************************************************
 
 // Creating DID-T
 console.log('\t 1 - Creating DID redT\n')

@@ -8,6 +8,9 @@ const keythereum = require('keythereum')
 const rawdata = fs.readFileSync('../configuration.json')
 const configData = JSON.parse(rawdata)
 
+const rawDataSignedObjects = fs.readFileSync('./SignedObjects.json')
+const configDataSignedObjects = JSON.parse(rawDataSignedObjects)
+
 //FirstIdentity = Entity1
 const keyDataFirstIdentity = fs.readFileSync(
     '../keystores/firstIdentity-643266eb3105f4bf8b4f4fec50886e453f0da9ad.json'
@@ -108,3 +111,9 @@ const subjectPSMHash = tokensFactory.tokens.PSMHash(
   sub
 )
 console.log('\nThe Subject PSMHash of the Verifiable Credential is:', subjectPSMHash)
+
+configDataSignedObjects.signedCredential = signedVC
+fs.writeFileSync(
+    './SignedObjects.json',
+    JSON.stringify(configDataSignedObjects, null, 4)
+  )
