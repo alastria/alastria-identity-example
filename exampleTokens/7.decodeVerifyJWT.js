@@ -70,3 +70,17 @@ console.log('\nThe Alastria Token (AT) signed is: \n', signedAT)
 // Validating the AlastriaToken
 console.log('\t 3 - Validating the Alastria Token (AT)\n')
 tests.tokens.validateToken(signedAT)
+
+// Decode AlastriaToken
+console.log('\t 4 - Decoding the Alastria Token (AT)\n')
+const decodedAT = tokensFactory.tokens.decodeJWT(signedAT)
+console.log('\nThe decoded token is: \n', decodedAT)
+
+// Verifying AlastriaToken
+console.log('\t 5 - Verifying the Alastria Token (AT)\n')
+// '04' means uncompressed key (more info at https://github.com/indutny/elliptic/issues/138)
+const verifyAT = tokensFactory.tokens.verifyJWT(
+  signedAT,
+  '04' + jwk.substr(2)
+)
+console.log('\nIs the signedJWT verified? \n', verifyAT)

@@ -29,7 +29,7 @@ const sub = configData.didSubject1
 const exp = Math.round(Date.now() / 1000) + 86400 // 1 day = 86400 seconds
 const nbf = Math.round(Date.now() / 1000) - 86400 // 1 day before 
 const kid = iss + "#keys-1" //header.KID
-const jwk = configData.entity1Pubk //header.JWK
+const jwk = configData.firstIdentityPubk //header.JWK
 let jti = "" 
 const jtiVariableLength = 20 //length of the variable part of the jti
 // IAT does not need to be passed, the library calculates it.

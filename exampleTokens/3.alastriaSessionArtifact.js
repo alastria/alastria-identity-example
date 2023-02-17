@@ -30,7 +30,7 @@ const ani = configData.networkId
 const exp = Math.round(Date.now() / 1000) + 600 // 10 min = 600 seconds
 const nbf = Math.round(Date.now() / 1000) - 600 // 10 min before 
 let kid = iss + "#keys-1" //header.KID
-let jwk = configData.entity1Pubk //header.JWK
+let jwk = configData.firstIdentityPubk //header.JWK
 let jti = "" 
 const jtiVariableLength = 20 //length of the variable part of the jti
 // IAT does not need to be passed, the library calculates it.
