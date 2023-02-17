@@ -27,8 +27,8 @@ const iss = configData.didEntity1
 const gwu = configData.providerURL
 const cbu = configData.callbackURL
 const ani = configData.networkId
-const exp = Math.round(Date.now() / 1000) + 86400 // 1 day = 86400 seconds
-const nbf = Math.round(Date.now() / 1000) - 86400 // 1 day before 
+const exp = Math.round(Date.now() / 1000) + 600 // 10 min = 600 seconds
+const nbf = Math.round(Date.now() / 1000) - 600 // 10 min before 
 const kid = iss + "#keys-1" //header.KID
 const jwk = configData.entity1Pubk //header.JWK
 let jti = "" 
@@ -36,7 +36,7 @@ const jtiVariableLength = 20 //length of the variable part of the jti
 // IAT does not need to be passed, the library calculates it.
 
 //Neeed to added in the librery first to Alastria Token artifact
-const type = configData.type 
+const type = ["US12"] // the type "AlastriaToken" is setted in the library
 const context = configData.context
 const mfau = configData.mfau
 
