@@ -1,8 +1,6 @@
 {
     "nodeURL": "http://63.33.206.111/rpc",
     "addressPassword": "Passw0rd",
-    "rawPublicKeySubject": "03fdd57adec3d438ea237fe46b33ee1e016eda6b585c3e27ea66686c2ea5358479",
-    "rawPublicKeyReceiver": "8b82bb2b1b5b4c1d56beeb88c98fcf894c23e8dee598d94c1c77099d3a80367f46",
     "firstIdentityPubk": "0xaca7aa42e831f41b6f246d089fbcabe73e1c6ce01a1bb5d944fda4e148e1d6930f6ebb5138b1d103e3e384c893962a238e4088a549bfe84867da96942931f69a",
     "entity1Pubk": "0x356e3fce435d8729062e52d263c0c705b3c5e201a9a9608cdb070764e6b8df30ae8423b439a7af2bcc3529778341ab06c1e44411352f217b68ce44a673a1df63",
     "entity2Pubk": "0xa33e56a80b9dc83a4456265d877c0765cea76146e625572fc679804f8867222ca3c816433a9b6e6690b0b8e919ffa874982706e812314aae09d85fc62fc4fa3c",
@@ -27,22 +25,6 @@
     "jsonTokenId": "ze298y42sba",
     "network": "quor",
     "networkId": "redT",
-    "tokenPayload": {
-        "header": {
-            "alg": "ES256K",
-            "typ": "JWT",
-            "kid": "did:ala:quor:redt:0x12eeaCCA9eEbB78eB97d7cac6b#keys-1",
-            "jwk": "0x12345"
-        },
-        "payload": {
-            "iss": "did:ala:quor:redT:e53d78c1c6fc694a0f29b3f24bee439338acbe3e",
-            "gwu": "http://1.2.3.4:8097/alastria/presentation",
-            "cbu": "http://1.2.3.4:8097/alastria/presentation",
-            "iat": 1590569132,
-            "ani": "redT",
-            "exp": 1563783392
-        }
-    },
     "jti": "https://www.entity.com/alastria/credentials/3734",
     "kidCredential": "did:ala:quor:redt:12eeaCCA9eEbB78eB97d7cac6b#keys-1",
     "subjectAlastriaID": "did:ala:quor:redt:0x12eeaCCA9eEbB78eB97d7cac6b",
