@@ -13,37 +13,43 @@ const configDataSignedObjects = JSON.parse(rawDataSignedObjects)
 
 //FirstIdentity = Entity1
 const keyDataFirstIdentity = fs.readFileSync(
-    '../keystores/firstIdentity-643266eb3105f4bf8b4f4fec50886e453f0da9ad.json'
+  '../keystores/firstIdentity-643266eb3105f4bf8b4f4fec50886e453f0da9ad.json'
+)
+const keystoreDataFirstIdentity = JSON.parse(keyDataFirstIdentity)
+
+let firstIdentityPrivateKey
+try {
+  firstIdentityPrivateKey = keythereum.recover(
+    configData.addressPassword,
+    keystoreDataFirstIdentity
   )
-  const keystoreDataFirstIdentity = JSON.parse(keyDataFirstIdentity)
-  
-  let firstIdentityPrivateKey
-  try {
-    firstIdentityPrivateKey = keythereum.recover(configData.addressPassword, keystoreDataFirstIdentity)
-  } catch (error) {
-    console.error('ERROR: ', error)
-    process.exit(1)
-  }
+} catch (error) {
+  console.error('ERROR: ', error)
+  process.exit(1)
+}
 // **************************************************************************************************
 // Starting reading/calculating DATA declared in configuration.json used to create the Alastria Token
-const randomCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+const randomCharacters =
+  'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 const iss = configData.didEntity1
 const sub = configData.didSubject1
 const exp = Math.round(Date.now() / 1000) + 86400 // 1 day = 86400 seconds
-const nbf = Math.round(Date.now() / 1000) - 86400 // 1 day before 
-const kid = iss + "#keys-1" //header.KID
+const nbf = Math.round(Date.now() / 1000) - 86400 // 1 day before
+const kid = iss + '#keys-1' //header.KID
 const jwk = configData.firstIdentityPubk //header.JWK
-let jti = "" 
+let jti = ''
 const jtiVariableLength = 20 //length of the variable part of the jti
 // IAT does not need to be passed, the library calculates it.
-const type = ["DrivingLicense"]
+const type = ['DrivingLicense']
 const context = []
 
 //Generating a random JTI
 for (let i = 0; i < jtiVariableLength; i++) {
-    jti += randomCharacters.charAt(Math.floor(Math.random() * randomCharacters.length));
+  jti += randomCharacters.charAt(
+    Math.floor(Math.random() * randomCharacters.length)
+  )
 }
-jti = "nameEntity/alastria/verifiable-credential/" + jti
+jti = 'nameEntity/alastria/verifiable-credential/' + jti
 
 // Init your Blockchain provider
 const myBlockchainServiceIp = configData.nodeUrl
@@ -75,19 +81,22 @@ const verifiableCredential = tokensFactory.tokens.createCredential(
   iss,
   context,
   credentialSubject,
+  type,
   kid,
   sub,
   exp,
   nbf,
   jti,
-  jwk,
-  type
+  jwk
 )
 console.log('\nThe Verifiable Credential (VC) is: \n', verifiableCredential)
 
 // Signing the VerifiableCredential
 console.log('\t 2 - Signing the Verifiable Credential (VC)\n')
-const signedVC = tokensFactory.tokens.signJWT(verifiableCredential, firstIdentityPrivateKey)
+const signedVC = tokensFactory.tokens.signJWT(
+  verifiableCredential,
+  firstIdentityPrivateKey
+)
 console.log('\nThe Verifiable Credential (VC) signed is: \n', signedVC)
 
 // Validating the VerifiableCredential
@@ -96,24 +105,22 @@ tests.credentials.validateCredential(signedVC)
 
 // Creating Issuer PSMHash of the Verifiable Credential
 console.log('\t 4 - Creating Issuer PSMHash of the Verifiable Credential\n')
-const issuerPSMHash = tokensFactory.tokens.PSMHash(
-  web3,
-  signedVC,
-  iss
+const issuerPSMHash = tokensFactory.tokens.PSMHash(web3, signedVC, iss)
+console.log(
+  '\nThe Issuer PSMHash of the Verifiable Credential is:',
+  issuerPSMHash
 )
-console.log('\nThe Issuer PSMHash of the Verifiable Credential is:', issuerPSMHash)
 
 // Creating Subject PSMHash of the Verifiable Credential
 console.log('\t 5 - Creating Subject PSMHash of the Verifiable Credential\n')
-const subjectPSMHash = tokensFactory.tokens.PSMHash(
-  web3,
-  signedVC,
-  sub
+const subjectPSMHash = tokensFactory.tokens.PSMHash(web3, signedVC, sub)
+console.log(
+  '\nThe Subject PSMHash of the Verifiable Credential is:',
+  subjectPSMHash
 )
-console.log('\nThe Subject PSMHash of the Verifiable Credential is:', subjectPSMHash)
 
 configDataSignedObjects.signedCredential = signedVC
 fs.writeFileSync(
-    './SignedObjects.json',
-    JSON.stringify(configDataSignedObjects, null, 4)
-  )
+  './SignedObjects.json',
+  JSON.stringify(configDataSignedObjects, null, 4)
+)

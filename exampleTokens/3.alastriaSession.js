@@ -17,7 +17,10 @@ const keyDataSubject1 = fs.readFileSync(
 const subject1Keystore = JSON.parse(keyDataSubject1)
 let subject1PrivateKey
 try {
-  subject1PrivateKey = keythereum.recover(configData.addressPassword, subject1Keystore)
+  subject1PrivateKey = keythereum.recover(
+    configData.addressPassword,
+    subject1Keystore
+  )
 } catch (error) {
   console.error('ERROR: ', error)
   process.exit(1)
@@ -25,24 +28,27 @@ try {
 
 // **************************************************************************************************
 // Starting reading/calculating DATA declared in configuration.json used to create the Alastria Token
-const randomCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+const randomCharacters =
+  'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 let iss = configData.didSubject1
 const signedAT = configDataSignedObjects.signedAT
 const exp = Math.round(Date.now() / 1000) + 600 // 10 min = 600 seconds
-const nbf = Math.round(Date.now() / 1000) - 600 // 10 min before 
-const kid = iss + "#keys-1" //header.KID
+const nbf = Math.round(Date.now() / 1000) - 600 // 10 min before
+const kid = iss + '#keys-1' //header.KID
 const jwk = configData.subject1Pubk //header.JWK
 const context = configData.context
-let jti = "" 
+let jti = ''
 const jtiVariableLength = 20 //length of the variable part of the jti
 // IAT does not need to be passed, the library calculates it.
-const type =["US211"] // the type "AlastriaSession" is setted in the library
+const type = ['US211'] // the type "AlastriaSession" is setted in the library
 
 //Generating a random JTI
 for (let i = 0; i < jtiVariableLength; i++) {
-    jti += randomCharacters.charAt(Math.floor(Math.random() * randomCharacters.length));
+  jti += randomCharacters.charAt(
+    Math.floor(Math.random() * randomCharacters.length)
+  )
 }
-jti = "nameEntity/alastria/alastria-session/" + jti
+jti = 'nameEntity/alastria/alastria-session/' + jti
 // Ending DATA reading/calculating
 // **************************************************************************************************
 
@@ -52,9 +58,9 @@ const alastriaSession = tokensFactory.tokens.createAlastriaSession(
   context,
   iss,
   kid,
-  type,
   signedAT,
   exp,
+  type,
   jwk,
   nbf,
   jti
@@ -63,7 +69,10 @@ console.log('\nThe Alastria Session (AS) is:\n', alastriaSession)
 
 // Signing the AlastriaSession
 console.log('\t 2 - Signing the Alastria Session (AS)\n')
-const signedAS = tokensFactory.tokens.signJWT(alastriaSession, subject1PrivateKey)
+const signedAS = tokensFactory.tokens.signJWT(
+  alastriaSession,
+  subject1PrivateKey
+)
 console.log('\nThe Alastria Session (AS) signed is: \n', signedAS)
 
 // Validating the AlastriaSession

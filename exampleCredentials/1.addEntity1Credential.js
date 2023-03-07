@@ -50,7 +50,8 @@ const subjectAlastriaID = configData.subjectAlastriaID
 const didEntity1 = configData.didEntity1
 const context = configData.context
 const tokenExpTime = configData.tokenExpTime
-const tokenActivationDate = configData.tokenActivationDate
+const nbf = Math.round(Date.now() / 1000) - 86400
+const jwk = configData.entity1Pubk
 
 // Credential Map (key-->value)
 const credentialSubject = {}
@@ -58,18 +59,21 @@ const credentialKey = configData.credentialKey
 const credentialValue = configData.credentialValue
 credentialSubject[credentialKey] = credentialValue
 credentialSubject.levelOfAssurance = 'basic'
+const type = ['DrivingLicense']
 
 // End fake data to test
 
 const credential = tokensFactory.tokens.createCredential(
-  didEntity1,
-  context,
-  credentialSubject,
-  kidCredential,
-  subjectAlastriaID,
-  tokenExpTime,
-  tokenActivationDate,
-  jti
+  didEntity1, 
+  context, 
+  credentialSubject, 
+  type, 
+  kidCredential, 
+  subjectAlastriaID, 
+  tokenExpTime, 
+  nbf, 
+  jti, 
+  jwk
 )
 console.log('The credential1 is: ', credential)
 
