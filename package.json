@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/alastria/alastria-identity-example#readme",
   "dependencies": {
-    "alastria-identity-JSON-objects": "github:alastria/alastria-identity-JSON-objects#master",
+    "alastria-identity-JSON-objects": "github:alastria/alastria-identity-JSON-objects#develop",
     "alastria-identity-lib": "github:alastria/alastria-identity-lib.git#develop"
   },
   "devDependencies": {

@@ -74,7 +74,7 @@ async function main() {
       transactionFactory.presentationRegistry.getReceiverPresentationStatus(
         web3,
         configData.didEntity2,
-        presentationHash.psmhash
+        receiverPresentationHash
       )
 
     web3.eth.call(presentationStatus).then((result) => {

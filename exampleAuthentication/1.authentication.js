@@ -41,38 +41,43 @@ try {
 
 // ***********************************************************************************************************************
 // Starting reading/calculating DATA declared in configuration.json used to create the Alastria Token and Alastria Session
-const randomCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+const randomCharacters =
+  'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 //Alastria Token info
 const issAT = configData.didEntity1
 const gwu = configData.providerURL
 const cbu = configData.callbackURL
-const ani = configData.networkId
 const exp = Math.round(Date.now() / 1000) + 600 // 10 min = 600 seconds
 const nbf = Math.round(Date.now() / 1000) - 600 // 10 min before
-const kidAT = issAT + "#keys-1" //header.KID 
+const kidAT = issAT + '#keys-1' //header.KID
 const jwkAT = configData.entity1Pubk //header.JWK
-let jtiAT = "" 
+let jtiAT = ''
 const jtiVariableLength = 20 //length of the variable part of the jti
 
 //Generating a random JTI to AT
 for (let i = 0; i < jtiVariableLength; i++) {
-  jtiAT += randomCharacters.charAt(Math.floor(Math.random() * randomCharacters.length));
+  jtiAT += randomCharacters.charAt(
+    Math.floor(Math.random() * randomCharacters.length)
+  )
 }
-jtiAT = "nameEntity/alastria/alastria-token/" + jtiAT
+jtiAT = 'nameEntity/alastria/alastria-token/' + jtiAT
 
 //Alastria Session info
 const context = configData.context
 const issAS = configData.didSubject1
-const kidAS = issAS + "#keys-1"
-const type = ["US211"] //other info setted in the library
+const kidAS = issAS + '#keys-1'
+const type = ['US211'] //other info setted in the library
 const jwkAS = configData.subject1Pubk
-let jtiAS = ""
+let jtiAS = ''
+const mfau = configData.mfau
 
 //Generating a random JTI to AS
 for (let i = 0; i < jtiVariableLength; i++) {
-  jtiAS += randomCharacters.charAt(Math.floor(Math.random() * randomCharacters.length));
+  jtiAS += randomCharacters.charAt(
+    Math.floor(Math.random() * randomCharacters.length)
+  )
 }
-jtiAS = "nameEntity/alastria/alastria-session/" + jtiAS
+jtiAS = 'nameEntity/alastria/alastria-session/' + jtiAS
 // Ending DATA reading/calculating
 // ***********************************************************************************************************************
 
@@ -82,12 +87,14 @@ console.log('\t ------ Example of Authentication ------ \n')
 console.log('\t 1 - Creating Alastria Token (AT)\n')
 
 const alastriaToken = tokensFactory.tokens.createAlastriaToken(
+  context,
   issAT,
   gwu,
   cbu,
-  ani,
   exp,
   kidAT,
+  type,
+  mfau,
   jwkAT,
   nbf,
   jtiAT
@@ -115,9 +122,9 @@ const alastriaSession = tokensFactory.tokens.createAlastriaSession(
   context,
   issAS,
   kidAS,
-  type,
   signedAT,
   exp,
+  type,
   jwkAS,
   nbf,
   jtiAS
@@ -126,7 +133,10 @@ console.log('\nThe Alastria session is:\n', alastriaSession)
 
 //5 - The subject sign the Alastria Session
 console.log('\t 5 - Signing Alastria Session (AS)\n')
-const signedAS = tokensFactory.tokens.signJWT(alastriaSession, subject1PrivateKey)
+const signedAS = tokensFactory.tokens.signJWT(
+  alastriaSession,
+  subject1PrivateKey
+)
 console.log('\nThe Alastria Session signed is:\n', signedAS)
 
 //6 - Answer to the cbu of the AT, the subject sends the AS to the entity

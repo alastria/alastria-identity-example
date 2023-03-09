@@ -28,10 +28,13 @@ const iss = configData.didEntity1
 const cbu = configData.callbackURL
 const exp = Math.round(Date.now() / 1000) + 86400 // 1 day = 86400 seconds
 const nbf = Math.round(Date.now() / 1000) - 86400 // 1 day before 
+const p_exp = Math.round(Date.now() / 1000) + 172800 // 2 day
+const p_exp_delta = 172800
 const kid = iss + "#keys-1" //header.KID
 const jwk = configData.firstIdentityPubk //header.JWK
 const procUrl = configData.procUrl
 const procHash = configData.procHash
+const procDesc = configData.procDesc
 const data = configData.data
 const context = []
 const type = []
@@ -49,7 +52,7 @@ jti = "nameEntity/alastria/presentation-request/" + jti
 
 //Creating Presentation Request
 console.log('\t 1 - Creating Presentation Request (PR)\n')
-const presentationRequest = tokensFactory.tokens.createPresentationRequest(
+/*const presentationRequest = tokensFactory.tokens.createPresentationRequest(
   iss,
   context,
   procUrl,
@@ -62,7 +65,8 @@ const presentationRequest = tokensFactory.tokens.createPresentationRequest(
   exp,
   nbf,
   jti
-)
+)*/
+const presentationRequest = tokensFactory.tokens.createPresentationRequest(iss, context, procUrl, procHash, data, cbu, type, kid, jwk, exp, nbf, p_exp, p_exp_delta, jti, procDesc)
 
 // Signing the Presentation Request
 console.log('\t 2 - Signing the Presentation Request (PR)\n')
