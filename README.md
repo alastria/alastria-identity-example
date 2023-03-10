@@ -58,6 +58,16 @@ The list of Npm and Node versions that have worked for the different members of 
 |Node 16.13.2 && Npm 8.1.2|**OK**|
 |Node 16.14 && Npm 8.3.1|**OK**|
 
+### Problems with the version of the library and the json-objects installed when running npm install
+If you encounter problems with the version of the library and the json-objects that are installed after npm install, you need to perform the following steps to solve these problems:
+- Delete node_modules folder -> `rm -rf node_modules`
+- Delete the package-lock.json -> `rm package-lock.json`
+- Clean the cache -> `npm cache clean -f`
+- Install all dependencies -> `npm install` (from the root directory)
+
+Following these steps then check that the version of the library and the json objects that have been installed are correct. To do this go to the `node_modules -> alastria-identity-lib` folder and look at the code inside, to check if it is the one you want.
+Perform the same checking operation for the json-object code `node_modules -> alastria-identity-json-objects` 
+
 ## How to use it
 
 Then you can consume this library by running:
