@@ -72,9 +72,10 @@ function preparedAlastriaId() {
 }
 
 function createAlastriaId() {
-  const txCreateAlastriaID = transactionFactory.identityManager.createAlastriaIdentity(
+  const subject2PubKeyHash = `${web3.utils.sha3(configData.subject2Pubk.substr(2))}`
+  const txCreateAlastriaID = transactionFactory.identityManager.createAlastriaIdentityHash(
     web3,
-    configData.subject2Pubk.substr(2)
+    subject2PubKeyHash
   )
   return txCreateAlastriaID
 }
@@ -99,7 +100,7 @@ async function main() {
   console.log('\tsignedAT: \n', signedAT)
 
   // The subject, from the wallet, should build the tx createAlastriaId and sign it
-  const createResult = await createAlastriaId()
+  const createResult = createAlastriaId()
   const signedCreateTransaction = await subject2Identity.getKnownTransaction(
     createResult
   )
@@ -120,7 +121,7 @@ async function main() {
   // wallet address (from public key ir signst tx), subject public key, the tx which is signed by the subject and the signed AT
 
   // Below, it should build the tx prepareAlastriaId and sign it
-  const prepareResult = await preparedAlastriaId()
+  const prepareResult = preparedAlastriaId()
   const signedPreparedTransaction = await entity1Identity.getKnownTransaction(
     prepareResult
   )

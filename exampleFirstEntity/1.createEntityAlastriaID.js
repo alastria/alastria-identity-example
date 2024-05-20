@@ -77,9 +77,11 @@ function preparedAlastriaId() {
 }
 
 function createAlastriaId() {
-  const txCreateAlastriaID = transactionFactory.identityManager.createAlastriaIdentity(
+  const entity1PubKeyHash = `${web3.utils.sha3(configData.entity1Pubk.substr(2))}`
+  console.log("PUBLIC KEY HASH", entity1PubKeyHash)
+  const txCreateAlastriaID = transactionFactory.identityManager.createAlastriaIdentityHash(
     web3,
-    configData.entity1Pubk.substr(2)
+    entity1PubKeyHash
   )
   return txCreateAlastriaID
 }
@@ -88,8 +90,8 @@ console.log(
   '\n ------ A promise all where prepareAlastriaID and createAlsatriaID transactions are signed and sent ------ \n'
 )
 async function main() {
-  const prepareResult = await preparedAlastriaId()
-  const createResult = await createAlastriaId()
+  const prepareResult = preparedAlastriaId()
+  const createResult = createAlastriaId()
 
   const signedPreparedTransaction = await firstIdentityIdentity.getKnownTransaction(
     prepareResult
