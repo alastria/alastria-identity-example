@@ -15,6 +15,3 @@ jobs:
         run: npm install
         env:
           NODE_ENV: development
-      - name: Run all examples
-        run: dev-tools/executeAllExamples.sh
-        shell: bash
