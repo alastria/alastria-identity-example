@@ -78,6 +78,7 @@ function preparedAlastriaId() {
 
 function createAlastriaId() {
   const entity1PubKeyHash = `${web3.utils.sha3(configData.entity1Pubk.substr(2))}`
+  console.log("PUBLIC KEY HASH", entity1PubKeyHash);
   const txCreateAlastriaID = transactionFactory.identityManager.createAlastriaIdentityHash(
     web3,
     entity1PubKeyHash

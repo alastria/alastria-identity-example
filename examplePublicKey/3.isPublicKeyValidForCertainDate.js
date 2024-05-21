@@ -14,34 +14,33 @@ if (configData.entity3 === undefined) {
 }
 
 console.log('We retrive the current public key for entity3')
-const getPubKTx = transactionFactory.publicKeyRegistry.getCurrentPublicKey(
+const entity3PubKeyHash = `${web3.utils.sha3(configData.entity3Pubk.substr(2))}`
+const getPubKTx = transactionFactory.publicKeyRegistry.getPublicKeyStatusHash(
   web3,
-  configData.didEntity3
+  configData.didEntity3,
+  entity3PubKeyHash
 )
 web3.eth
   .call(getPubKTx)
-  .then((data) => {
-    const publicKeyAsString = web3.eth.abi.decodeParameters(['string'], data)[0]
-    console.log('This is the public key for entity3', publicKeyAsString)
+  .then((result) => {
+    const resultStatus = web3.eth.abi.decodeParameters(['bool', 'uint8', 'uint256', 'uint256'], result)
+    const publicKeyStatus = {
+      exist: resultStatus[0],
+      status: resultStatus[1],
+      startDate: resultStatus[2],
+      endDate: resultStatus[3]
+    }
+    console.log('publicKeyStatus for Entity3 ------>', publicKeyStatus)
 
-    console.log(
-      'Convert the publicKey to byte32 as the input parameter requires this type'
-    )
-    const publicKeyAsByte32 = `0x${web3.utils.sha3(publicKeyAsString)}`
-    const date = 1588612481
+    const date = new Date();
 
-    console.log('Check if it is valid for a date')
-    transactionFactory.publicKeyRegistry
-      .isPublicKeyValidForDate(
-        web3,
-        configData.didEntity3,
-        publicKeyAsByte32,
-        date
-      )
-      .then((isValid) => {
-        if (isValid) console.log('The public key is valid for the date ' + date)
-        else console.log('The public key is NOT valid for the date ' + date)
-      })
+    if (publicKeyStatus.endDate == 0) {
+      console.log('The public key is valid for the date ' + date)
+    } else if (publicKeyStatus.endDate >= date.getTime()) {
+      console.log('The public key is valid for the date ' + date)
+    } else {
+      console.log('The public key is NOT valid for the date ' + date)
+    }
   })
   .catch(function (error) {
     console.error('Something fails', error)

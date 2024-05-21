@@ -1,5 +1,5 @@
 {
-    "nodeURL": "http://63.33.206.111/rpc",
+    "nodeURL": "http://<redT-nodeIP>",
     "addressPassword": "Passw0rd",
     "firstIdentityPubk": "0xaca7aa42e831f41b6f246d089fbcabe73e1c6ce01a1bb5d944fda4e148e1d6930f6ebb5138b1d103e3e384c893962a238e4088a549bfe84867da96942931f69a",
     "entity1Pubk": "0x356e3fce435d8729062e52d263c0c705b3c5e201a9a9608cdb070764e6b8df30ae8423b439a7af2bcc3529778341ab06c1e44411352f217b68ce44a673a1df63",
@@ -46,28 +46,36 @@
     "procDesc": "Short description to business process 4583",
     "data": [
         {
-            "@context": ["JWT", "https://alastria.github.io/identity/credentials/v1", "https://www.w3.org/2018/identity/driving-license/v1"],
+            "@context": [
+                "JWT",
+                "https://alastria.github.io/identity/credentials/v1",
+                "https://www.w3.org/2018/identity/driving-license/v1"
+            ],
             "levelOfAssurance": 3,
             "required": true,
             "field_name": "driving_license"
         },
         {
-            "@context": ["JWT", "https://alastria.github.io/identity/credentials/v1", "https://www.w3.org/2018/identity/driving-license/v1"],
+            "@context": [
+                "JWT",
+                "https://alastria.github.io/identity/credentials/v1",
+                "https://www.w3.org/2018/identity/driving-license/v1"
+            ],
             "levelOfAssurance": 0,
             "required": true,
             "field_name": "email"
         }
     ],
-    "entity1": "0xdb040fd6acca0e742898484bd2738b38a8c57aa8",
-    "didEntity1": "did:ala:quor:redT:db040fd6acca0e742898484bd2738b38a8c57aa8",
-    "entity2": "0x82f83d802f235955e9543d3f8e485ccd06436a89",
-    "didEntity2": "did:ala:quor:redT:82f83d802f235955e9543d3f8e485ccd06436a89",
-    "entity3": "0x220ea50a0315eb025ebfb8c309d515ea5a4ac3c4",
-    "didEntity3": "did:ala:quor:redT:220ea50a0315eb025ebfb8c309d515ea5a4ac3c4",
-    "subject1": "0x4b7fa6f648f677efecb5b178a6560db23857438b",
-    "didSubject1": "did:ala:quor:redT:4b7fa6f648f677efecb5b178a6560db23857438b",
-    "subject2": "0x302b6117248c12c066b8008e0ee5180a18e5698e",
-    "didSubject2": "did:ala:quor:redT:302b6117248c12c066b8008e0ee5180a18e5698e",
+    "entity1": "0x59e23b61f42877d14231f05996b9089a2f6081b5",
+    "didEntity1": "did:ala:quor:redT:59e23b61f42877d14231f05996b9089a2f6081b5",
+    "entity2": "0x6d26cdd054ad1f7dd51cfe28e449c4cd33bc3165",
+    "didEntity2": "did:ala:quor:redT:6d26cdd054ad1f7dd51cfe28e449c4cd33bc3165",
+    "entity3": "0x4e9363e45f3b8b6f0ef8d7cdbf4df1d1a36e0089",
+    "didEntity3": "did:ala:quor:redT:4e9363e45f3b8b6f0ef8d7cdbf4df1d1a36e0089",
+    "subject1": "0x576a5823d80dc7974438c4eb6fc861921d525c3e",
+    "didSubject1": "did:ala:quor:redT:576a5823d80dc7974438c4eb6fc861921d525c3e",
+    "subject2": "0x02976e59938f023e5a868e520401648df6ce8d9d",
+    "didSubject2": "did:ala:quor:redT:02976e59938f023e5a868e520401648df6ce8d9d",
     "issuerLevel": 2,
     "updateSubject1PresentationTo": 2,
     "updateEntity2PresentationTo": 1,
