@@ -69,9 +69,10 @@ function preparedAlastriaId() {
 }
 
 function createAlastriaId() {
-  const txCreateAlastriaID = transactionFactory.identityManager.createAlastriaIdentity(
+  const entity3PubKeyHash = `${web3.utils.sha3(configData.entity3Pubk.substr(2))}`
+  const txCreateAlastriaID = transactionFactory.identityManager.createAlastriaIdentityHash(
     web3,
-    configData.entity3Pubk.substr(2)
+    entity3PubKeyHash
   )
   return txCreateAlastriaID
 }
@@ -95,7 +96,7 @@ async function main() {
   const signedAT = tokensFactory.tokens.signJWT(at, entity1PrivateKey)
   console.log('\tsignedAT: \n', signedAT)
 
-  const createResult = await createAlastriaId()
+  const createResult = createAlastriaId()
   const signedCreateTransaction = await entity3Identity.getKnownTransaction(
     createResult
   )
@@ -116,7 +117,7 @@ async function main() {
   // wallet address (from public key ir signst tx), entity3 public key, the tx which is signed by the entity3 and the signed AT
 
   // Below, it should build the tx prepareAlastriaId and sign it
-  const prepareResult = await preparedAlastriaId()
+  const prepareResult = preparedAlastriaId()
   const signedPreparedTransaction = await entity1Identity.getKnownTransaction(
     prepareResult
   )
