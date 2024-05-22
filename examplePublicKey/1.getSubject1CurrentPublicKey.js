@@ -18,7 +18,6 @@ const currentPubKey = transactionFactory.publicKeyRegistry.getPublicKeyStatusHas
   configData.didSubject1,
   subject1PubKeyHash
 )
-console.log("TRANSACCION", currentPubKey);
 web3.eth
   .call(currentPubKey)
   .then((result) => {
