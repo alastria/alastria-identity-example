@@ -42,7 +42,8 @@ const entity1Identity = new UserIdentity(
   entity1PrivateKey
 )
 
-console.log('\n ------ Creating credential ------ \n')
+// Creating Multivalued Credential
+console.log('\n ------ Creating multivalued credential ------ \n')
 
 const jti = configData.jti
 const kidCredential = configData.kidCredential
@@ -51,20 +52,36 @@ const didEntity1 = configData.didEntity1
 const context = configData.context
 const tokenExpTime = configData.tokenExpTime
 const tokenActivationDate = configData.tokenActivationDate
+const type = ['DrivingLicense']
 
-// Credential Map (key-->value)
+// Multivalued Credential Map (key-->value)
 const credentialSubject = {}
-const credentialKey = configData.credentialKey
-const credentialValue = configData.credentialValue
+const credentialKey = configData.credentialKeyFather
+const credentialValue = configData.credentialValueFather
+const credentialSubKey1 = configData.credentialSubKey1
+const credentialSubKey2 = configData.credentialSubKey2
+const credentialSubKey3 = configData.credentialSubKey3
+const credentialSubKey4 = configData.credentialSubKey4
+const credentialSubValue1 = configData.credentialSubValue1
+const credentialSubValue2 = configData.credentialSubValue2
+const credentialSubValue3 = configData.credentialSubValue3
+const credentialSubValue4 = configData.credentialSubValue4
 credentialSubject[credentialKey] = credentialValue
+credentialSubject[credentialKey][credentialSubKey1] = credentialSubValue1
+credentialSubject[credentialKey][credentialSubKey2] = credentialSubValue2
+credentialSubject[credentialKey][credentialSubKey3] = credentialSubValue3
+credentialSubject[credentialKey][credentialSubKey4] = credentialSubValue4
 credentialSubject.levelOfAssurance = 'basic'
+console.log('Multivalued Credential', credentialSubject)
 
-// End fake data to test
+// End multivalued credential data
 
+// Build multivalued credential with tokensFactory library
 const credential = tokensFactory.tokens.createCredential(
   didEntity1,
   context,
   credentialSubject,
+  type,
   kidCredential,
   subjectAlastriaID,
   tokenExpTime,
@@ -73,12 +90,14 @@ const credential = tokensFactory.tokens.createCredential(
 )
 console.log('The credential1 is: ', credential)
 
+// Sign multivalued credential with tokensFactory library
 const signedJWTCredential = tokensFactory.tokens.signJWT(
   credential,
   entity1PrivateKey
 )
 console.log('The signed token is: ', signedJWTCredential)
 
+// Create Issuer PSMHash of multivalued credential with tokensFactory library
 const credentialHash = tokensFactory.tokens.PSMHash(
   web3,
   signedJWTCredential,
@@ -90,6 +109,7 @@ fs.writeFileSync(
   JSON.stringify({ psmhash: credentialHash, jwt: signedJWTCredential })
 )
 
+// Build addIssuerCredential transaction with transactionFactory library
 function addIssuerCredential() {
   const issuerCredential =
     transactionFactory.credentialRegistry.addIssuerCredential(
@@ -130,6 +150,7 @@ async function main() {
   )
   sendSigned(issuerCredentialSigned).then((receipt) => {
     console.log('RECEIPT:', receipt)
+    // Build getIssuerCredentialStatus transaction with transactionFactory library
     const issuerCredentialTransaction =
       transactionFactory.credentialRegistry.getIssuerCredentialStatus(
         web3,

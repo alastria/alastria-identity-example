@@ -57,6 +57,7 @@ The list of Npm and Node versions that have worked for the different members of 
 |Node 16.13.0 && Npm 8.15.0|**OK**|
 |Node 16.13.2 && Npm 8.1.2|**OK**|
 |Node 16.14 && Npm 8.3.1|**OK**|
+|Node 18.19.0 && Npm 10.2.3|**OK**|
 
 ### Problems with the version of the library and the json-objects installed when running npm install
 If you encounter problems with the version of the library and the json-objects that are installed after npm install, you need to perform the following steps to solve these problems:

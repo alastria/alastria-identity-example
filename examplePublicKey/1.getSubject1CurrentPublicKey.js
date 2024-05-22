@@ -12,17 +12,24 @@ if (configData.didSubject1 === undefined) {
   console.error('You must create an Alastria ID')
   process.exit(1)
 }
-
-const currentPubKey = transactionFactory.publicKeyRegistry.getCurrentPublicKey(
+const subject1PubKeyHash = `${web3.utils.sha3(configData.subject1Pubk.substr(2))}`
+const currentPubKey = transactionFactory.publicKeyRegistry.getPublicKeyStatusHash(
   web3,
-  configData.didSubject1
+  configData.didSubject1,
+  subject1PubKeyHash
 )
 web3.eth
   .call(currentPubKey)
   .then((result) => {
     // We add this replace to find only the alphanumeric substring (the rest of null/void characters are not important)
-    const publicKey = web3.utils.hexToAscii(result).replace(/[^0-9A-Z]+/gi, '')
-    console.log('RESULT ----->', publicKey)
+    const resultStatus = web3.eth.abi.decodeParameters(['bool', 'uint8', 'uint256', 'uint256'], result)
+    const publicKeyStatus = {
+      exist: resultStatus[0],
+      status: resultStatus[1],
+      startDate: resultStatus[2],
+      endDate: resultStatus[3]
+    }
+    console.log('publicKeyStatus for Subject1 ------>', publicKeyStatus)
   })
   .catch((error) => {
     console.error('Error -------->', error)

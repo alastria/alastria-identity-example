@@ -42,10 +42,10 @@ const subject1Identity = new UserIdentity(
 )
 
 const createPresentation = tokensFactory.tokens.createPresentation(
-    presentationData.credentials[0].payload.iss,
-    presentationData.credentials[0].payload.aud,
+    presentationData.credentials[0].payload.iss, 
+    presentationData.credentials[0].payload.aud, 
     presentationData.credentials[0].payload.vp['@context'],
-    presentationData.credentials[0].payload.vp.verifiableCredential,
+    presentationData.credentials[0].payload.vp.verifiableCredential, 
     presentationData.credentials[0].payload.vp.procUrl,
     presentationData.credentials[0].payload.vp.procHash,
     presentationData.credentials[0].payload.vp.type,
@@ -53,8 +53,9 @@ const createPresentation = tokensFactory.tokens.createPresentation(
     presentationData.credentials[0].header.jwk,
     presentationData.credentials[0].payload.exp,
     presentationData.credentials[0].payload.nbf,
-    presentationData.credentials[0].payload.jti
-)
+    presentationData.credentials[0].payload.jti,
+    presentationData.credentials[0].payload.jtipr
+    )
 console.log('createPresentation ---------->', createPresentation)
 
 const signedJWTPresentation = tokensFactory.tokens.signJWT(
@@ -73,20 +74,6 @@ fs.writeFileSync(
     `./PSMHashSubject1.json`,
     JSON.stringify({
         psmhash: subjectPresentationHash,
-        jwt: signedJWTPresentation
-    })
-)
-
-const receiverPresentationHash = tokensFactory.tokens.PSMHash(
-    web3,
-    signedJWTPresentation,
-    configData.didEntity2
-)
-console.log('The PSMHashEntity2 is:', receiverPresentationHash)
-fs.writeFileSync(
-    `./PSMHashEntity2.json`,
-    JSON.stringify({
-        psmhash: receiverPresentationHash,
         jwt: signedJWTPresentation
     })
 )

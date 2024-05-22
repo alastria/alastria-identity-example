@@ -10,10 +10,6 @@ const keythereum = require('keythereum')
 const rawdata = fs.readFileSync('../configuration.json')
 const configData = JSON.parse(rawdata)
 
-const keyDataEntity1 = fs.readFileSync(
-  '../keystores/entity1-a9728125c573924b2b1ad6a8a8cd9bf6858ced49.json'
-)
-const keystoreDataEntity1 = JSON.parse(keyDataEntity1)
 const keyDataSubject1 = fs.readFileSync(
   '../keystores/subject1-806bc0d7a47b890383a831634bcb92dd4030b092.json'
 )
@@ -26,19 +22,6 @@ const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 console.log('\n ------ Preparing Subject1 identity ------ \n')
 
 // Some fake data to test
-
-const entity1KeyStore = keystoreDataEntity1
-
-let entity1PrivateKey
-try {
-  entity1PrivateKey = keythereum.recover(
-    configData.addressPassword,
-    entity1KeyStore
-  )
-} catch (error) {
-  console.error('ERROR: ', error)
-}
-
 const subject1KeyStore = keystoreDataSubject1
 
 let subject1PrivateKey
@@ -57,44 +40,14 @@ const subject1Identity = new UserIdentity(
   subject1PrivateKey
 )
 
-console.log('\n ------ Creating credential ------ \n')
-
-const jti = configData.jti
-const kidCredential = configData.kidCredential
-const subjectAlastriaID = configData.subjectAlastriaID
-const didEntity1 = configData.didEntity1
 const didSubject1 = configData.didSubject1
-const context = configData.context
-const tokenExpTime = configData.tokenExpTime
-const tokenActivationDate = configData.tokenActivationDate
-
-// Credential Map (key-->value)
-const credentialSubject = {}
-const credentialKey = configData.credentialKey
-const credentialValue = configData.credentialValue
-credentialSubject[credentialKey] = credentialValue
-const levelOfAssuranceBasic = 1
-credentialSubject.levelOfAssurance = levelOfAssuranceBasic
 const uri = configData.uri
 
 // End fake data to test
 
-const credential = tokensFactory.tokens.createCredential(
-  didEntity1,
-  context,
-  credentialSubject,
-  kidCredential,
-  subjectAlastriaID,
-  tokenExpTime,
-  tokenActivationDate,
-  jti
-)
-console.log('The credential1 is: ', credential)
-
-const signedJWTCredential = tokensFactory.tokens.signJWT(
-  credential,
-  entity1PrivateKey
-)
+const rawjson = fs.readFileSync(`./PSMHashEntity1.json`)
+const json = JSON.parse(rawjson)
+const signedJWTCredential = json.jwt
 console.log('The signed token is: ', signedJWTCredential)
 
 const subjectCredentialHash = tokensFactory.tokens.PSMHash(
