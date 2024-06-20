@@ -1,6 +1,6 @@
 {
   "name": "alastria-identity-example",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "This is an example of how to interact with the libraries from [alastria-identity-lib](https://github.com/alastria/alastria-identity-lib). The library alastria-identity-lib re-covers the Smart Contracts from [alastria-identity](https://github.com/alastria/alastriaID-hardhat-contracts).",
   "main": "",
   "scripts": {
@@ -27,8 +27,8 @@
   },
   "homepage": "https://github.com/alastria/alastria-identity-example#readme",
   "dependencies": {
-    "alastria-identity-JSON-objects": "github:alastria/alastria-identity-JSON-objects#master",
-    "alastria-identity-lib": "github:alastria/alastria-identity-lib.git#master"
+    "alastria-identity-JSON-objects": "github:alastria/alastria-identity-JSON-objects#develop",
+    "alastria-identity-lib": "github:alastria/alastria-identity-lib.git"
   },
   "devDependencies": {
     "eslint": "7.19.0",
