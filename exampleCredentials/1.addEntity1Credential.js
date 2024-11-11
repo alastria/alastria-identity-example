@@ -94,11 +94,12 @@ fs.writeFileSync(
   JSON.stringify({ psmhash: credentialHash, jwt: signedJWTCredential })
 )
 
-function addIssuerCredential() {
+function updateIssuerCredential() {
   const issuerCredential =
-    transactionFactory.credentialRegistry.addIssuerCredential(
+    transactionFactory.credentialRegistry.updateIssuerCredential(
       web3,
-      credentialHash
+      credentialHash, 
+      configData.issuedCredentialStatus
     )
   console.log('(addIssuerCredential)The transaction is: ', issuerCredential)
   return issuerCredential
@@ -123,7 +124,7 @@ function sendSigned(issuerCredentialSigned) {
 }
 
 async function main() {
-  const resultIssuerCredential = await addIssuerCredential()
+  const resultIssuerCredential = await updateIssuerCredential()
 
   const issuerCredentialSigned = await entity1Identity.getKnownTransaction(
     resultIssuerCredential

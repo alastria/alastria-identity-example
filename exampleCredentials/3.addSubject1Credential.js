@@ -61,12 +61,12 @@ fs.writeFileSync(
   JSON.stringify({ psmhash: subjectCredentialHash, jwt: signedJWTCredential })
 )
 
-function addSubjectCredential() {
+function updateSubjectCredential() {
   const subjectCredential =
-    transactionFactory.credentialRegistry.addSubjectCredential(
+    transactionFactory.credentialRegistry.updateSubjectCredential(
       web3,
       subjectCredentialHash,
-      uri
+      configData.issuedCredentialStatus
     )
   console.log('(addSubjectCredential)The transaction is: ', subjectCredential)
   return subjectCredential
@@ -92,7 +92,7 @@ function sendSigned(subjectCredentialSigned) {
 }
 
 async function main() {
-  const resultSubjectCredential = await addSubjectCredential()
+  const resultSubjectCredential = await updateSubjectCredential()
 
   const subjectCredentialSigned = await subject1Identity.getKnownTransaction(
     resultSubjectCredential

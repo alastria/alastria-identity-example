@@ -66,21 +66,23 @@
             "field_name": "email"
         }
     ],
-    "entity1": "0x59e23b61f42877d14231f05996b9089a2f6081b5",
-    "didEntity1": "did:ala:quor:redT:59e23b61f42877d14231f05996b9089a2f6081b5",
+    "entity1": "0x4820ae942d23287c84e8c3b08d415c12e7617fb5",
+    "didEntity1": "did:ala:quor:redT:4820ae942d23287c84e8c3b08d415c12e7617fb5",
     "entity2": "0x6d26cdd054ad1f7dd51cfe28e449c4cd33bc3165",
     "didEntity2": "did:ala:quor:redT:6d26cdd054ad1f7dd51cfe28e449c4cd33bc3165",
     "entity3": "0x4e9363e45f3b8b6f0ef8d7cdbf4df1d1a36e0089",
     "didEntity3": "did:ala:quor:redT:4e9363e45f3b8b6f0ef8d7cdbf4df1d1a36e0089",
-    "subject1": "0x576a5823d80dc7974438c4eb6fc861921d525c3e",
-    "didSubject1": "did:ala:quor:redT:576a5823d80dc7974438c4eb6fc861921d525c3e",
+    "subject1": "0x501aacc575022971143af46a647dfbd40179582d",
+    "didSubject1": "did:ala:quor:redT:501aacc575022971143af46a647dfbd40179582d",
     "subject2": "0x02976e59938f023e5a868e520401648df6ce8d9d",
     "didSubject2": "did:ala:quor:redT:02976e59938f023e5a868e520401648df6ce8d9d",
     "issuerLevel": 2,
+    "issuedCredentialStatus": 0,
     "updateSubject1PresentationTo": 2,
     "updateEntity2PresentationTo": 1,
     "revokeEntity2Presentation": 3,
     "updateIssuerCredentialTo": 2,
+    "updateSubjectCredentialTo": 3,
     "subject1PresentationStatus": {
         "exist": true,
         "status": "2"
