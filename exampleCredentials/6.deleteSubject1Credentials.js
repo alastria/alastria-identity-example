@@ -12,9 +12,10 @@ const myBlockchainServiceIp = configData.nodeURL
 const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 
 const deleteCredentialStatus =
-  transactionFactory.credentialRegistry.deleteSubjectCredential(
+  transactionFactory.credentialRegistry.updateSubjectCredential(
     web3,
-    credentialHash.psmhash
+    credentialHash.psmhash,
+    configData.updateSubjectCredentialTo
   )
 
 const keyDataSubject1 = fs.readFileSync(

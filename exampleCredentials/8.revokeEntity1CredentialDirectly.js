@@ -119,7 +119,7 @@ const subjectCredentialHash = tokensFactory.tokens.PSMHash(
   )
 
 //BUILD TRANSACTION updateCredentialStatus WITH transactionFactory LIBRARY
-const updateCredentialStatus = transactionFactory.credentialRegistry.updateCredentialStatus(
+const updateCredentialStatus = transactionFactory.credentialRegistry.updateIssuerCredential(
   web3,
   issuerCredentialHash,
   configData.updateIssuerCredentialTo

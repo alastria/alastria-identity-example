@@ -8,17 +8,17 @@ const configData = JSON.parse(rawdata)
 const myBlockchainServiceIp = configData.nodeURL
 const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 
-if (configData.entity3 === undefined) {
+if (configData.entity1 === undefined) {
   console.error('You must create an Alastria ID')
   process.exit(1)
 }
 
 console.log('We retrive the current public key for entity3')
-const entity3PubKeyHash = `${web3.utils.sha3(configData.entity3Pubk.substr(2))}`
-const getPubKTx = transactionFactory.publicKeyRegistry.getPublicKeyStatusHash(
+const entity1PubKeyHash = `${web3.utils.sha3(configData.entity1Pubk.substr(2))}`
+const getPubKTx = transactionFactory.publicKeyRegistry.getPublicKeyStatus(
   web3,
-  configData.didEntity3,
-  entity3PubKeyHash
+  configData.didEntity1,
+  entity1PubKeyHash
 )
 web3.eth
   .call(getPubKTx)

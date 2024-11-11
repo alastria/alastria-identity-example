@@ -11,7 +11,7 @@ const Web3 = require('web3')
 const myBlockchainServiceIp = configData.nodeURL
 const web3 = new Web3(new Web3.providers.HttpProvider(myBlockchainServiceIp))
 
-const updateCredentialStatus = transactionFactory.credentialRegistry.updateCredentialStatus(
+const updateCredentialStatus = transactionFactory.credentialRegistry.updateIssuerCredential(
   web3,
   credentialHash.psmhash,
   configData.updateIssuerCredentialTo
