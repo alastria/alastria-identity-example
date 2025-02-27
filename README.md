@@ -19,18 +19,18 @@ tsc
 
 ### Folders of example
 
-|**Folder**|**What it does**|**Wiki page**|
-|:--|:--|:--|
-|exampleCreateAlastriaID| Contains an example of how to create an Alastria ID| [Wiki](https://github.com/alastria/alastria-identity-example/wiki/Create-Alastria-ID-examples) |
-|exampleTokens| Contains an example of how to interact with [tokenFactory.ts](https://github.com/alastria/alastria-identity-lib/blob/develop/src/tokenFactory/tokensFactory.ts) functions | [Wiki](https://github.com/alastria/alastria-identity-example/wiki/Tokens-example)|
-|exampleCredentials| Contains examples of how to add and get Credentials in AlastriaID | [Wiki](https://github.com/alastria/alastria-identity-example/wiki/Credentials-examples)
-|examplePresentations| Contains examples of how to create, add and get Presentations in AlastriaID |[Wiki](https://github.com/alastria/alastria-identity-example/wiki/Presentations-examples)
-|exampleIdentityServiceProvider| Contains an example of how to add and remove a Identity Service Provider|[Wiki](https://github.com/alastria/alastria-identity-example/wiki/Service-Provider-examples)
-|exampleIdentityIssuer| Contains an example of how to add and remove a Identity Issuer|[Wiki](https://github.com/alastria/alastria-identity-example/wiki/Issuer-examples)
-|exampleFirstEntity| Contains an example of how to create the first entity with the firstIdentity account|[Wiki](https://github.com/alastria/alastria-identity-example/wiki/First-Entity-examples)
-|exampleEntities| Contains an example of get list of entities and get entity information  |[Wiki](https://github.com/alastria/alastria-identity-example/wiki/Entities-examples)
-|exampleAuthentication| It contains an example of how authentication is done  |[Wiki](https://github.com/alastria/alastria-identity-example/wiki/Authentication-example)
-|keystores| Contains the mocked keystores that we used to create the identities with different roles. These roles are explained [here](/keystores/README.md)  |
+| **Folder**                     | **What it does**                                                                                                                                                          | **Wiki page**                                                                                  |
+| :----------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :--------------------------------------------------------------------------------------------- |
+| exampleCreateAlastriaID        | Contains an example of how to create an Alastria ID                                                                                                                       | [Wiki](https://github.com/alastria/alastria-identity-example/wiki/Create-Alastria-ID-examples) |
+| exampleTokens                  | Contains an example of how to interact with [tokenFactory.ts](https://github.com/alastria/alastria-identity-lib/blob/develop/src/tokenFactory/tokensFactory.ts) functions | [Wiki](https://github.com/alastria/alastria-identity-example/wiki/Tokens-example)              |
+| exampleCredentials             | Contains examples of how to add and get Credentials in AlastriaID                                                                                                         | [Wiki](https://github.com/alastria/alastria-identity-example/wiki/Credentials-examples)        |
+| examplePresentations           | Contains examples of how to create, add and get Presentations in AlastriaID                                                                                               | [Wiki](https://github.com/alastria/alastria-identity-example/wiki/Presentations-examples)      |
+| exampleIdentityServiceProvider | Contains an example of how to add and remove a Identity Service Provider                                                                                                  | [Wiki](https://github.com/alastria/alastria-identity-example/wiki/Service-Provider-examples)   |
+| exampleIdentityIssuer          | Contains an example of how to add and remove a Identity Issuer                                                                                                            | [Wiki](https://github.com/alastria/alastria-identity-example/wiki/Issuer-examples)             |
+| exampleFirstEntity             | Contains an example of how to create the first entity with the firstIdentity account                                                                                      | [Wiki](https://github.com/alastria/alastria-identity-example/wiki/First-Entity-examples)       |
+| exampleEntities                | Contains an example of get list of entities and get entity information                                                                                                    | [Wiki](https://github.com/alastria/alastria-identity-example/wiki/Entities-examples)           |
+| exampleAuthentication          | It contains an example of how authentication is done                                                                                                                      | [Wiki](https://github.com/alastria/alastria-identity-example/wiki/Authentication-example)      |
+| keystores                      | Contains the mocked keystores that we used to create the identities with different roles. These roles are explained [here](/keystores/README.md)                          |
 
 ## Environment requirements
 
@@ -39,11 +39,13 @@ tsc
 First of all, to avoid possible errors with node and npm, it is recommended that the installation is done through **Nvm**.
 
 Once you have **Nvm installed**, all you need to do is install the required version of node with .
+
 ```sh
 nvm install <version>
 ```
 
-On the other hand, if any problem persists, it is recommended to **clean the npm cache** with the following command 
+On the other hand, if any problem persists, it is recommended to **clean the npm cache** with the following command
+
 ```sh
 npm cache clean -f
 ```
@@ -60,14 +62,16 @@ The list of Npm and Node versions that have worked for the different members of 
 |Node 18.19.0 && Npm 10.2.3|**OK**|
 
 ### Problems with the version of the library and the json-objects installed when running npm install
+
 If you encounter problems with the version of the library and the json-objects that are installed after npm install, you need to perform the following steps to solve these problems:
+
 - Delete node_modules folder -> `rm -rf node_modules`
 - Delete the package-lock.json -> `rm package-lock.json`
 - Clean the cache -> `npm cache clean -f`
 - Install all dependencies -> `npm install` (from the root directory)
 
 Following these steps then check that the version of the library and the json objects that have been installed are correct. To do this go to the `node_modules -> alastria-identity-lib` folder and look at the code inside, to check if it is the one you want.
-Perform the same checking operation for the json-object code `node_modules -> alastria-identity-json-objects` 
+Perform the same checking operation for the json-object code `node_modules -> alastria-identity-json-objects`
 
 ## How to use it
 
@@ -131,3 +135,7 @@ The repository already has configuration files for both, so you won't have to co
 To automatically format Javascript and Typescript code
 
 If you have installed some plugin that add keyboard shortcuts, like IntelliJ IDEA Keybindings (https://marketplace.visualstudio.com/items?itemName=k--kato.intellij-idea-keybindings) you will be able to format documents with Prettier with shortcuts like `cmd+alt+l`
+
+### Contribution
+
+**Contribution made by Inetum during 2024 in this document has received funding from the European Union's Horizon 2020 research and innovation programme under grant agreement No. 101084071. (Dome project https://dome-marketplace.eu/)**
