@@ -17,7 +17,7 @@ const getPresentationStatusExample = async () => {
   const entity1CredentialStatus = await getEntity1CredentialStatus()
 
   const globalStatus =
-    transactionFactory.presentationRegistry.getPresentationStatus(
+    transactionFactory.credentialRegistry.getCredentialStatus(
       web3,
       subjectCredentialStatus.status,
       entity1CredentialStatus.status
